@@ -2,19 +2,19 @@
 <html>
 	<head>
 		<title>NiusFIK</title>
-		<style type="text/css">
-			#title {
-				font-weight: bold;
-				text-shadow: 2px 2px gray;
-			}
-		</style>
 		<link rel="stylesheet" href="WF2.css">
+		<link rel="stylesheet" href="WF1.css">
 	</head>
 
 	<body>
-		<div class="header">
+		<div class="header" >
 			<h1> NiusFIK</h1>
-			<INPUT type="button" onclick="location='WF2.html'" name="Login" value="Login" />
+
+			<div align="right" style="background-color:orange;color:white;padding:20px;">
+				<INPUT type="button" onclick="location='WF2.html'" name="Login" value="Login" />
+
+				<INPUT type="button" onclick="location='WF3.html'" name="Sign Up" value="Sign Up"/>
+			</div>
 
 			<div style="background-color:orange;color:white;padding:20px;">
   				<center>
@@ -30,9 +30,10 @@
     			</center>
 			</div>	
 		</div>
-			<div>
-				<h1 id="title"><center>Bienvenido</center></h1>
-			</div>
+
+		<div>
+			<h1 class="title" ><center>Bienvenido</center></h1>
+		</div>
 
 		<div class="footer">
 		  	<ul style="list-style-type:disc;" onclick="location='WF9.html'">
@@ -42,5 +43,6 @@
 		  	 	<li>Centro de Ayuda</li>
 		  	</ul>
 		</div>
+
 	</body>
 </html>
