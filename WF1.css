@@ -8,3 +8,8 @@
 	font-weight: bold;
 	text-shadow: 2px 2px gray;
 }
+.img{
+	border-radius: 8px;
+	max-width: 100%;
+  	height: auto;
+}
