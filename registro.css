@@ -3,20 +3,46 @@
   margin-right: auto;
 }
 
-.formulario{
-  padding: 50px;
+.fondo-registro {
+  background-image: url(fondo.jpeg);
+}
+
+.caja_registro {
+  padding: 20px 0px;
   border-style: solid;
-  width: 45%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
   border-radius: 10px;
   border-color: #4CAF50;
   background-color: #FFE186;
+  overflow: auto;
 }
 
-.fondo-registro {
-  background-image: url(fondo.jpeg);
+.formulario{
+  float: left;
+  padding: 0px 30px 10px;
+}
+
+.link_login {
+  float: right;
+  margin-top: 10px;
+}
+
+.link_login a
+{
+  color: black;
+  text-decoration: none; 
+  padding: 10px 50px;
+  border-radius: 20px 0px 0px 20px;
+  background-color: orange;
+  overflow: hidden;
+}
+
+.link_login a:hover
+{
+  width: auto;
+  background-color: #f56946;
 }
 
 #envio:hover {

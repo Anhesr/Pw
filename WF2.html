@@ -3,65 +3,60 @@
 	<head>
 		<title>Inicio de Sesión</title>
 		<link rel="stylesheet" href="WF2.css">
+		<link rel="stylesheet" href="footer_header.css">
 	</head>
-	<body>
+	<body class="fondo-registro">
 		<div class="header">
-			<h1> NiusFIK</h1>
-			<!--<p1> Conecta tu proyecto </p1>-->
+				<div class="logo">
+					<a href="javascript:history.back()"><h1><img src="logo.png">NiusFIK</h1></a>
+					<!--<p1> Conecta tu proyecto </p1>-->
+				</div>
+				<div class="barra-busqueda">
+					<input type="search" id="miBusqueda" name="q"
+				     placeholder="Buscar en el sitio...">
+				    <button>Buscar</button>
+				</div>
+			</div>
+		
+		<div class="clear"></div>
+
+		<div class="caja_inicio">
+			<h1 align="center"> Iniciar Sesión </h1>
+			<div class="formulario">
+				<form action="/action_page.php">
+					<br> Nombre de usuario: <br>
+					<input 
+						type="text" 
+						name="user"> 
+					<br><br> Contraseña: <br>
+					<input 
+						type="password" 
+						name="pass">
+					<br><br>
+
+					<input type="submit" value="Iniciar sesión" id="envio-inicio">
+				</form>
+			</div>
+
+			<!--<div class="vertical_line"></div>-->
+			
+			<div class="link_register">
+				<p>¿No tienes cuenta?</p>
+
+				<a href="registro.html">Regístrate</a>
+			</div>
+
+			<div class="clear"></div>
 		</div>
-		<br>
-		<form action="/action_page.php">
-			<fieldset>
-				<legend>Información personal:</legend>
-				<br>
-				Nombre:<br>
-				<input 
-					type="text" 
-					name="name">
-				<br><br>Apellidos:<br>
-				<input 
-					type="text" 
-					name="lastname"> 
-				<br><br>Fecha de nacimiento:<br>
-				<input 
-					type="text" 
-					name="birth-date"> 
-				<br><br>Correo electronico:<br>
-				<input 
-					type="text" 
-					name="email"> 
-				<br><br>Teléfono:<br>
-				<input 
-					type="text" 
-					name="phone"> 
-				<br><br>
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>Datos de perfil:</legend>
-				<br> Nombre de usuario: <br>
-				<input 
-					type="text" 
-					name="user"> 
-				<br><br> Contraseña: <br>
-				<input 
-					type="password" 
-					name="pass">
-				<br><br>Introduzca de nuevo la contraseña:<br>
-				<input 
-					type="password" 
-					name="passVerified"> 
-				<br><br>
-			</fieldset>
-			<br>
-		</form>
+
+		<div class="clear"></div>
 
 		<div class="footer">
-		  	<ul style="list-style-type:disc;" onclick="location='WF9.html'">
-		  	 	<li>Sobre nosotros</li>
-		  	 	<li>Terminos y Condiciones</li>
-		  	 	<li>Privacidad</li>
-		  	 	<li>Centro de Ayuda</li>
+		  	<ul style="list-style-type:disc;">
+		  	 	<li><a href="WF8.html">Sobre nosotros</a></li>
+		  	 	<li><a href="WF8.html">Terminos y Condiciones</a></li>
+		  	 	<li><a href="WF8.html">Privacidad</a></li>
+		  	 	<li><a href="WF8.html">Centro de Ayuda</a></li>
 		  	</ul>
 		</div>
 	</body>

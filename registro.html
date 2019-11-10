@@ -21,56 +21,70 @@
 
 			<div class="clear"></div>
 
-			<div class="formulario">
+			<div class="caja_registro">
 				<h1 align="center">Registro</h1>
-				<form action="/action_page.php">
-					<fieldset>
-						<legend>Información personal:</legend>
+				<div class="formulario">
+					<form action="/action_page.php">
+						<fieldset>
+							<legend>Información personal:</legend>
+							<br>
+							Nombre:<br>
+							<input 
+								type="text" 
+								name="name"> 
+							<br><br>Apellidos:<br>
+							<input 
+								type="text" 
+								name="lastname"> 
+							<br><br>Fecha de nacimiento:<br>
+							<input 
+								type="text" 
+								name="birth-date"> 
+							<br><br>Correo electronico:<br>
+							<input 
+								type="text" 
+								name="email"> 
+							<br><br>Teléfono:<br>
+							<input 
+								type="text" 
+								name="phone"> 
+							<br><br>
+						</fieldset>
 						<br>
-						Nombre:<br>
-						<input 
-							type="text" 
-							name="name"> 
-						<br><br>Apellidos:<br>
-						<input 
-							type="text" 
-							name="lastname"> 
-						<br><br>Fecha de nacimiento:<br>
-						<input 
-							type="text" 
-							name="birth-date"> 
-						<br><br>Correo electronico:<br>
-						<input 
-							type="text" 
-							name="email"> 
-						<br><br>Teléfono:<br>
-						<input 
-							type="text" 
-							name="phone"> 
-						<br><br>
-					</fieldset>
-					<br>
-					<fieldset>
-						<legend>Datos de perfil:</legend>
-						<br> Nombre de usuario: <br>
-						<input 
-							type="text" 
-							name="user"> 
-						<br><br> Contraseña: <br>
-						<input 
-							type="password" 
-							name="pass">
-						<br><br>Introduzca de nuevo la contraseña:<br>
-						<input 
-							type="password" 
-							name="passVerified"> 
-						<br><br>
-					</fieldset>
-					<br>
-					<input type="submit" value="Registrarme" id="envio">
-					<br>
-				</form>
+						<fieldset>
+							<legend>Datos de perfil:</legend>
+							<br> Nombre de usuario: <br>
+							<input 
+								type="text" 
+								name="user"> 
+							<br><br> Contraseña: <br>
+							<input 
+								type="password" 
+								name="pass">
+							<br><br>Introduzca de nuevo la contraseña:<br>
+							<input 
+								type="password" 
+								name="passVerified"> 
+							<br><br>
+						</fieldset>
+						<br>
+						<input type="submit" value="Registrarme" id="envio-registro">
+						<br>
+					</form>
+				</div>
+
+				<div class="link_login">
+					<p>¿Tienes ya una cuenta?</p>
+
+					<a href="WF2.html">Inicia sesión</a>
+				</div>
+
+				<div class="clear"></div>
+
 			</div>
+
+			<div class="clear"></div>
+
 		</div>
 		<div class="footer">
 		  	<ul style="list-style-type:disc;">

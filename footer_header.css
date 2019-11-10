@@ -1,10 +1,8 @@
 .header {
   width: auto;
-  padding: 10px 0px 10px 0px;
   border: solid;
   border-radius: 15px;
   border-color: orange;
-  text-align: left;
   background: #ffbf00;
   color: white;
   font-size: 20px;
@@ -59,7 +57,6 @@
 .footer a{
   color: white;
   text-decoration: none;
-
 }
 
 .footer a:hover {
