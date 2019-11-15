@@ -4,37 +4,43 @@
 	<head>
 		<title>NiusFIK</title>
 		<link rel="stylesheet" href="footer_header.css">
-		<link rel="stylesheet" href="WF1.css">
+		<link rel="stylesheet" href="WF6.css">
 	</head>
 
 	<body>
-		<div class="header" >
-			<h1> NiusFIK</h1>
-
-
-			<div align="right" style="background-color:orange;color:white;padding:20px;">
-				<INPUT type="button" onclick="location='WF7.html'" name="MI PERFIL" value="MI PERFIL" />
+		<div class="header">
+			<div class="logo">
+				<a href="javascript:history.back()"><h1><img src="logo.png">NiusFIK</h1></a>
 			</div>
-
-			<div style="background-color:orange;color:white;padding:20px;">
-  				<center>
-  					<FORM method=GET action="http://www.google.es/search">
-        				<input type=hidden name=ie value=UTF-8 />
-        				<input type=hidden name=oe value=UTF-8 />
-                        
-        				<INPUT TYPE=text id="s" name="q" value="" size="50" />
-        				<font size=-1>
-                        <INPUT type=submit  id="x" name=btnG VALUE="Buscar" />
-       					</font>
-    				</FORM>
-    			</center>
-			</div>	
-		</div>
-
+			<div class="barra-busqueda-principal">
+				<input type="search" id="miBusqueda" name="q"
+			     placeholder="Buscar en el sitio...">
+			    <button>Buscar</button>	
+			</div>
+			<div class="botones-principal">
+			    <INPUT type="button" onclick="location='WF7.html'" name="Mi Perfil" value="Mi Perfil" />
+			</div>
+		</div>	
+		<div class="clear"></div>
 		<div>
-			<h1 class="title" ><center>Bienvenido</center></h1>
-		</div>
+			<center>
+				<dl>
+					<dd>
+						<div class="texto-publicacion" name="Publicacion">
+							publicacion
+						</div>
 
+					</dd>
+					<dd>
+						<textarea class="texto-publicacion" name="Comentarios" rows="10" cols="100">Comentarios</textarea>
+					</dd>
+					<dd>
+						<textarea class="texto-publicacion" name="Escribir Comentarios" rows="5" cols="70">Escribe aquí tus comentarios</textarea>
+						<INPUT type="button" onclick="location='WF6.html'" name="Publicar Comentario" value="Publicar Comentario" />
+					</dd>
+				</dl>		
+			</center>	
+		</div>
 		<div class="footer">
 		  	<ul style="list-style-type:disc;">
 		  	 	<li><a href="WF8.html">Sobre nosotros</a></li>
