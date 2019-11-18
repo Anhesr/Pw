@@ -1,0 +1,42 @@
+.formulario {
+  border: 1px;
+  border-style: solid;
+  border-color: #000;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  margin-left: 12%;
+  margin-right: 12%;
+  text-align: center;
+}
+.encabezados {
+  padding-left: 10%;
+  text-align: left;
+}
+.pubCV {
+  display: inline-block;
+  margin: auto;
+  padding: 10px;
+  margin-right: 0;
+}
+.privCV {
+  display: inline-block;
+  margin: auto;
+  border: solid 1px;
+  border-color: gray;
+  border-top: 0;
+  border-right: 0;
+  padding: 10px;
+  background-color: rgba(224, 222, 219, 1);
+}
+form#priv {
+  display: none;
+}
+.submitbutton {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.forms {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 10px;
+}
