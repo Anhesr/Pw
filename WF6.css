@@ -1,3 +1,33 @@
+.publicacion {
+	padding: 2px;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border-color: black;
+  background-color: white;
+	border : solid 2px;
+	padding : 4px;
+	width : 708px;
+	height : 400px;
+	overflow : auto; 
+}
+
+.comentarios {
+	padding: 2px;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border-color: black;
+  background-color: white;
+	border : solid 2px;
+	padding : 4px;
+	width : 708px;
+	height : 200px;
+	overflow : auto; 
+}
+
 .texto-publicacion {
   padding: 2px;
   border-style: solid;
