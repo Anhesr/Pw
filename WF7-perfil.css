@@ -3,7 +3,10 @@
   border-style: solid;
   border-color: #000;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
+}
+.bordeImg {
+  border-radius: 70px;
 }
 #snow-container {
   height: 100px;
@@ -29,24 +32,42 @@
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: #ffbf00;
+  border-radius: 14px 14px 0 0;
+}
+.gridPag {
+  display: grid;
+  clear: both;
+  margin-bottom: 30px;
+}
+.newPublis {
+  grid-column: 3;
+  column-width: 59em;
+}
+#miCV {
+  grid-column: 1;
+}
+.buttonsPerfil {
+  width: 12em;
+  border: solid #fff 2px;
+  border-radius: 28px;
+}
+#misPublis {
+  grid-column: 2;
+  margin-left: 2px;
 }
 div.imgPerfil {
-  text-align: left;
-  width: 33%;
+  grid-column: 1;
+  column-width: 8em;
   margin: auto;
-  display: inline-block;
+  margin-left: 0;
+  margin-right: 16px;
 }
 div.infoPerfil {
-  vertical-align: middle;
+  grid-column: 2;
+  column-width: 26em;
   margin: auto;
-  display: inline-block;
-  width: 33%;
-}
-div.modPerfil {
-  text-align: right;
-  margin: auto;
-  display: inline-block;
-  width: 33%;
+  margin-left: 0;
+  margin-right: unset;
 }
 .publicacion {
   width: 95%;
@@ -57,6 +78,7 @@ div.titPublicacion {
   height: 2.5em;
   background-color: rgba(51, 153, 255, 0.5);
   transition: 1s;
+  border-radius: 14px 14px 0 0;
 }
 p.bodyPublicacion {
   text-align: center;
