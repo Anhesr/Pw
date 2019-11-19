@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<link rel="icon" type="image/png" href="logo.png" />
+	<head>
+		<title>NiusFIK</title>
+		<link rel="stylesheet" href="footer_header.css">
+		<link rel="stylesheet" href="WF5-lista_publicaciones.css">
+		<link rel="stylesheet" href="quill/quill.snow.css" />
+	</head>
+	<body>
+		<div class="header">
+
+				<div class="logo">
+					<a href="javascript:history.back()"><h1><img src="logo.png">NiusFIK</h1></a>
+				</div>
+
+				<div class="barra-busqueda">
+					<input type="search" id="miBusqueda" name="q"
+				     placeholder="Buscar en el sitio...">
+				    <button>Buscar</button>
+				</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="columnas">
+			<div class="columna_recomendaciones">
+				<h3>Recomendaciones</h3>
+			</div>
+
+			<div class="columna_publicaciones">
+
+				<div class="borde" style=" position: relative; margin-bottom: 10px; ">
+				  <div id="snow-container"></div>
+				  <input type="button" value="Publicar" class="publbut" />
+				</div>
+				<script src="quill/quill.min.js"></script>
+				<script>
+				  var quill = new Quill("#snow-container", {
+				    placeholder: "Introduzca el texto...",
+				    theme: "snow"
+				  });
+				</script>	
+			</div>
+
+			<div class="columna_amigos">
+				<h3>Amigos</h3>
+				<div class="lista_amigos">
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+
+		<div class="footer">
+		  	<ul style="list-style-type:disc;">
+		  	 	<li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
+		  	 	<li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
+		  	 	<li><a href="WF8-aviso_legal.html">Privacidad</a></li>
+		  	 	<li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+		  	</ul>
+		</div>
+
+	</body>
+</html>
