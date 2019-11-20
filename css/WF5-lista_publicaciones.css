@@ -10,7 +10,6 @@
   border-color: black;
   background-color: white;
   overflow: auto;
-  width: auto;
   height: 50%;
   align-self: left;
   margin: 5px;
@@ -20,16 +19,13 @@
 {
   grid-column: 2;
   padding: 20px;
-  padding-bottom: 500px;
+  padding-bottom: 70%;
   align-content: center;
-  width: auto;
   border-radius: 10px;
   border-style: solid;
   border-color: black;
   margin: 5px;
   background-color: white;
-  overflow: auto;
-  position: relative;
 }
 
 .columna_amigos {
@@ -40,23 +36,28 @@
   border-color: black;
   background-color: white;
   overflow: auto;
-  height: 50%;
-  width: auto;
   align-self: right;
   margin: 5px;
 }
 
-.texto-publicacion {
-  resize: none;
-}
-
-.borde {
+.lista_publicaciones
+{
   border: 1px;
   border-style: solid;
   border-color: #000;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
+  width: 40em;
+  margin: 5px;
+  height: auto;
 }
+
+.texto-publicacion {
+  width: 40em;
+  height: auto;
+  padding-bottom: 10px;
+}
+
 #snow-container {
   height: 100px;
 }
@@ -64,3 +65,36 @@
 body {
   background-color: #484763;
 }
+
+.borde {
+  border: 1px;
+  border-style: solid;
+  border-color: #000;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.titulo {
+  font-size: 14pt;
+  text-align: center;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #ffbf00;
+  border-radius: 14px 14px 0 0;
+}
+
+.publbut {
+  position: absolute;
+  right: 0.1%;
+  bottom: 0.6%;
+}
+
+.buttonsPerfil {
+  width: 12em;
+  border: solid #fff 2px;
+  border-radius: 28px;
+}
+

@@ -5,9 +5,10 @@
 		<title>NiusFIK</title>
 		<link rel="stylesheet" href="footer_header.css">
 		<link rel="stylesheet" href="WF6-publicacion.css">
+		<link rel="stylesheet" href="quill/quill.snow.css" />
 	</head>
 
-	<body>
+	<body class="fondo">
 		<div class="header">
 			<div class="logo">
 				<a href="javascript:history.back()"><h1><img src="logo.png">NiusFIK</h1></a>
@@ -24,20 +25,27 @@
 		<div class="clear"></div>
 		<div>
 			<center>
-				<dl>
-					<dd>
-						<div class="publicacion" name="Publicacion">
+				
+						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
 								Aquí iría una publicación
 						</div>
-					</dd>
-					<dd>
-						<div class="comentarios" name="Comentarios">Comentarios</div>
-					</dd>
-					<dd>
-						<textarea class="texto-publicacion" name="Escribir Comentarios" rows="5" cols="70">Escribe aquí tus comentarios</textarea>
-						<INPUT type="button" onclick="location='WF6.html'" name="Publicar Comentario" value="Publicar Comentario" />
-					</dd>
-				</dl>		
+					<br/>
+						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios</div>
+						<br/>
+						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
+							<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
+				  				<div id="snow-container"></div>
+				  				<input type="button" value="Publicar comentario" class="publbut" />
+							</div>
+							<script src="quill/quill.min.js"></script>
+							<script>
+				  				var quill = new Quill("#snow-container", {
+				    			placeholder: "Introduzca un comentario...",
+				    			theme: "snow"
+				  				});
+							</script>	
+						</div>
+					<br/>		
 			</center>	
 		</div>
 		<div class="footer">

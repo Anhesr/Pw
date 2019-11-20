@@ -1,10 +1,10 @@
 .title{
 	padding-top: 10px;
-  	padding-left: 20px;
-  	padding-right: 20px;
-  	padding-bottom: 20px;
-  	border-radius: 15px;
-  	text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  text-align: center;
 	font-weight: bold;
 	text-shadow: 2px 2px gray;
 }
@@ -19,7 +19,7 @@
   border-color:  #ff8034 #f7670a #ce5a0f #f7670a;
   border-radius: 40px;
   background-color: #ff8034;
-  margin: 35px 35px 0px 210px;
+  margin: 35px 10% 35px 20%;
   padding: 10px;
 }
 .botones-principal{
