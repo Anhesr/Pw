@@ -1,34 +1,4 @@
-.publicacion {
-	padding: 2px;
-  border-style: solid;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  border-color: black;
-  background-color: white;
-	border : solid 2px;
-	padding : 4px;
-	width : 708px;
-	height : 400px;
-	overflow : auto; 
-}
-
-.comentarios {
-	padding: 2px;
-  border-style: solid;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  border-color: black;
-  background-color: white;
-	border : solid 2px;
-	padding : 4px;
-	width : 708px;
-	height : 200px;
-	overflow : auto; 
-}
-
-.texto-publicacion {
+.publicacion-comentario {
   padding: 2px;
   border-style: solid;
   margin-left: auto;
@@ -36,13 +6,14 @@
   border-radius: 10px;
   border-color: black;
   background-color: white;
-  overflow: auto;
-  width: 30;
-  height: 30;
+  border : solid 2px;
+  padding : 4px;
+  width : 708px;
+  overflow : auto; 
 }
 
-textarea {
-   resize: none;
+.fondo {
+  background-color: #484763;
 }
 
 .botones-principal{
