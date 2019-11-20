@@ -1,5 +1,5 @@
 function modificarPerfil() {
-  window.location = "WF4-modificar_perfil.html";
+  window.location = "../html/WF4-modificar_perfil.html";
 }
 
 function hoverOnPublication(id) {  

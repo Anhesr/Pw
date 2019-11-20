@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+  <link rel="icon" type="image/png" href="../img/logo.png" />
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="WF7-perfil.css" />
-    <link rel="stylesheet" href="quill/quill.snow.css" />
-    <link rel="stylesheet" href="footer_header.css" />
+    <link rel="stylesheet" href="../css/WF7-perfil.css" />
+    <link rel="stylesheet" href="../quill/quill.snow.css" />
+    <link rel="stylesheet" href="../css/footer_header.css" />
 
     <title>Perfil - NiusFIK</title>
   </head>
   <body onresize="hideSearchBar()">
-    <script src="WF7-perfil.js"></script>
-    <script src="generalFunctions.js"></script>
+    <script src="../js/WF7-perfil.js"></script>
+    <script src="../js/generalFunctions.js"></script>
 
     <header class="header">
       <div class="logo">
         <a href="javascript:history.back()"
-          ><h1><img src="logo.png" />NiusFIK</h1></a
+          ><h1><img src="../img/logo.png" />NiusFIK</h1></a
         >
       </div>
       <div class="barra-busqueda" id="searchBar">
@@ -33,7 +34,7 @@
       <div class="imgPerfil">
         <img
           class="bordeImg"
-          src="perfil.jpg"
+          src="../img/perfil.jpg"
           alt="Imagen de perfil"
           width="125px"
         />
@@ -137,7 +138,7 @@
         <!-- Fin de creación de publicaciones -->
       </div>
     </div>
-    <script src="quill/quill.min.js"></script>
+    <script src="../quill/quill.min.js"></script>
     <script>
       var quill = new Quill("#snow-container", {
         placeholder: "Introduzca el texto...",
