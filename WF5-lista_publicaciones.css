@@ -40,6 +40,7 @@
   border-color: black;
   background-color: white;
   overflow: auto;
+  height: 50%;
   width: auto;
   align-self: right;
   margin: 5px;

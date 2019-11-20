@@ -30,17 +30,23 @@
 
 			<div class="columna_publicaciones">
 
-				<div class="borde" style=" position: relative; margin-bottom: 10px; ">
-				  <div id="snow-container"></div>
-				  <input type="button" value="Publicar" class="publbut" />
+				<div class="escribir_publicacion">
+					<div class="borde" style=" position: relative; margin-bottom: 10px; ">
+					  <div id="snow-container"></div>
+					  <input type="button" value="Publicar" class="publbut" />
+					</div>
+					<script src="quill/quill.min.js"></script>
+					<script>
+					  var quill = new Quill("#snow-container", {
+					    placeholder: "Introduzca el texto...",
+					    theme: "snow"
+					  });
+					</script>
 				</div>
-				<script src="quill/quill.min.js"></script>
-				<script>
-				  var quill = new Quill("#snow-container", {
-				    placeholder: "Introduzca el texto...",
-				    theme: "snow"
-				  });
-				</script>	
+				
+				<div class="leer_publicaciones">
+					
+				</div>		
 			</div>
 
 			<div class="columna_amigos">
