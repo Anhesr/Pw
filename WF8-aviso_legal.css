@@ -1,0 +1,19 @@
+
+
+.aviso-legal {
+  padding: 2px;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border-color: black;
+  background-color: white;
+  border : solid 2px;
+  padding : 4px;
+  width : 800px;
+  overflow : auto; 
+}
+
+.fondo {
+  background-color: #484763;
+}
