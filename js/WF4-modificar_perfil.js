@@ -4,7 +4,7 @@ function irPerfil() {
   document.getElementById("CVMod").style.display = "unset";
   setTimeout(function() {
     window.location = "../html/WF7-perfil.html";
-  }, 3000);
+  }, 2000);
 }
 
 function changeCVType(focus) {

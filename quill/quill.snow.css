@@ -846,7 +846,7 @@
 }
 .ql-toolbar.ql-snow {
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 14px 14px 0px 0px;
   box-sizing: border-box;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
@@ -942,4 +942,5 @@
 }
 .ql-container.ql-snow {
   border: 1px solid #ccc;
+  border-radius: 0px 0px 14px 14px;
 }
