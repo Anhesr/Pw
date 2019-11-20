@@ -10,7 +10,6 @@
   border-color: black;
   background-color: white;
   overflow: auto;
-  width: auto;
   height: 50%;
   align-self: left;
   margin: 5px;
@@ -21,18 +20,12 @@
   grid-column: 2;
   padding: 20px;
   padding-bottom: 70%;
-  padding-right: 2%;
-  padding-left: 2%;
-  padding-top: 2%;
   align-content: center;
-  width: auto;
   border-radius: 10px;
   border-style: solid;
   border-color: black;
   margin: 5px;
   background-color: white;
-  overflow: auto;
-  position: relative;
 }
 
 .columna_amigos {
@@ -43,25 +36,28 @@
   border-color: black;
   background-color: white;
   overflow: auto;
-  width: auto;
   align-self: right;
   margin: 5px;
 }
 
-.texto-publicacion {
-  resize: none;
-  height: auto;
-  width: auto;
-  overflow: auto;
-}
-
-.borde {
+.lista_publicaciones
+{
   border: 1px;
   border-style: solid;
   border-color: #000;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
+  width: 60em;
+  margin: 5px;
+  height: auto;
 }
+
+.texto-publicacion {
+  width: 60em;
+  height: auto;
+  padding-bottom: 10px;
+}
+
 #snow-container {
   height: 100px;
 }
@@ -74,7 +70,7 @@ body {
   border: 1px;
   border-style: solid;
   border-color: #000;
-  margin-top: 10px;
+  margin: 10px;
   border-radius: 15px;
 }
 
@@ -89,3 +85,16 @@ body {
   background-color: #ffbf00;
   border-radius: 14px 14px 0 0;
 }
+
+.publbut {
+  position: absolute;
+  right: 0.1%;
+  bottom: 0.6%;
+}
+
+.buttonsPerfil {
+  width: 12em;
+  border: solid #fff 2px;
+  border-radius: 28px;
+}
+
