@@ -25,29 +25,56 @@
 
 		<div class="columnas">
 			<div class="columna_recomendaciones">
-				<h3>Recomendaciones</h3>
+
+				<div>
+					<h3>Recomendaciones</h3>
+
+					<div class="borde">
+					  <p class="titulo">Lista recomendaciones</p>
+					  <hr />
+					  <p class="texto">
+					  </p>
+
+					</div>
+
+				</div>
+
 			</div>
 
 			<div class="columna_publicaciones">
 
-				<div class="borde" style=" position: relative; margin-bottom: 10px; ">
-				  <div id="snow-container"></div>
-				  <input type="button" value="Publicar" class="publbut" />
+				<div class="texto-publicacion">
+
+					<div class="borde" style=" position: relative; margin-bottom: 10px; ">
+					  <div id="snow-container"></div>
+					  <input type="button" value="Publicar" class="publbut" />
+					</div>
+					<script src="quill/quill.min.js"></script>
+					<script>
+					  var quill = new Quill("#snow-container", {
+					    placeholder: "Introduzca el texto...",
+					    theme: "snow"
+					  });
+					</script>
+
 				</div>
-				<script src="quill/quill.min.js"></script>
-				<script>
-				  var quill = new Quill("#snow-container", {
-				    placeholder: "Introduzca el texto...",
-				    theme: "snow"
-				  });
-				</script>	
+
 			</div>
 
 			<div class="columna_amigos">
-				<h3>Amigos</h3>
-				<div class="lista_amigos">
-					
+				<div>
+					<h3>Amigos</h3>
+
+					<div class="borde">
+					  <p class="titulo">Lista amigos</p>
+					  <hr />
+					  <p class="texto">
+					  </p>
+
+					</div>
+
 				</div>
+
 			</div>
 		</div>
 
