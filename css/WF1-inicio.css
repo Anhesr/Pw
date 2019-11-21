@@ -11,7 +11,7 @@
 .img{
 	border-radius: 15px;
 	max-width: 100%;
-  	height: auto;
+  height: auto;
 
 }
 
@@ -20,9 +20,10 @@ background-image: linear-gradient(
       rgba(25, 209, 231, 0.5),
       rgba(243, 17, 224, 0.5)
     ),
- url(../img/logo.png); 
-height: 480px; 
-width: 720px; 
+ url(../img/portada.png); 
+height: 1080px; 
+width: 1875px;
+border-radius: 15px; 
 }
 
 .barra-busqueda-principal{
