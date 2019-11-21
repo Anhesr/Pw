@@ -98,3 +98,22 @@ body {
   border-radius: 28px;
 }
 
+.botones-principal{
+  float: right;
+  border: solid;
+  border-color:  #ff8034 #f7670a #ce5a0f #f7670a;
+  border-radius: 40px 0px 0px 40px;
+  background-color: #ff8034;
+  margin: 35px 0px 0px 0px;
+  padding: 10px;
+}
+
+.barra-busqueda-principal{
+  float: left;
+  border: solid;
+  border-color:  #ff8034 #f7670a #ce5a0f #f7670a;
+  border-radius: 40px;
+  background-color: #ff8034;
+  margin: 35px 35px 0px 210px;
+  padding: 10px;
+}
