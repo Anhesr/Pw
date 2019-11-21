@@ -41,12 +41,13 @@
 								name="lastname"> 
 							<br><br>Fecha de nacimiento:<br>
 							<input 
-								type="text" 
+								type="date" 
 								name="birth-date"> 
 							<br><br>Correo electronico:<br>
 							<input 
-								type="text" 
-								name="email"> 
+								type="email" 
+								name="correo"
+								id="correo">
 							<br><br>Teléfono:<br>
 							<input 
 								type="text" 
@@ -63,19 +64,31 @@
 							<br><br> Contraseña: <br>
 							<input 
 								type="password" 
-								name="pass">
+								name="pass"
+								id="pass"
+								pattern=".{7,}"
+								title="La contraseña debe contener al menos 7 carácteres"
+								oninput="validarPass()"
+								required>
+							<br>
+							<p id="msjErrorValidar" style="display: none; color: red"> *Minimo 7 caracteres </p>
 							<br><br>Introduzca de nuevo la contraseña:<br>
 							<input 
 								type="password" 
-								name="passVerified"> 
-							<br><br>
+								name="passVerified"
+								id="pass2"
+								oninput ="verificarPass()"> 
+							<br>
+							<p id="msjErrorVerificar" style="display: none; color: red">** Las contraseñas no coinciden</p>  
+							<br>
 						</fieldset>
 						<br>
 					</form>
 					<input 
 						type="submit" 
 						value="Registrarme" 
-						onclick="accederListaPubli()">
+						id="botonRegistro"  
+						onclick="accederListaPubli()" disabled>
 					<br>
 				</div>
 
