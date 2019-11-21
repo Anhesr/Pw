@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<title>Registrate en NiusFIK</title>
+	    <meta charset="UTF-8" />
 		<link rel="icon" type="image/png" href="../img/logo.png" />
-		<link href="../css/WF3-login.css" rel="stylesheet">
+		<link href="../css/WF3-registro.css" rel="stylesheet">
 		<link href="../css/footer_header.css" rel="stylesheet">
 	</head>
 	<body class="fondo-registro">
+		<script src="../js/WF3-registro.js"></script>
 		<div class="contenedor">
 			<div class="header">
 				<div class="logo">
@@ -25,7 +27,7 @@
 			<div class="caja_registro">
 				<h1 align="center">Registro</h1>
 				<div class="formulario">
-					<form action="/action_page.php">
+					<form id="infoRegistro">
 						<fieldset>
 							<legend>Información personal:</legend>
 							<br>
@@ -69,15 +71,18 @@
 							<br><br>
 						</fieldset>
 						<br>
-						<input type="submit" value="Registrarme" id="envio-registro">
-						<br>
 					</form>
+					<input 
+						type="submit" 
+						value="Registrarme" 
+						onclick="accederListaPubli()">
+					<br>
 				</div>
 
 				<div class="link_login">
 					<p>¿Tienes ya una cuenta?</p>
 
-					<a href="WF2-registro.html">Inicia sesión</a>
+					<a href="WF2-login.html">Inicia sesión</a>
 				</div>
 
 				<div class="clear"></div>

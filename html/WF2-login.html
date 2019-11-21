@@ -3,10 +3,11 @@
 	<head>
 		<title>Inicia sesión en NiusFIK</title>
 		<link rel="icon" type="image/png" href="../img/logo.png" />
-		<link rel="stylesheet" href="../css/WF2-registro.css">
+		<link rel="stylesheet" href="../css/WF2-login.css">
 		<link rel="stylesheet" href="../css/footer_header.css">
 	</head>
 	<body class="fondo-registro">
+		<script src="../js/WF2-login.js"></script>
 		<div class="header">
 				<div class="logo">
 					<a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
@@ -24,7 +25,7 @@
 		<div class="caja_inicio">
 			<h1 align="center"> Iniciar sesión </h1>
 			<div class="formulario">
-				<form action="/action_page.php">
+				<form id="infoLogin">
 					<br> Nombre de usuario: <br>
 					<input 
 						type="text" 
@@ -35,8 +36,12 @@
 						name="pass">
 					<br><br>
 
-					<input type="submit" value="Iniciar sesión" id="envio-inicio">
 				</form>
+				<input 
+					type="submit" 
+					value="Iniciar sesión" 
+					id="envio-inicio"
+					onclick="accederListaPubli()">
 			</div>
 
 			<!--<div class="vertical_line"></div>-->
@@ -44,7 +49,7 @@
 			<div class="link_register">
 				<p>¿No tienes cuenta?</p>
 
-				<a href="WF3-login.html">Regístrate</a>
+				<a href="WF3-registro.html">Regístrate</a>
 			</div>
 
 			<div class="clear"></div>
