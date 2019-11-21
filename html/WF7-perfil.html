@@ -30,7 +30,7 @@
       </div>
     </header>
 
-    <div class="gridPag">
+    <div class="gridPag1">
       <div class="imgPerfil">
         <img
           class="bordeImg"
@@ -60,16 +60,36 @@
         </div>
       </div>
     </div>
-    <div class="gridPag">
+    <div class="gridPag2">
       <div id="miCV" class="borde">
         <p class="titulo">Mi Currículum Vitae</p>
         <hr />
-        <p class="texto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-          dolore perspiciatis facere sed dignissimos sequi, veritatis at
-          delectus excepturi nam fugit sit quo laborum nisi quia aperiam velit
-          necessitatibus reiciendis.
-        </p>
+        <div class="flip-container">
+          <div class="flipper">
+              <div id="privCVper" class="publicacion borde2 back">
+                  <div class="CVfields">
+                    <p><strong>Nombre:</strong> Juan</p>
+                    <p><strong>Apellidos:</strong> Mariscal Muñoz</p>
+                    <p><strong>Correo electrónico:</strong> prueba@prueba.com</p>
+                  </div>
+                </div>
+                <div id="pubCVper" class="publicacion borde2 front">
+                  <div class="CVfields">
+                    <p><strong>Situación laboral:</strong> Activo</p>
+                    <p>
+                      <strong>Formación académica:</strong> Grado en Ingeniería
+                      Informática
+                    </p>
+                    <p>
+                      <strong>Intereses profesionales:</strong> Diseño de aplicaciones
+                      Web
+                    </p>
+                    <p><strong>Experiencia científica:</strong> Ninguna</p>
+                    <p><strong>Producción científica:</strong> Ninguna</p>
+                  </div>
+                </div>
+          </div>
+        </div>
       </div>
       <div id="misPublis" class="borde">
         <p class="titulo">Mis publicaciones</p>
@@ -81,7 +101,7 @@
             id="publicacion"
             onmouseover="hoverOnPublication(1)"
             onmouseout="outHoverOnPublication(1)"
-            onclick="goToPubli()"
+            onclick="goToPubli(1)"
           >
             <div class="titPublicacion" id="titPublicacion1">
               <p class="left">
