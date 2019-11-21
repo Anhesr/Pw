@@ -7,6 +7,10 @@
   margin-left: 12%;
   margin-right: 12%;
   text-align: center;
+  background-color: #fff;
+}
+body {
+  background-color: #484763;
 }
 .encabezados {
   padding-left: 10%;
@@ -39,4 +43,15 @@ form#priv {
   width: 80%;
   text-align: left;
   margin-bottom: 10px;
+}
+#CVMod {
+  display: none;
+  text-align: center;
+}
+#CVModMsg {
+  width: 50%;
+  margin-left: 25%;
+  background-color: #fff;
+  border: solid 2px #d3d3d3;
+  border-radius: 50px;
 }

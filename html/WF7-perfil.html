@@ -15,7 +15,7 @@
 
     <header class="header">
       <div class="logo">
-        <a href="javascript:history.back()"
+        <a href="WF5-lista_publicaciones.html"
           ><h1><img src="../img/logo.png" />NiusFIK</h1></a
         >
       </div>
@@ -38,14 +38,6 @@
           alt="Imagen de perfil"
           width="125px"
         />
-      </div>
-      <div class="infoPerfil">
-        <p>
-          <strong>Nombre:</strong> Nombre<br />
-          <strong>Apellidos:</strong> Apellido1 Apellido2<br />
-          <strong>Correo electrónico:</strong>
-          correodeprueba@correodeprueba.com<br />
-        </p>
         <input
           class="buttonsPerfil"
           type="button"
@@ -53,10 +45,11 @@
           onclick="modificarPerfil()"
         />
       </div>
+      
       <div class="newPublis">
         <div class="borde" style=" position: relative; margin-bottom: 10px; ">
           <div id="snow-container"></div>
-          <input type="button" value="Publicar" class="publbut buttonsPerfil" />
+          <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" />
         </div>
       </div>
     </div>

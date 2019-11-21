@@ -26,9 +26,9 @@
         <input name="formac" type="text" class="forms" />
         <p class="encabezados">Intereses profesionales</p>
         <select name="intpro" class="forms">
-          <option value="trabajar">Trabajar</option>
-          <option value="nini">Nini</option>
-          <option value="vivircuento">Vivir del cuento</option>
+          <option value="ej1">Ejemplo1</option>
+          <option value="ej2">Ejemplo2</option>
+          <option value="ej3">Ejemplo3</option>
         </select>
         <p class="encabezados">Experiencia científica</p>
         <input name="expC" type="text" class="forms" />
@@ -45,22 +45,21 @@
         <p class="encabezados">Correo electrónico</p>
         <input name="email" type="email" class="forms" />
         <p class="encabezados">Fecha de nacimiento</p>
-        <input name="date" type="date" class="forms" style="height: 10px;" /> 
+        <input name="date" type="date" class="forms" style="height: 10px;" />
         <p class="encabezados">Teléfono móvil</p>
         <input name="mobP" type="text" class="forms" /> <br />
       </form>
       <input
-          type="button"
-          value="Guardar cambios"
-          class="submitbutton"
-          onclick="irPerfil()"
-        />
+        type="button"
+        value="Guardar cambios"
+        class="submitbutton"
+        onclick="irPerfil()"
+      />
     </div>
-    <div
-      style="display: none; text-align: center; vertical-align: middle;"
-      id="CVMod"
-    >
-      Correcto, currículum modificado
+    <div id="CVMod">
+      <p id="CVModMsg">
+        Currículum modificado
+      </p>
     </div>
     <div class="footer" id="footer">
       <ul style="list-style-type:disc;">

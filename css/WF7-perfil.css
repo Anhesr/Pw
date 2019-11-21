@@ -4,17 +4,23 @@
   border-color: #000;
   margin-top: 10px;
   border-radius: 15px;
+  background-color: #fff;
+}
+body {
+  background-color: #484763;
 }
 .borde2 {
   border: 1px;
   border-style: solid;
-  background-color: lightgray;
+  background-color: #d3d3d3;
   border-color: gray;
   margin-top: 10px;
   border-radius: 30px;
 }
 .bordeImg {
   border-radius: 70px;
+  border: solid 2px;
+  border-color: rgba(224, 222, 219, 1);
 }
 #snow-container {
   height: 100px;
@@ -46,7 +52,7 @@
   display: grid;
   clear: both;
   gap: 1px;
-  grid-template-columns: 10% 30% 60%;
+  grid-template-columns: 25% 75%;
   margin-bottom: 30px;
 }
 .gridPag2 {
@@ -57,8 +63,7 @@
   margin-bottom: 30px;
 }
 .newPublis {
-  grid-column: 3;
-  column-width: 59em;
+  grid-column: 2;
 }
 .CVfields {
   text-align: left;
@@ -66,29 +71,29 @@
   vertical-align: middle;
 }
 .buttonsPerfil {
-  width: 12em;
+  width: 8em;
+  margin-top: 3%;
+  margin-left: 3%;
   border: solid #fff 2px;
   border-radius: 28px;
 }
+.buttonsPerfil:hover {
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
+}
 #miCV {
   grid-column: 1;
+  background-color: #fff;
 }
 #misPublis {
   grid-column: 2;
+  background-color: #fff;
 }
 div.imgPerfil {
   grid-column: 1;
-  column-width: 8em;
   margin: auto;
-  margin-left: 0;
+  margin-left: 20px;
   margin-right: 16px;
-}
-div.infoPerfil {
-  grid-column: 2;
-  column-width: 26em;
-  margin: auto;
-  margin-left: 0;
-  margin-right: unset;
 }
 .publicacion {
   width: 95%;
@@ -146,40 +151,31 @@ hr {
   text-align: center;
   perspective: 100%;
 }
-/* flip the pane when hovered */
-.flip-container:hover .flipper,
-.flip-container.hover .flipper {
+.flip-container:hover .flipper {
   transform: rotateY(180deg);
 }
-
+.back,
 .flip-container,
-.front,
-.back {
+.front {
   width: 95%;
 }
-
-/* flip speed goes here */
 .flipper {
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
 }
-.front,
-.back {
+.back,
+.front {
   backface-visibility: hidden;
   position: absolute;
   margin-left: 5%;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
 }
-/* front pane, placed above back */
 .front {
-  /* for firefox 31 */
-  transform: rotateX(0deg);
+  transform: rotateX(0);
 }
-
-/* back, initially hidden pane */
 .back {
   transform: rotateY(180deg);
-  margin-left: 0%;
+  margin-left: 0;
 }
