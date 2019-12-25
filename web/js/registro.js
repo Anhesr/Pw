@@ -1,5 +1,5 @@
 function accederListaPubli() {
-	window.location = "../html/WF5-lista_publicaciones.html";
+	window.location = "../lista_publicaciones/lista_publicaciones.jsp";
 }
 
 function validarPass() {

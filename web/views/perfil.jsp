@@ -1,22 +1,24 @@
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList, java.util.Hashtable"%>
+<%%>
 <html lang="es">
-  <link rel="icon" type="image/png" href="../img/logo.png" />
+  <link rel="icon" type="image/png" href="img/logo.png" />
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../css/WF7-perfil.css" />
-    <link rel="stylesheet" href="../quill/quill.snow.css" />
-    <link rel="stylesheet" href="../css/footer_header.css" />
+    <link rel="stylesheet" href="perfil/perfil.css" />
+    <link rel="stylesheet" href="quill/quill.snow.css" />
+    <link rel="stylesheet" href="footer_header.css" />
 
     <title>Perfil - NiusFIK</title>
   </head>
   <body onresize="hideSearchBar()">
-    <script src="../js/WF7-perfil.js"></script>
-    <script src="../js/generalFunctions.js"></script>
+    <script src="perfil/perfil.js"></script>
+    <script src="general_functions.js"></script>
 
     <header class="header">
       <div class="logo">
-        <a href="WF5-lista_publicaciones.html"
-          ><h1><img src="../img/logo.png" />NiusFIK</h1></a
+        <a href="lista_publicaciones/lista_publicaciones.jsp"
+          ><h1><img src="img/logo.png" />NiusFIK</h1></a
         >
       </div>
       <div class="barra-busqueda" id="searchBar">
@@ -34,9 +36,9 @@
       <div class="imgPerfil">
         <img
           class="bordeImg"
-          src="../img/perfil.jpg"
+          src="img/perfil.jpg"
           alt="Imagen de perfil"
-          width="125px"
+          width="125"
         />
         <input
           class="buttonsPerfil"
@@ -89,6 +91,7 @@
         <hr />
         <!-- Creaci贸n de las publicaciones -->
         <div>
+            <!-- Inicio de publicacion -->
           <div
             class="borde publicacion"
             id="publicacion"
@@ -98,60 +101,26 @@
           >
             <div class="titPublicacion" id="titPublicacion1">
               <p class="left">
-                Nombre
               </p>
               <p class="right">
-                Autor
               </p>
             </div>
             <hr id="hrPublicacion1" />
 
             <div style="position: relative; margin: auto;">
               <p class="bodyPublicacion" id="bodyPublicacion1">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias tenetur dolores ab reiciendis aliquid ullam
-                perferendis. Dolorum adipisci nihil modi aut magnam rerum autem
-                dignissimos nesciunt consectetur, vel inventore at.
               </p>
               <p class="publiTransition" id="goToPubli1">
-                Ir a la publicaci贸n
+                Ir a la publicaci髇
               </p>
             </div>
           </div>
-          <div
-            class="borde publicacion"
-            id="publicacion"
-            onmouseover="hoverOnPublication(2)"
-            onmouseout="outHoverOnPublication(2)"
-            onclick="goToPubli(2)"
-          >
-            <div class="titPublicacion" id="titPublicacion2">
-              <p class="left">
-                Nombre
-              </p>
-              <p class="right">
-                Autor
-              </p>
-            </div>
-            <hr id="hrPublicacion2" />
-
-            <div style="position: relative;">
-              <p class="bodyPublicacion" id="bodyPublicacion2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestias tenetur dolores ab reiciendis aliquid ullam
-                perferendis. Dolorum adipisci nihil modi aut magnam rerum autem
-                dignissimos nesciunt consectetur, vel inventore at.
-              </p>
-              <p class="publiTransition" id="goToPubli2">
-                Ir a la publicaci贸n
-              </p>
-            </div>
-          </div>
+            <!-- Fin de publicacion -->
         </div>
         <!-- Fin de creaci贸n de publicaciones -->
       </div>
     </div>
-    <script src="../quill/quill.min.js"></script>
+    <script src="quill/quill.min.js"></script>
     <script>
       var quill = new Quill("#snow-container", {
         placeholder: "Introduzca el texto...",
@@ -160,10 +129,10 @@
     </script>
     <footer class="footer">
       <ul style="list-style-type:disc;">
-        <li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-        <li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
-        <li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-        <li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+        <li><a href="aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+        <li><a href="aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
+        <li><a href="aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+        <li><a href="aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
       </ul>
     </footer>
   </body>

@@ -3,8 +3,8 @@
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
 		<title>Aviso Legal: NiusFIK</title>
-		<link href="../css/footer_header.css" rel="stylesheet">
-		<link rel="stylesheet" href="../css/WF8-aviso_legal.css">
+		<link href="../footer_header.css" rel="stylesheet">
+		<link rel="stylesheet" href="aviso_legal.css">
 	</head>
 	<body class="fondo">
 		<header>
@@ -42,10 +42,10 @@
 		</center>
 		<footer>
 		  	<ul style="list-style-type:disc;">
-		  	 	<li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
 		  	</ul>
 		</footer>
 	</body>

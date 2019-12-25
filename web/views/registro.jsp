@@ -95,7 +95,7 @@
 				<div class="link_login">
 					<p>¿Tienes ya una cuenta?</p>
 
-					<a href="WF2-login.html">Inicia sesión</a>
+					<a href="login/login.jsp">Inicia sesión</a>
 				</div>
 
 				<div class="clear"></div>
@@ -107,10 +107,10 @@
 		</div>
 		<footer class="footer">
 		  	<ul style="list-style-type:disc;">
-		  	 	<li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+		  	 	<li><a href="aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+		  	 	<li><a href="aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
+		  	 	<li><a href="aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+		  	 	<li><a href="aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
 		  	</ul>
 		</footer>
 	</body>

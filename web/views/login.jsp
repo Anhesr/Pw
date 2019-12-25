@@ -3,11 +3,11 @@
 	<head>
 		<title>Inicia sesión en NiusFIK</title>
 		<link rel="icon" type="image/png" href="../img/logo.png" />
-		<link rel="stylesheet" href="../css/WF2-login.css">
-		<link rel="stylesheet" href="../css/footer_header.css">
+		<link rel="stylesheet" href="login.css">
+		<link rel="stylesheet" href="../footer_header.css">
 	</head>
 	<body class="fondo-registro">
-		<script src="../js/WF2-login.js"></script>
+		<script src="login.js"></script>
 		<header>
 				<div class="logo">
 					<a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
@@ -49,7 +49,7 @@
 			<div class="link_register">
 				<p>¿No tienes cuenta?</p>
 
-				<a href="WF3-registro.html">Regístrate</a>
+				<a href="..registro/registro.jsp">Regístrate</a>
 			</div>
 
 			<div class="clear"></div>
@@ -59,10 +59,10 @@
 
 		<footer>
 		  	<ul style="list-style-type:disc;">
-		  	 	<li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Términos y Condiciones</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Términos y Condiciones</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
 		  	</ul>
 		</footer>
 	</body>

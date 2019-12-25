@@ -3,7 +3,7 @@ function irPerfil() {
   document.getElementById("footer").style.display = "none";
   document.getElementById("CVMod").style.display = "unset";
   setTimeout(function() {
-    window.location = "../html/WF7-perfil.html";
+    window.location = "../perfil/perfil.jsp";
   }, 2000);
 }
 

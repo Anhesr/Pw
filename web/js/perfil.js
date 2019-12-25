@@ -1,5 +1,5 @@
 function modificarPerfil() {
-  window.location = "../html/WF4-modificar_perfil.html";
+  window.location = "../modificar_perfil/modificar_perfil.jsp";
 }
 
 function hoverOnPublication(id) {  
@@ -17,5 +17,5 @@ function outHoverOnPublication(id) {
 }
 
 function goToPubli(id) {
-  window.location = "../html/WF6-publicacion.html";
+  window.location = "../publicacion/publicacion.jsp";
 }

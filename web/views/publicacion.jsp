@@ -3,8 +3,8 @@
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
 		<title>NiusFIK</title>
-		<link rel="stylesheet" href="../css/footer_header.css">
-		<link rel="stylesheet" href="../css/WF6-publicacion.css">
+		<link rel="stylesheet" href="../footer_header.css">
+		<link rel="stylesheet" href="publicacion.css">
 		<link rel="stylesheet" href="../quill/quill.snow.css" />
 	</head>
 
@@ -19,7 +19,7 @@
 			    <button>Buscar</button>	
 			</div>
 			<div class="botones-principal">
-			    <INPUT type="button" onclick="location='WF7-perfil.html'" name="Mi Perfil" value="Mi Perfil" />
+			    <INPUT type="button" onclick="location='../perfil/perfil.jsp'" name="Mi Perfil" value="Mi Perfil" />
 			</div>
 		</header>	
 		<div class="clear"></div>
@@ -55,10 +55,10 @@
 		</div>
 		<footer>
 		  	<ul style="list-style-type:disc;">
-		  	 	<li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-		  	 	<li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
 		  	</ul>
 		</footer>
 

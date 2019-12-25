@@ -3,13 +3,13 @@
   <link rel="icon" type="image/png" href="../img/logo.png" />
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../css/WF4-modificar_perfil.css" />
-    <link rel="stylesheet" href="../css/footer_header.css" />
+    <link rel="stylesheet" href="modificar_perfil.css" />
+    <link rel="stylesheet" href="../footer_header.css" />
 
     <title>Currículum - NiusFIK</title>
   </head>
   <body>
-    <script src="../js/WF4-modificar_perfil.js"></script>
+    <script src="modificar_perfil.js"></script>
     <div class="formulario" id="formCV">
       <div style="text-align: right;">
         <p class="pubCV" id="pubCVBut" onclick="changeCVType('lab')">
@@ -63,10 +63,10 @@
     </div>
     <footer class="footer" id="footer">
       <ul style="list-style-type:disc;">
-        <li><a href="WF8-aviso_legal.html">Sobre nosotros</a></li>
-        <li><a href="WF8-aviso_legal.html">Terminos y Condiciones</a></li>
-        <li><a href="WF8-aviso_legal.html">Privacidad</a></li>
-        <li><a href="WF8-aviso_legal.html">Centro de Ayuda</a></li>
+        <li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
+        <li><a href="../aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
+        <li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
+        <li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
       </ul>
     </footer>
   </body>
