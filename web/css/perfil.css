@@ -9,6 +9,11 @@
 body {
   background-color: #484763;
 }
+.nonPublis {
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+}
 .borde2 {
   border: 1px;
   border-style: solid;
@@ -128,12 +133,11 @@ p.right {
   bottom: 0.6%;
 }
 .publiTransition {
-  position: absolute;
-  right: 0;
-  top: 22%;
-  padding: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  border-radius: 0px 10px 0px 14px;
   display: none;
   background-color: #000;
   color: #fff;
@@ -146,36 +150,4 @@ hr {
   margin-bottom: 1%;
   padding: 0;
   transition: 1s;
-}
-.flip-container {
-  text-align: center;
-  perspective: 100%;
-}
-.flip-container:hover .flipper {
-  transform: rotateY(180deg);
-}
-.back,
-.flip-container,
-.front {
-  width: 95%;
-}
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-.back,
-.front {
-  backface-visibility: hidden;
-  position: absolute;
-  margin-left: 5%;
-  left: 0;
-  top: 0;
-}
-.front {
-  transform: rotateX(0);
-}
-.back {
-  transform: rotateY(180deg);
-  margin-left: 0;
 }

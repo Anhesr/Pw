@@ -9,6 +9,12 @@ function hoverOnPublication(id) {
   document.getElementById("goToPubli" + id).style.display = "unset";
 }
 
+function noPublis() {
+    document.getElementById("misPublis").style.display = "none";
+    document.getElementById("gridForCVPubls").className = "";
+    document.getElementById("noPublis").style.display = "unset";
+}
+
 function outHoverOnPublication(id) {
   document.getElementById("titPublicacion" + id).style.opacity = "1";
   document.getElementById("hrPublicacion" + id).style.opacity = "1";

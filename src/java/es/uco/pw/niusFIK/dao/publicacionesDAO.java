@@ -13,7 +13,7 @@ import java.util.Hashtable;
  *
  * @author skrotex
  */
-public class publicaciones {
+public class publicacionesDAO {
     
     public static Connection getConnection() {
         Connection con = null;
@@ -26,7 +26,7 @@ public class publicaciones {
         return con;
     }
     
-    public static ArrayList<Hashtable<String, String>> queryByAutorID(int autorID) {
+    public static ArrayList<Hashtable<String, String>> queryByUserID(int UserID) {
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
         Statement stmt = null;
@@ -34,15 +34,22 @@ public class publicaciones {
         try {
             result = new ArrayList<Hashtable<String, String>>();
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select autor, nombre, cuerpo from publicaciones where autor_id = " + autorID);
-            while(rs.next()) {
-                String autor = rs.getString("autor");
-                String nombre = rs.getString("nombre");
-                String cuerpo = rs.getString("cuerpo");
+	    ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos, publicaciones.id, "
+                    + "publicaciones.nombre, publicaciones.cuerpo, publicaciones.fecha_publicacion "
+                    + "from usuarios, publicaciones where usuarios.id = " + UserID + 
+                    " and publicaciones.autor_id = " + UserID);
+            while (rs.next()) {
+                String id = rs.getString("publicaciones.id");
+                String autor = rs.getString("usuarios.nombre") + rs.getString("usuarios.apellidos");
+                String nombre = rs.getString("publicaciones.nombre");
+                String cuerpo = rs.getString("publicaciones.cuerpo");
+                String fecha = rs.getString("publicaciones.fecha_publicacion");
                 res = new Hashtable<String, String>();
+                res.put("id", id);
                 res.put("autor", autor);
                 res.put("nombre", nombre);
                 res.put("cuerpo", cuerpo);
+                res.put("fecha", fecha);
                 result.add(res);
             }
         } catch (Exception e) {

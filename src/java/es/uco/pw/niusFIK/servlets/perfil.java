@@ -5,7 +5,8 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
-import es.uco.pw.niusFIK.dao.publicaciones;
+import es.uco.pw.niusFIK.dao.publicacionesDAO;
+import es.uco.pw.niusFIK.dao.curriculumDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -32,8 +33,10 @@ public class perfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Hashtable<String, String>> result = publicaciones.queryByAutorID(1);
-        request.setAttribute("publicaciones",result);
+        ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(1);
+        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(1);
+        request.setAttribute("publicaciones",resultPb);
+        request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("views/perfil.jsp").forward(request, response);
     }
 
