@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-  <link rel="icon" type="image/png" href="../img/logo.png" />
+<html lang="es">
+    <%@page import="java.util.Hashtable"%>
+    <% Hashtable<String, String> cv 
+            = (Hashtable<String, String>) request.getAttribute("curriculum"); %>
+  <link rel="icon" type="image/png" href="/niusFIK/assets/img/logo.png" />
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="modificar_perfil.css" />
-    <link rel="stylesheet" href="../footer_header.css" />
+    <link rel="stylesheet" href="/niusFIK/css/modificar_perfil.css" />
+    <link rel="stylesheet" href="/niusFIK/css/footer_header.css" />
 
-    <title>Curr铆culum - NiusFIK</title>
+    <title>Curr憝culum - NiusFIK</title>
   </head>
   <body>
-    <script src="modificar_perfil.js"></script>
+    <script src="/niusFIK/js/modificar_perfil.js"></script>
     <div class="formulario" id="formCV">
       <div style="text-align: right;">
         <p class="pubCV" id="pubCVBut" onclick="changeCVType('lab')">
@@ -19,42 +22,49 @@
           Datos privados
         </p>
       </div>
-      <form id="pubCV">
-        <p class="encabezados">Situaci贸n laboral</p>
-        <input name="sitpro" type="text" class="forms" />
-        <p class="encabezados">Formaci贸n acad茅mica</p>
-        <input name="formac" type="text" class="forms" />
-        <p class="encabezados">Intereses profesionales</p>
-        <select name="intpro" class="forms">
+        <form id="pubCV" action="/niusFIK/perfil/mod" method="POST">
+        <p class="encabezados">Situaci髇 laboral</p>
+        <select name="sitlab" class="forms">
           <option value="ej1">Ejemplo1</option>
           <option value="ej2">Ejemplo2</option>
           <option value="ej3">Ejemplo3</option>
         </select>
+        <p class="encabezados">Formaci髇 acad閙ica</p>
+        <input name="formac" type="text" class="forms" value="<%= cv.get("formacion_academica") %>" />
+        <p class="encabezados">Intereses profesionales</p>
+        <input name="intprof" type="text" class="forms" value="<%= cv.get("intereses_profesionales") %>" />
         <p class="encabezados">Experiencia cient铆fica</p>
-        <input name="expC" type="text" class="forms" />
+        <input name="expC" type="text" class="forms" value="<%= cv.get("experiencia_cientifica") %>" />
         <p class="encabezados">Producci贸n cient铆fica</p>
-        <input name="prodC" type="text" class="forms" />
+        <input name="prodC" type="text" class="forms" value="<%= cv.get("produccion_cientifica") %>" />
         <p class="encabezados">Imagen de CV</p>
-        <input name="imgP" type="file" class="forms" /> <br />
-      </form>
-      <form id="privCV" style="display: none;">
-        <p class="encabezados">Nombre</p>
-        <input name="name" type="text" class="forms" />
-        <p class="encabezados">Apellidos</p>
-        <input name="surname" type="text" class="forms" />
-        <p class="encabezados">Correo electr贸nico</p>
-        <input name="email" type="email" class="forms" />
-        <p class="encabezados">Fecha de nacimiento</p>
-        <input name="date" type="date" class="forms" style="height: 10px;" />
-        <p class="encabezados">Tel茅fono m贸vil</p>
-        <input name="mobP" type="text" class="forms" /> <br />
-      </form>
-      <input
-        type="button"
+        <input name="imgP" type="file" class="forms" value="<%= cv.get("imagen") %>" /> <br />
+        <input
+        type="submit"
         value="Guardar cambios"
         class="submitbutton"
-        onclick="irPerfil()"
       />
+      </form>
+        <form id="privCV" style="display: none;" action="/niusFIK/perfil/mod" method="POST">
+        <p class="encabezados">Nombre</p>
+        <input name="name" type="text" class="forms" value="<%= cv.get("nombre") %>" />
+        <p class="encabezados">Apellidos</p>
+        <input name="surname" type="text" class="forms" value="<%= cv.get("apellidos") %>" />
+        <p class="encabezados">Correo electr髇ico</p>
+        <input name="email" type="email" class="forms" value="<%= cv.get("correo_electronico") %>" />
+        <p class="encabezados">Fecha de nacimiento</p>
+        <input name="date" type="date" class="forms" style="height: 10px;" /> <br />
+        <input
+        type="submit"
+        value="Guardar cambios"
+        class="submitbutton"
+      />
+      </form>
+      <input
+          type="button"
+          value="Ir al perfil"
+          class="submitbutton"
+          onclick="irPerfil()"
     </div>
     <div id="CVMod">
       <p id="CVModMsg">
@@ -63,10 +73,10 @@
     </div>
     <footer class="footer" id="footer">
       <ul style="list-style-type:disc;">
-        <li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
-        <li><a href="../aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
-        <li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
-        <li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
+        <li><a href="">Sobre nosotros</a></li>
+        <li><a href="">Terminos y Condiciones</a></li>
+        <li><a href="">Privacidad</a></li>
+        <li><a href="">Centro de Ayuda</a></li>
       </ul>
     </footer>
   </body>

@@ -1,5 +1,5 @@
 function modificarPerfil() {
-  window.location = "../modificar_perfil/modificar_perfil.jsp";
+  window.location = "/niusFIK/perfil/mod";
 }
 
 function hoverOnPublication(id) {  

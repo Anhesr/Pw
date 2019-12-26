@@ -8,13 +8,21 @@
         <servlet-name>inicio</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.inicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarCV</servlet-name>
+        <servlet-class>es.uco.pw.niusFIK.servlets.modificarCV</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfil</servlet-name>
         <url-pattern>/perfil</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern/>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarCV</servlet-name>
+        <url-pattern>/perfil/mod</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

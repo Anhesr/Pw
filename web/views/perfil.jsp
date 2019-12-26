@@ -5,7 +5,7 @@
 <% Hashtable<String, String> curriculum
             = (Hashtable<String, String>) request.getAttribute("curriculum");%>
 <html lang="es">
-    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/perfil.css" />

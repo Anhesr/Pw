@@ -67,4 +67,12 @@ public class curriculumDAO {
         return res;
     }
 
+    public static void updateCV(Hashtable<String, String> cv) {
+        try {
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

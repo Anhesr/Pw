@@ -5,11 +5,11 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
-import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.Hashtable;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author skrotex
  */
-public class perfil extends HttpServlet {
+public class modificarCV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +33,18 @@ public class perfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(1);
-        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(1);
-        request.setAttribute("publicaciones",resultPb);
-        request.setAttribute("curriculum", resultCV);
-        request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
+        if (request.getAttribute("redirected") != null) {
+            Map<String, String[]> parameters = request.getParameterMap();
+            for (String parameter : parameters.keySet()) {
+
+            }
+            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+        } else {
+            Hashtable<String, String> result = curriculumDAO.queryByUserID(1);
+            request.setAttribute("curriculum", result);
+            request.setAttribute("redirected", true);
+            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
