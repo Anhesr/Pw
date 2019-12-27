@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,18 +34,6 @@ public class modificarCV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        if (request.getAttribute("redirected") != null) {
-            Map<String, String[]> parameters = request.getParameterMap();
-            for (String parameter : parameters.keySet()) {
-
-            }
-            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
-        } else {
-            Hashtable<String, String> result = curriculumDAO.queryByUserID(1);
-            request.setAttribute("curriculum", result);
-            request.setAttribute("redirected", true);
-            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,7 +48,15 @@ public class modificarCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            Hashtable<String, String> result = curriculumDAO.queryByUserID(1);
+            request.setAttribute("curriculum", result);
+            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
     }
 
     /**
@@ -73,7 +70,44 @@ public class modificarCV extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            HttpSession session = request.getSession();
+            PrintWriter out = response.getWriter();
+            out.print("<html>");
+            out.print("<body>");
+            out.print("El tipo es " + session.getAttribute("cv_type"));
+            Hashtable<String, String> updateMap = new Hashtable<String, String>();
+            out.print("<p>");
+            out.print("name: " + request.getParameter("name"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("surname: " + request.getParameter("surname"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("email: " + request.getParameter("email"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("date: " + request.getParameter("date"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("formac: " + request.getParameter("formac"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("intprof: " + request.getParameter("intprof"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("expC: " + request.getParameter("expC"));
+            out.print("</p>");
+            out.print("<p>");
+            out.print("prodC: " + request.getParameter("prodC"));
+            out.print("</p>");
+
+            out.print("</body>");
+            out.print("</html>");
+            //request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**

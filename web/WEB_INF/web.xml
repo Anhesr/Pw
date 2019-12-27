@@ -5,6 +5,10 @@
         <servlet-class>es.uco.pw.niusFIK.servlets.perfil</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>es.uco.pw.niusFIK.servlets.login</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>inicio</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.inicio</servlet-class>
     </servlet>
