@@ -1,8 +1,12 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList, java.util.Hashtable"%>
 <% ArrayList<Hashtable<String, String>> publicaciones
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones"); %>
-<% Hashtable<String, String> curriculum
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+    Hashtable<String, String> curriculum
             = (Hashtable<String, String>) request.getAttribute("curriculum");%>
 <html lang="es">
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
@@ -39,7 +43,7 @@
             <div class="imgPerfil">
                 <img
                     class="bordeImg"
-                    src="<%= curriculum.get("imagen") %>"
+                    src="<%= curriculum.get("imagen")%>"
                     alt="Imagen de perfil"
                     width="125"
                     />
@@ -60,7 +64,7 @@
         </div>
         <div class="nonPublis" id="noPublis">
             <p class="borde publicacion" style="padding-top: 0.5em;
-    padding-bottom: 0.5em;">No hay publicaciones.</p>
+               padding-bottom: 0.5em;">No hay publicaciones.</p>
         </div>
         <div class="gridPag2" id="gridForCVPubls" style="height: 25em;">
             <div id="miCV" class="borde">
@@ -80,10 +84,10 @@
                             <strong>Formación académica:</strong> <%= curriculum.get("formacion_academica")%> en <%= curriculum.get("universidad")%>
                         </p>
                         <p>
-                            <strong>Intereses profesionales:</strong> <%= curriculum.get("intereses_profesionales") %>
+                            <strong>Intereses profesionales:</strong> <%= curriculum.get("intereses_profesionales")%>
                         </p>
-                        <p><strong>Experiencia cientí­fica:</strong> <%= curriculum.get("experiencia_cientifica") %></p>
-                        <p><strong>Producción cientí­fica:</strong> <%= curriculum.get("produccion_cientifica") %></p>
+                        <p><strong>Experiencia cientí­fica:</strong> <%= curriculum.get("experiencia_cientifica")%></p>
+                        <p><strong>Producción cientí­fica:</strong> <%= curriculum.get("produccion_cientifica")%></p>
                     </div>
                 </div>
             </div>
@@ -118,7 +122,10 @@
 
                         <div style="position: relative; margin: auto;">
                             <p class="bodyPublicacion" id="bodyPublicacion<% out.print(publicacion.get("id"));%>">
-                                <%= publicacion.get("cuerpo")%>
+                                <%= publicacion.get("cuerpo")%> <br />
+                            <p style="text-align: right; padding-right: 0.6em;">
+                                <% String fecha = publicacion.get("fecha");%>
+                                <%= fecha.substring(0, fecha.length() - 5)%>
                             </p>
                             <p class="publiTransition" id="goToPubli<% out.print(publicacion.get("id")); %>">
                                 Ir a la publicación
