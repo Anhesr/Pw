@@ -22,7 +22,7 @@
           Datos privados
         </p>
       </div>
-        <form id="pubCV" action="/niusFIK/perfil/mod" method="POST">
+        <form id="pubCV" action="/niusFIK/perfil/mod" method="POST" novalidate="true">
         <p class="encabezados">Situación laboral</p>
         <select name="sitlab" class="forms" value="<%= cv.get("situacion_profesional") %>">
           <option value="ej1">Activo</option>
@@ -38,7 +38,8 @@
         <p class="encabezados">Producción cientí­fica</p>
         <input name="prodC" type="text" class="forms" value="<%= cv.get("produccion_cientifica") %>" />
         <p class="encabezados">Imagen de CV</p>
-        <input name="imgP" type="file" class="forms" /> <br />
+        <!input name="imgP" type="file" class="forms" /> <br />
+        <% session.setAttribute("cv_type", "public"); %>
         <input style="clear: both;"
         type="submit"
         value="Guardar cambios"
@@ -54,6 +55,7 @@
         <input name="email" type="email" class="forms" value="<%= cv.get("correo_electronico") %>" />
         <p class="encabezados">Fecha de nacimiento</p>
         <input name="date" type="date" class="forms" style="height: 10px;" /> <br />
+        <% session.setAttribute("cv_type", "private"); %>
         <input
         type="submit"
         value="Guardar cambios"

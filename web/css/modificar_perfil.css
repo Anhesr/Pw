@@ -1,5 +1,6 @@
 .formulario {
   border: 1px;
+  border-radius: 0px 0px 18px 18px;
   border-style: solid;
   border-color: #000;
   margin-top: 2%;
@@ -8,7 +9,6 @@
   margin-right: 12%;
   text-align: center;
   background-color: #fff;
-  border-radius: 0px 0px 18px 18px;
 }
 body {
   background-color: #484763;
