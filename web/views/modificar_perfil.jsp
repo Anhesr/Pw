@@ -24,22 +24,22 @@
       </div>
         <form id="pubCV" action="/niusFIK/perfil/mod" method="POST">
         <p class="encabezados">Situación laboral</p>
-        <select name="sitlab" class="forms">
-          <option value="ej1">Ejemplo1</option>
-          <option value="ej2">Ejemplo2</option>
-          <option value="ej3">Ejemplo3</option>
+        <select name="sitlab" class="forms" value="<%= cv.get("situacion_profesional") %>">
+          <option value="ej1">Activo</option>
+          <option value="ej2">En paro</option>
+          <option value="ej3">Estudiante</option>
         </select>
         <p class="encabezados">Formación académica</p>
         <input name="formac" type="text" class="forms" value="<%= cv.get("formacion_academica") %>" />
         <p class="encabezados">Intereses profesionales</p>
         <input name="intprof" type="text" class="forms" value="<%= cv.get("intereses_profesionales") %>" />
-        <p class="encabezados">Experiencia cientÃ­fica</p>
+        <p class="encabezados">Experiencia cientí­fica</p>
         <input name="expC" type="text" class="forms" value="<%= cv.get("experiencia_cientifica") %>" />
-        <p class="encabezados">ProducciÃ³n cientÃ­fica</p>
+        <p class="encabezados">Producción cientí­fica</p>
         <input name="prodC" type="text" class="forms" value="<%= cv.get("produccion_cientifica") %>" />
         <p class="encabezados">Imagen de CV</p>
-        <input name="imgP" type="file" class="forms" value="<%= cv.get("imagen") %>" /> <br />
-        <input
+        <input name="imgP" type="file" class="forms" /> <br />
+        <input style="clear: both;"
         type="submit"
         value="Guardar cambios"
         class="submitbutton"
@@ -65,11 +65,6 @@
           value="Ir al perfil"
           class="submitbutton"
           onclick="irPerfil()"
-    </div>
-    <div id="CVMod">
-      <p id="CVModMsg">
-        CurrÃ­culum modificado
-      </p>
     </div>
     <footer class="footer" id="footer">
       <ul style="list-style-type:disc;">

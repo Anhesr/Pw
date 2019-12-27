@@ -40,7 +40,7 @@ public class publicacionesDAO {
                     " and publicaciones.autor_id = " + UserID);
             while (rs.next()) {
                 String id = rs.getString("publicaciones.id");
-                String autor = rs.getString("usuarios.nombre") + rs.getString("usuarios.apellidos");
+                String autor = rs.getString("usuarios.nombre") + " " + rs.getString("usuarios.apellidos");
                 String nombre = rs.getString("publicaciones.nombre");
                 String cuerpo = rs.getString("publicaciones.cuerpo");
                 String fecha = rs.getString("publicaciones.fecha_publicacion");
