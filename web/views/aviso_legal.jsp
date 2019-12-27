@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<link rel="icon" type="image/png" href="../img/logo.png" />
+	<link rel="icon" type="image/png" href="../assets/img/logo.png" />
 	<head>
 		<title>Aviso Legal: NiusFIK</title>
-		<link href="../footer_header.css" rel="stylesheet">
-		<link rel="stylesheet" href="aviso_legal.css">
+		<link href="../css/footer_header.css" rel="stylesheet">
+		<link rel="stylesheet" href="../css/aviso_legal.css">
 	</head>
 	<body class="fondo">
 		<header>
 			<div class="logo">
-				<a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
+				<a href="javascript:history.back()"><h1><img src="../assets/img/logo.png">NiusFIK</h1></a>
 				<!--<p1> Conecta tu proyecto </p1>-->
 			</div>
 			<div class="barra-busqueda">
@@ -42,10 +42,10 @@
 		</center>
 		<footer>
 		  	<ul style="list-style-type:disc;">
-		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Sobre nosotros</a></li>
-		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Terminos y Condiciones</a></li>
-		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Privacidad</a></li>
-		  	 	<li><a href="../aviso_legal/aviso_legal.jsp">Centro de Ayuda</a></li>
+		  	 	<li><a href="./aviso_legal.jsp">Sobre nosotros</a></li>
+		  	 	<li><a href="./aviso_legal.jsp">Terminos y Condiciones</a></li>
+		  	 	<li><a href="./aviso_legal.jsp">Privacidad</a></li>
+		  	 	<li><a href="./aviso_legal.jsp">Centro de Ayuda</a></li>
 		  	</ul>
 		</footer>
 	</body>

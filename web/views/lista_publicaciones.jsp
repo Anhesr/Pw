@@ -46,7 +46,7 @@
 
 					<div class="borde" style="position: relative; margin: auto;">
 					  <div id="snow-container"></div>
-					  <input type="button" value="Publicar" class="publbut buttonsPerfil" />
+					  <input type="button" value="Publicar" class="publbut buttonsPerfil" /> <!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
 
 					</div>
 					<script src="../quill/quill.min.js"></script>

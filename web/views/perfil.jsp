@@ -54,7 +54,7 @@
             <div class="newPublis">
                 <div class="borde" style=" position: relative; margin-bottom: 10px; ">
                     <div id="snow-container"></div>
-                    <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" />
+                    <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                 </div>
             </div>
         </div>
