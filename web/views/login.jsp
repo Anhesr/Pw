@@ -10,7 +10,7 @@
             <script src="login.js"></script>
             <header>
                 <div class="logo">
-                    <a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
+                    <a href="javascript:history.back()"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
                     <!--<p1> Conecta tu proyecto </p1>-->
                 </div>
                 <div class="barra-busqueda">
@@ -23,7 +23,7 @@
             <div class="clear"></div>
 
             <div class="caja_inicio">
-                <h1 align="center"> Iniciar sesi√≥n </h1>
+                <h1 align="center"> Iniciar sesion </h1>
                 <div class="formulario">
                     <form id="infoLogin" method="POST">
                         <br> E-mail: <br>
@@ -45,7 +45,7 @@
                 <div class="link_register">
                     <p>øNo tienes cuenta?</p>
 
-                    <a href="..registro/registro.jsp">Reg√≠strate</a>
+                    <a href="..registro/registro.jsp">Regi≠strate</a>
                 </div>
 
                 <div class="clear"></div>

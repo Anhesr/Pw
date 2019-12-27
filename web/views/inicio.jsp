@@ -18,8 +18,8 @@
 			    <button>Buscar</button>	
 			</div>
 			<div class="botones-principal">
-			    <INPUT type="button" onclick="location='login.jsp'" name="Login" value="Login" />
-				<INPUT type="button" onclick="location='registro.jsp'" name="Sign Up" value="Sign Up"/>
+			    <INPUT type="button" onclick="location='login'" name="Login" value="Login" />
+                            <INPUT type="button" onclick="location='registro'" name="Sign Up" value="Sign Up"/>
 			</div>
 		</header>	
 
