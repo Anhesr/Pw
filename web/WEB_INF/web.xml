@@ -24,6 +24,10 @@
         <servlet-name>registro</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>publicacion</servlet-name>
+        <servlet-class>es.uco.pw.niusFIK.servlets.publicacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfil</servlet-name>
         <url-pattern>/perfil</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>registro</servlet-name>
         <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>publicacion</servlet-name>
+        <url-pattern>/publicacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

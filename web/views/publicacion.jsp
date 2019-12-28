@@ -74,10 +74,10 @@
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
 							<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
 				  				<div id="snow-container"></div>
-				  				<input type="button" value="Publicar comentario" class="publbut" /> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
+				  				<input type="button" value="Publicar comentario" /> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							</div>
 							<script src="../assets/quill/quill.min.js"></script>
-							<script>
+							<script id="Comment" method="POST">
 				  				var quill = new Quill("#snow-container", {
 				    			placeholder: "Introduzca un comentario...",
 				    			theme: "snow"
