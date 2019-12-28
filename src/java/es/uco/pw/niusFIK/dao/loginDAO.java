@@ -14,7 +14,7 @@ import java.util.Hashtable;
  */
 public class loginDAO {
     
-        public static Connection getConnection() {
+    public static Connection getConnection() {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -25,15 +25,35 @@ public class loginDAO {
         return con;
     }
         
-    public static boolean checkLogin(String email, String passwd) {
+        
+    public static boolean checkUser(String user){
         boolean status = false;
         PreparedStatement ps = null;
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
-                "select * from usuarios where usuarios.correo_electronico=? "
+                "select * from usuarios where usuarios.usuario=? ");  
+                ps.setString(1,user);  
+                
+            ResultSet rs=ps.executeQuery();  
+            status=rs.next();  
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
+    
+    
+    public static boolean checkLogin(String user, String passwd) {
+        boolean status = false;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try{
+            ps = con.prepareStatement(  
+                "select * from usuarios where usuarios.usuario=? "
                         + "and usuarios.password=?");  
-                ps.setString(1,email);  
+                ps.setString(1,user);  
                 ps.setString(2,passwd);
                 
             ResultSet rs=ps.executeQuery();  

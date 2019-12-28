@@ -1,3 +1,10 @@
+<%-- 
+    Document   : loginError
+    Created on : 28 dic. 2019, 1:10:58
+    Author     : janthonyo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,29 +30,33 @@
             <div class="clear"></div>
 
             <div class="caja_inicio">
-                <h1 align="center"> Iniciar sesion </h1>
+                <h1 align="center"> Iniciar sesión </h1>
                 <div class="formulario">
                     <form id="infoLogin" method="POST">
                         <br> Usuario: <br>
                         <input 
                             type="text" 
                             name="user">
-                        <br><br> Contrase�a: <br>
+                        <br><br> Contraseña: <br>
                         <input 
                             type="password" 
                             name="password">
                         <br><br>
                         <input 
                             type="submit" 
-                            value="Iniciar sesion" 
+                            value="Iniciar sesión" 
                             id="envio-inicio"/>
                     </form>
                 </div>
+                
+                <div class="mensaje_error">
+                    <p>Login y/o contraseña incorrecto</p>
+                </div>
 
                 <div class="link_register">
-                    <p>�No tienes cuenta?</p>
+                    <p>¿No tienes cuenta?</p>
 
-                    <a href="../views/registro.jsp">Regi�strate</a>
+                    <a href="..registro/registro.jsp">Regi­strate</a>
                 </div>
 
                 <div class="clear"></div>

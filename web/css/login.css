@@ -20,6 +20,17 @@
   padding: 0px 30px 10px;
 }
 
+.mensaje_error{
+  float: right;
+  padding: 0px 10px 0px;
+  margin: 20px 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #FD7F7F;
+  background-color: #FD7F7F;
+}
+
+
 .link_register {
   float: right;
   margin-top: 10px;

@@ -5,8 +5,11 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import es.uco.pw.niusFIK.dao.registroDAO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,20 +34,16 @@ public class registro extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet registro</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet registro at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+
+        Hashtable<String, String> register = new Hashtable<String, String>();
+
+        register.put("name", request.getParameter("name"));
+        register.put("lastname", request.getParameter("lastname"));
+        register.put("birthdate", request.getParameter("birth-date"));
+        register.put("email", request.getParameter("correo"));
+        register.put("phone", request.getParameter("phone"));
+        register.put("user", request.getParameter("user"));
+        register.put("passwd", request.getParameter("pass"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

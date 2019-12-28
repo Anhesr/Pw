@@ -39,17 +39,17 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String email = request.getParameter("email");
+        String user = request.getParameter("user");
         String passwd = request.getParameter("password");
         
-        if(loginDAO.checkLogin(email, passwd)){
+        if(loginDAO.checkLogin(user, passwd)){
             RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
             rd.forward(request,response);
         }
         
         else{
-            out.print("E-mail o contrasena incorrectos.");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login.jsp");
+            //out.print("E-mail o contrasena incorrectos.");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/loginError.jsp");
             rd.include(request,response);
         }
         
