@@ -1,4 +1,13 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
+<% ArrayList<Hashtable<String, String>> publicaciones
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+    ArrayList<Hashtable<String, String>> comentarios
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");%>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
@@ -27,8 +36,15 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-								Aquí iría una publicación <!-- AQUÍ IMPLEMENTAR LA CARGA DE LA PUBLICACION REFERENCIADA-->
-						</div>
+                                                    <% if (publicaciones.size() == 0) {
+                                                        } else { 
+                                                        for (Hashtable<String, String> publicacion : publicaciones) {
+                                                            if (publicacion.get("id") == "1"){ // AQU� VA COMO IDENTIFICAR LA PUBLICACION EN CONCRETO
+								out.print(publicacion.get("cuerpo"));
+                                                                }
+                                                            }
+                                                        } %>
+                                                </div>
 						<!-- Fin Publicación -->
 					<br/>
 						<!-- Comentarios -->
