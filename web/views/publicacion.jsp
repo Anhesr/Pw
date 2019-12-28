@@ -6,8 +6,12 @@
 <!DOCTYPE html>
 <% ArrayList<Hashtable<String, String>> publicaciones
             = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+
     ArrayList<Hashtable<String, String>> comentarios
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");%>
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
+    
+    String id = request.getParameter("idP");
+%>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
@@ -39,7 +43,7 @@
                                                     <% if (publicaciones.size() == 0) {
                                                         } else { 
                                                         for (Hashtable<String, String> publicacion : publicaciones) {
-                                                            if (publicacion.get("id") == "1"){ // AQUÍ VA COMO IDENTIFICAR LA PUBLICACION EN CONCRETO
+                                                            if (publicacion.get("id") == id){
 								out.print(publicacion.get("cuerpo"));
                                                                 }
                                                             }
@@ -48,7 +52,22 @@
 						<!-- Fin PublicaciÃ³n -->
 					<br/>
 						<!-- Comentarios -->
-						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios</div>
+						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
+                                                      <%
+                                                          if (comentarios.size() == 0) {
+                                                        } else { 
+                                                            for (Hashtable<String, String> comentario : comentarios) {
+                                                      %>
+                                                      <div class="comentario"> 
+                                                          <p><strong>Usuario: <%= comentario.get("autor")%> . Fecha: <%= comentario.get("fecha")%></strong></p>
+                                                          <p><%= comentario.get("cuerpo")%></p>
+                                                          <br/>
+                                                      </div>
+                                                      
+                                                      <%
+                                                          }
+                                                      %>
+                                                </div>
 						<br/>
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
