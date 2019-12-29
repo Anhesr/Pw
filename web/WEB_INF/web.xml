@@ -53,13 +53,12 @@
         <url-pattern>/registro</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>loginData</servlet-name>
         <url-pattern>/loginData</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>publicacion</servlet-name>
         <url-pattern>/publicacion</url-pattern>
->>>>>>> 3b5394e2a6dc68825c87699693e6cbc795726497
     </servlet-mapping>
     <session-config>
         <session-timeout>
