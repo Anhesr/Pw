@@ -6,6 +6,7 @@
 package es.uco.pw.niusFIK.servlets;
 
 import es.uco.pw.niusFIK.dao.loginDAO;
+import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
@@ -66,16 +67,18 @@ public class login extends HttpServlet {
             userBean usuario = new userBean(data.get("id"), data.get("cv_id"), data.get("nombre"), data.get("user"));
             user_session.setAttribute("user", usuario);
             */
+            Hashtable<String, String> data = loginDAO.queryByUser(user);
+            request.getSession().setAttribute("uID", data.get("id"));
+            request.getSession().setAttribute("uName", data.get("nombre"));
+            request.getSession().setAttribute("uLogin", data.get("user"));
+            request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
-            Hashtable<String, String> resultData = loginDAO.queryByUser(user);
-            request.setAttribute("data", resultData);
-            request.getRequestDispatcher("/views/loginData.jsp").forward(request,response);
+            request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request,response);
         }
         
         else{
             //out.print("E-mail o contrasena incorrectos.");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/loginError.jsp");
-            rd.include(request,response);
+            request.getRequestDispatcher("/views/loginError.jsp").include(request,response);
         }
         
         out.close();

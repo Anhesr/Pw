@@ -98,6 +98,11 @@ public class registro extends HttpServlet {
         else{
             registroDAO.insertUserData(name,lastname,birthdate,email,phone,user,passwd);
             
+            //request.getSession().setAttribute("uID", data.get("id"));
+            request.getSession().setAttribute("uName", name + " " + lastname);
+            request.getSession().setAttribute("uLogin", user);
+            //request.getSession().setAttribute("cv_ID", data.get("cv_id"));
+            
             RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
             rd.forward(request,response);
         }

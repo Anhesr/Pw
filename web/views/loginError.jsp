@@ -32,7 +32,7 @@
             <div class="caja_inicio">
                 <h1 align="center"> Iniciar sesión </h1>
                 <div class="formulario">
-                    <form id="infoLogin" method="POST" action="loginData.jsp">
+                    <form id="infoLogin" method="POST">
                         <br> Usuario: <br>
                         <input 
                             type="text" 

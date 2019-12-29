@@ -11,24 +11,25 @@ import java.io.Serializable;
  *
  * @author janthonyo
  */
+
 public class userBean implements java.io.Serializable {
     
-    private String idUser;
-    private String idCurriculum;
+    private String uID;
     private String uName;
     private String uLogin;
+    private String cvID;
     
     public userBean() { }
     
     public void setIdUser(String idUser){
-        this.idUser = idUser;    }
+        this.uID = idUser;    }
     
-    public String getIdUser() {return idUser;}
+    public String getIdUser() {return uID;}
     
     public void setIdCurriculum(String idCurriculum){
-        this.idCurriculum = idCurriculum;}
+        this.cvID = idCurriculum;}
     
-    public String getIdCurriculum() {return idCurriculum;}
+    public String getIdCurriculum() {return cvID;}
     
     public void setUserName(String name){
         this.uName = name;}
