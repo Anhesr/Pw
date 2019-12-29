@@ -34,12 +34,12 @@ public class comentariosDAO {
         try {
             result = new ArrayList<Hashtable<String, String>>();
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select comentarios.idPublicacion, comentarios.id"
+	    ResultSet rs = stmt.executeQuery("select comentarios.idPublicacion, comentarios.id, "
                     + "comentarios.nombre, comentarios.apellidos, comentarios.cuerpo, comentarios.fecha_publicacion "
                     + "from comentarios where comentarios.idPublicacion = " + PublicationID);
             while (rs.next()) {
                 String idPublicacion = rs.getString("comentarios.idPublicacion");
-                String autor = rs.getString("comentarios.nombre") + " " + rs.getString("usuarios.apellidos");
+                String autor = rs.getString("comentarios.nombre") + " " + rs.getString("comentarios.apellidos");
                 String cuerpo = rs.getString("comentarios.cuerpo");
                 String fecha = rs.getString("comentarios.fecha_publicacion");
                 res = new Hashtable<String, String>();
@@ -53,6 +53,35 @@ public class comentariosDAO {
             System.out.println(e);
         }
         return result;
+    }
+    
+    public static Hashtable<String, String> userByID(int ID){
+        Hashtable<String, String> res = null;
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+        ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos" +
+                " from usuarios where usuarios.id =" + ID);
+        String name = rs.getString("usuarios.nombre");
+        String apell = rs.getString("usuarios.apellidos");
+        res.put("nombre", name);
+        res.put("apellido", apell);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+    public static void publicarComentario(int idPublicacion, int idComment, String nombre, String apellidos, String cuerpo, String fecha){
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+        ResultSet rs = stmt.executeQuery("insert into comentarios(idPublicacion, id,"
+                + "nombre, apellidos, cuerpo, fecha_publicacion) values "
+                + "("+idPublicacion+","+idComment+","+nombre+","+apellidos
+                + ","+cuerpo+","+fecha+")");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
 }

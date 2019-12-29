@@ -12,6 +12,7 @@
             = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
     
     String id = request.getParameter("idP");
+    String idUsuario = request.getParameter("idUsuario");
 %>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
@@ -85,8 +86,9 @@
 				  				});
 							</script>-->
                                                         <br/>
-                                                        <textarea name="Coment" rows="3" cols="80" method="POST" placeholder="Escribe tu comentario..."></textarea>
-                                                        <input type="button" value="Publicar comentario" id="envio-comentario"/> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
+                                                        <textarea id="Coment" rows="3" cols="80" method="POST" placeholder="Escribe tu comentario..."></textarea>
+                                                        <input type="button" value="Publicar comentario" onclick="comentar()" /> 
+                                                         <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							<!-- Fin Escribir comentarios -->
 						</div>
 					<br/>		

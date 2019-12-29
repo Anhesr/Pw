@@ -38,6 +38,9 @@ public class publicacion extends HttpServlet {
         ArrayList<Hashtable<String, String>> resultCom;
         resultCom = comentariosDAO.queryByPublicationID(1);
         request.setAttribute("comentarios", resultCom);
+        Hashtable<String, String> user;
+        user = comentariosDAO.userByID(1);
+        request.setAttribute("usuarioActual", user);
         
         request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
     }
