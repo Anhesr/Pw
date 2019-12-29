@@ -1,4 +1,17 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
+<% ArrayList<Hashtable<String, String>> publicaciones
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+
+    ArrayList<Hashtable<String, String>> comentarios
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
+    
+    String id = request.getParameter("idP");
+%>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
@@ -27,22 +40,44 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-								Aquí iría una publicación <!-- AQUÍ IMPLEMENTAR LA CARGA DE LA PUBLICACION REFERENCIADA-->
-						</div>
+                                                    <% if (publicaciones.size() == 0) {
+                                                        } else { 
+                                                        for (Hashtable<String, String> publicacion : publicaciones) {
+                                                            if (publicacion.get("id") == id){
+								out.print(publicacion.get("cuerpo"));
+                                                                }
+                                                            }
+                                                        } %>
+                                                </div>
 						<!-- Fin Publicación -->
 					<br/>
 						<!-- Comentarios -->
-						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios</div>
+						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
+                                                      <%
+                                                          if (comentarios.size() == 0) {
+                                                        } else { 
+                                                            for (Hashtable<String, String> comentario : comentarios) {
+                                                      %>
+                                                      <div class="comentario"> 
+                                                          <p><strong>Usuario: <%= comentario.get("autor")%> . Fecha: <%= comentario.get("fecha")%></strong></p>
+                                                          <p><%= comentario.get("cuerpo")%></p>
+                                                          <br/>
+                                                      </div>
+                                                      
+                                                      <%
+                                                          }
+                                                      %>
+                                                </div>
 						<br/>
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
 							<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
 				  				<div id="snow-container"></div>
-				  				<input type="button" value="Publicar comentario" class="publbut" /> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
+				  				<input type="button" value="Publicar comentario" /> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							</div>
 							<script src="../assets/quill/quill.min.js"></script>
-							<script>
+							<script id="Comment" method="POST">
 				  				var quill = new Quill("#snow-container", {
 				    			placeholder: "Introduzca un comentario...",
 				    			theme: "snow"
