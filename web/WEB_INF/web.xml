@@ -13,10 +13,6 @@
         <servlet-class>es.uco.pw.niusFIK.servlets.inicio</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>login</servlet-name>
-        <servlet-class>es.uco.pw.niusFIK.servlets.login</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>modificarCV</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.modificarCV</servlet-class>
     </servlet>
