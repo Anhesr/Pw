@@ -27,15 +27,37 @@ public class registroDAO {
         return con;
     }
     
-    /*
-    public static boolean insertUserData(Hashtable<String, String> data)
+    
+    public static void insertUserData(String name, String lastname, String birthdate, 
+                                      String email, String phone, String user, String passwd)
     {
-        INSERT INTO `usuarios` (`ID`, `CURRICULUM_ID`, `NOMBRE`, `APELLIDOS`, 
-        `FECHA_NACIMIENTO`, `CORREO_ELECTRONICO`, `TELEFONO`, `USUARIO`, 
-        `PASSWORD`, `IMAGEN`) 
-        VALUES (NULL, '', 'Juana', 'Juanes Juancho', '2019-12-12', 'prueba2@gmail.com', 
-        '123456789', 'juanita', '4321', '/assets/img/perfil.jpg');
-        
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try{
+            ps = con.prepareStatement(  
+                "INSERT INTO usuarios (ID, CURRICULUM_ID, NOMBRE, APELLIDOS,"
+              + " FECHA_NACIMIENTO, CORREO_ELECTRONICO, TELEFONO, USUARIO, PASSWORD, IMAGEN)"
+              + "VALUES (NULL,'0','?','?','?','?','?','?','?','/assets/img/perfil.jpg')");   
+            
+            /*
+            (`ID`, `CURRICULUM_ID`, `NOMBRE`, `APELLIDOS`, `FECHA_NACIMIENTO`, 
+            `CORREO_ELECTRONICO`, `TELEFONO`, `USUARIO`, `PASSWORD`, `IMAGEN`)
+            */  
+                
+                ps.setString(1,name);
+                ps.setString(2,lastname);
+                ps.setString(3,birthdate);
+                ps.setString(4,email);
+                ps.setString(5,phone);
+                ps.setString(6,user);
+                ps.setString(7,passwd);
+                
+                ps.executeUpdate();
+                
+                System.out.println("Record is inserted into DBUSER table!");
+                
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
-    */
 }

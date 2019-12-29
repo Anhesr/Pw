@@ -5,14 +5,9 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
-import es.uco.pw.niusFIK.dao.loginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Hashtable;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author janthonyo
  */
-
-public class login extends HttpServlet {
+public class loginData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,56 +27,14 @@ public class login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/views/login.jsp");
-        rd.include(request,response);
-    }
-    
-    
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String user = request.getParameter("user");
-        String passwd = request.getParameter("password");
-        
-        if(loginDAO.checkLogin(user, passwd)){
-            /*
-            HttpSession user_session= request.getSession(true);
-            Hashtable<String, String> resultData = loginDAO.queryByUser(user);
-            userBean usuario = new userBean(data.get("id"), data.get("cv_id"), data.get("nombre"), data.get("user"));
-            user_session.setAttribute("user", usuario);
-            */
-            
-            Hashtable<String, String> resultData = loginDAO.queryByUser(user);
-            request.setAttribute("data", resultData);
-            request.getRequestDispatcher("/views/loginData.jsp").forward(request,response);
-        }
-        
-        else{
-            //out.print("E-mail o contrasena incorrectos.");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/loginError.jsp");
-            rd.include(request,response);
-        }
-        
-        out.close();
+        request.getRequestDispatcher("views/lista_publicaciones.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-        /**
+    /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -95,6 +47,21 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
     /**
      * Returns a short description of the servlet.
      *

@@ -13,9 +13,10 @@ import java.io.Serializable;
  */
 public class userBean implements java.io.Serializable {
     
-    private String idUser = "";
-    private String idCurriculum = "";
-    private String uName = "";
+    private String idUser;
+    private String idCurriculum;
+    private String uName;
+    private String uLogin;
     
     public userBean() { }
     
@@ -33,4 +34,9 @@ public class userBean implements java.io.Serializable {
         this.uName = name;}
     
     public String getUserName() {return uName;}
+    
+    public void setUserLogin(String login){
+        this.uLogin = login;}
+    
+    public String getUserLogin() {return uLogin;}
 }

@@ -65,5 +65,37 @@ public class loginDAO {
         return status;
     }
     
+    public static Hashtable<String, String> queryByUser(String user){
+        Hashtable<String, String> res = null;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try{
+            ps = con.prepareStatement(  
+                "select usuarios.id, usuarios.curriculum_id, usuarios.nombre, usuarios.apellidos, usuarios.usuario"
+              + " from usuarios where usuarios.usuario=? ");  
+                ps.setString(1,user);  
+                
+            ResultSet rs=ps.executeQuery();  
+            
+            rs.next();
+            String id = rs.getString("usuarios.id");
+            String cv_id = rs.getString("usuarios.curriculum_id");
+            String nombre = rs.getString("usuarios.nombre");
+            String apellidos = rs.getString("usuarios.apellidos");
+            String usuario = rs.getString("usuarios.usuario");
+            
+            res = new Hashtable<String, String>();
+            
+            res.put("id", id);
+            res.put("cv_id", cv_id);
+            res.put("nombre", nombre + apellidos);
+            res.put("user", usuario);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+    
     // Hacer queryByLogin 
 }

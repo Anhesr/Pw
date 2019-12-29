@@ -10,7 +10,10 @@ import es.uco.pw.niusFIK.dao.registroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,18 +35,8 @@ public class registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        Hashtable<String, String> register = new Hashtable<String, String>();
-
-        register.put("name", request.getParameter("name"));
-        register.put("lastname", request.getParameter("lastname"));
-        register.put("birthdate", request.getParameter("birth-date"));
-        register.put("email", request.getParameter("correo"));
-        register.put("phone", request.getParameter("phone"));
-        register.put("user", request.getParameter("user"));
-        register.put("passwd", request.getParameter("pass"));
+        RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+        rd.include(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +65,44 @@ public class registro extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        boolean allRight = true;
+        Hashtable<String, String> register = new Hashtable<String, String>();
+        
+        String name = request.getParameter("name");
+        String lastname = request.getParameter("lastname");
+        String birthdate = request.getParameter("birth-date");
+        String email = request.getParameter("correo");
+        String phone = request.getParameter("phone");
+        String user = request.getParameter("user");
+        String passwd = request.getParameter("pass");
+        
+        //register.put("name", request.getParameter("name"));
+        if(name == "")     {allRight = false;}
+        if(lastname == "") {allRight = false;}
+        if(birthdate == ""){allRight = false;}
+        if(email == "")    {allRight = false;}
+        if(phone == "")    {allRight = false;}
+        if(user == "")     {allRight = false;}
+        if(passwd == "")   {allRight = false;}
+        
+        if(allRight == false){
+            out.print("Faltan datos para el registro.\n");
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            rd.include(request,response);
+        }
+        
+        else{
+            registroDAO.insertUserData(name,lastname,birthdate,email,phone,user,passwd);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
+            rd.forward(request,response);
+        }
+
+        out.close();
     }
 
     /**
