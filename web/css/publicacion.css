@@ -49,3 +49,7 @@
   margin: 35px 35px 0px 210px;
   padding: 10px;
 }
+
+textarea{
+    resize: none;
+}

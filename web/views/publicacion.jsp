@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Hashtable"%>
@@ -22,6 +23,7 @@
 	</head>
 
 	<body class="fondo">
+            <script src="../js/publicacion.js"></script>
 		<header>
 			<div class="logo">
 				<a href="javascript:history.back()"><h1><img src="../assets/img/logo.png">NiusFIK</h1></a>
@@ -72,9 +74,8 @@
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
-							<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
+							<!--<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
 				  				<div id="snow-container"></div>
-				  				<input type="button" value="Publicar comentario" /> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							</div>
 							<script src="../assets/quill/quill.min.js"></script>
 							<script id="Comment" method="POST">
@@ -82,7 +83,10 @@
 				    			placeholder: "Introduzca un comentario...",
 				    			theme: "snow"
 				  				});
-							</script>	
+							</script>-->
+                                                        <br/>
+                                                        <textarea name="Coment" rows="3" cols="80" method="POST" placeholder="Escribe tu comentario..."></textarea>
+                                                        <input type="button" value="Publicar comentario" id="envio-comentario"/> <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							<!-- Fin Escribir comentarios -->
 						</div>
 					<br/>		
