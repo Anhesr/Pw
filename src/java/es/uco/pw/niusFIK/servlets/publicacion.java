@@ -5,7 +5,7 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+//import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
 import java.io.IOException;
