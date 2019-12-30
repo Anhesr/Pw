@@ -5,6 +5,7 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
 import java.io.IOException;
@@ -24,7 +25,43 @@ import javax.servlet.http.HttpServletResponse;
  * @author skrotex
  */
 public class publicacion extends HttpServlet {
+    
+/* ERROR
+void comentar() {
+    //Hashtable<String, String> res;
+    String cuerpo = document.getElementById("Coment").value ;
+    Date f = new Date();
+    String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
+    int idPublicacion = document.getElementById("idP").value ;
+    String nombre = request.getAttribute("usuarioActual").get("nombre");
+    String apellidos = request.getAttribute("usuarioActual").get("apellido");
+    comentariosDAO.publicarComentario(idPublicacion, 1, nombre, apellidos, cuerpo, fecha);
+    res.put("idPublicacion", idPublicacion);
+    res.put("idComment", 1);
+    res.put("nombre", nombre);
+    res.put("apellidos", apellidos);
+    res.put("cuerpo", cuerpo);
+    res.put("fecha", fecha);
+    //int idPublicacion, int idComment, String nombre, String apellidos, String cuerpo, String fecha
+    request.setAttribute("comentario", res);
+}
 
+void publicar(){
+    Hashtable<String, String> res;
+    String nombre = document.getElementById("Titulo").value ;
+    String cuerpo = document.getElementById("Publicacion").value ;
+    Date f = new Date();
+    String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
+    int visitas = 1;
+    int id = 1;
+    publicacionesDAO.publicarPublicacion(id, nombre, cuerpo, fecha, visitas);
+    request.setAttribute("publicacion", res);
+    
+    //insert into publicaciones(id, nombre,"
+    //            + "cuerpo, fecha_publicacion, visitas)
+    //window.location = "../views/publicacion.jsp?idP="+???+"&idUsuario="+???;
+}
+*/
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -91,7 +128,11 @@ public class publicacion extends HttpServlet {
          Hashtable<String, String> publicacion;
          publicacion = (Hashtable<String, String>) request.getAttribute("publicacion");
          if(publicacion != null){
-             
+             int id = parseInt(publicacion.get("id"));
+             publicacionesDAO.publicarPublicacion(id, publicacion.get("nombre"), publicacion.get("cuerpo"), 
+                     publicacion.get("fecha"), 1);
+             request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
+            processRequest(request, response);
          }
     }
 
