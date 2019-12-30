@@ -47,21 +47,8 @@ public class publicacion extends HttpServlet {
         request.setAttribute("usuarioActual", user);
         
         request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
-    }
-     protected void processResponse(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
-         Hashtable<String, String> coment;
-         coment = (Hashtable<String, String>) request.getAttribute("comentario");
-         int idP = parseInt(coment.get("idPublicacion"));
-         int idC =  parseInt(coment.get("idComment"));
-         comentariosDAO.publicarComentario(idP, idC, coment.get("nombre"), coment.get("apellidos"), 
-                 coment.get("cuerpo"), coment.get("fecha"));
-         request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
-        }
-     
-             
-
+    }  
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -88,7 +75,24 @@ public class publicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+         response.setContentType("text/html;charset=UTF-8");
+         
+         Hashtable<String, String> coment;
+         coment = (Hashtable<String, String>) request.getAttribute("comentario");
+         if(coment != null){
+            int idP = parseInt(coment.get("idPublicacion"));
+            int idC =  parseInt(coment.get("idComment"));
+            comentariosDAO.publicarComentario(idP, idC, coment.get("nombre"), coment.get("apellidos"), 
+            coment.get("cuerpo"), coment.get("fecha"));
+            request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
+            processRequest(request, response);
+         }
+         Hashtable<String, String> publicacion;
+         publicacion = (Hashtable<String, String>) request.getAttribute("publicacion");
+         if(publicacion != null){
+             
+         }
     }
 
     /**

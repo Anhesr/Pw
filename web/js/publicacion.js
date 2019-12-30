@@ -1,5 +1,6 @@
 /* global request */
 //import es.uco.pw.niusFIK.dao.comentariosDAO;
+//import es.uco.pw.niusFIK.dao.publicacionesDAO;
 
 function comentar() {
     Hashtable<String, String> res;
@@ -22,11 +23,16 @@ function comentar() {
 
 function publicar(){
     Hashtable<String, String> res;
+    var nombre = document.getElementById("Titulo").value ;
     var cuerpo = document.getElementById("Publicacion").value ;
     var f = new Date();
     var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+    var visitas = 1;
+    var id = 1;
+    publicarPublicacion(id, nombre, cuerpo, fecha, visitas);
+    request.setAttribute("publicacion", res);
     
-    insert into publicaciones(id, nombre,"
-                + "cuerpo, fecha_publicacion, visitas)
-    window.location = "../views/publicacion.jsp?idP="+???+"&idUsuario="+???;
+    //insert into publicaciones(id, nombre,"
+    //            + "cuerpo, fecha_publicacion, visitas)
+    //window.location = "../views/publicacion.jsp?idP="+???+"&idUsuario="+???;
 }
