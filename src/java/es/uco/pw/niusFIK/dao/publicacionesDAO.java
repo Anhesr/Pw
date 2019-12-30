@@ -35,7 +35,7 @@ public class publicacionesDAO {
             result = new ArrayList<Hashtable<String, String>>();
             stmt = con.createStatement();
 	    ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos, publicaciones.id, "
-                    + "publicaciones.nombre, publicaciones.cuerpo, publicaciones.fecha_publicacion "
+                    + "publicaciones.nombre, publicaciones.cuerpo, publicaciones.fecha_publicacion, publicaciones.visitas "
                     + "from usuarios, publicaciones where usuarios.id = " + UserID + 
                     " and publicaciones.autor_id = " + UserID);
             while (rs.next()) {
@@ -44,18 +44,32 @@ public class publicacionesDAO {
                 String nombre = rs.getString("publicaciones.nombre");
                 String cuerpo = rs.getString("publicaciones.cuerpo");
                 String fecha = rs.getString("publicaciones.fecha_publicacion");
+                String visitas = rs.getString("publicaciones.visitas");
                 res = new Hashtable<String, String>();
                 res.put("id", id);
                 res.put("autor", autor);
                 res.put("nombre", nombre);
                 res.put("cuerpo", cuerpo);
                 res.put("fecha", fecha);
+                res.put("visitas", visitas);
                 result.add(res);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return result;
+    }
+    
+    public static void publicarPublicacion(int id, String nombre, String cuerpo, String fecha, int visitas){
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+        ResultSet rs = stmt.executeQuery("insert into publicaciones(id, nombre,"
+                + "cuerpo, fecha_publicacion, visitas) values "
+                + "("+id+","+nombre+","+cuerpo+","+fecha+","+visitas+")");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
 }

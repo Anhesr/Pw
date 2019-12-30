@@ -8,8 +8,12 @@ package es.uco.pw.niusFIK.servlets;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Date;
+import java.util.Locale;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +48,19 @@ public class publicacion extends HttpServlet {
         
         request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
     }
+     protected void processResponse(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
+         response.setContentType("text/html;charset=UTF-8");
+         Hashtable<String, String> coment;
+         coment = (Hashtable<String, String>) request.getAttribute("comentario");
+         int idP = parseInt(coment.get("idPublicacion"));
+         int idC =  parseInt(coment.get("idComment"));
+         comentariosDAO.publicarComentario(idP, idC, coment.get("nombre"), coment.get("apellidos"), 
+                 coment.get("cuerpo"), coment.get("fecha"));
+         request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
+        }
+     
+             
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
