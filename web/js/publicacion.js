@@ -19,3 +19,14 @@ function comentar() {
     //int idPublicacion, int idComment, String nombre, String apellidos, String cuerpo, String fecha
     request.setAttribute("comentario", res);
 }
+
+function publicar(){
+    Hashtable<String, String> res;
+    var cuerpo = document.getElementById("Publicacion").value ;
+    var f = new Date();
+    var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+    
+    insert into publicaciones(id, nombre,"
+                + "cuerpo, fecha_publicacion, visitas)
+    window.location = "../views/publicacion.jsp?idP="+???+"&idUsuario="+???;
+}

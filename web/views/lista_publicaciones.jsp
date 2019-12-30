@@ -3,11 +3,13 @@
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
 		<title>NiusFIK</title>
+                <link rel="stylesheet" href="../css/publicacion.css">
 		<link rel="stylesheet" href="../footer_header.css">
 		<link rel="stylesheet" href="lista_publicaciones.css">
 		<link rel="stylesheet" href="../quill/quill.snow.css" />
 	</head>
 	<body>
+            <script src="../js/publicacion.js"></script>
 		<header>
 				<div class="logo">
 					<a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
@@ -44,9 +46,9 @@
 				<!-- Creación de las publicaciones -->
 				<div class="texto-publicacion" style="position: relative; margin: auto;">
 
-					<div class="borde" style="position: relative; margin: auto;">
+					<!--<div class="borde" style="position: relative; margin: auto;">
 					  <div id="snow-container"></div>
-					  <input type="button" value="Publicar" class="publbut buttonsPerfil" /> <!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+					  <input type="button" value="Publicar" class="publbut buttonsPerfil" /> 
 
 					</div>
 					<script src="../quill/quill.min.js"></script>
@@ -55,7 +57,11 @@
 					    placeholder: "Introduzca el texto...",
 					    theme: "snow"
 					  });
-					</script>
+					</script> -->
+                                        <!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+                                        <br/>
+                                        <textarea id="Publicacion" rows="3" cols="80" method="POST" placeholder="Escribe tu publicaci�n..."></textarea>
+                                        <input type="button" value="Publicar" onclick="publicar()" /> 
 
 				</div>
 				<!-- Fin creación de las publicaciones -->
