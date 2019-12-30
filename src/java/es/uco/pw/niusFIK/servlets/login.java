@@ -61,13 +61,10 @@ public class login extends HttpServlet {
         String passwd = request.getParameter("password");
         
         if(loginDAO.checkLogin(user, passwd)){
-            /*
-            HttpSession user_session= request.getSession(true);
-            Hashtable<String, String> resultData = loginDAO.queryByUser(user);
-            userBean usuario = new userBean(data.get("id"), data.get("cv_id"), data.get("nombre"), data.get("user"));
-            user_session.setAttribute("user", usuario);
-            */
+
+            
             Hashtable<String, String> data = loginDAO.queryByUser(user);
+            
             request.getSession().setAttribute("uID", data.get("id"));
             request.getSession().setAttribute("uName", data.get("nombre"));
             request.getSession().setAttribute("uLogin", data.get("user"));

@@ -71,18 +71,17 @@ public class loginDAO {
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
-                "select usuarios.id, usuarios.curriculum_id, usuarios.nombre, usuarios.apellidos, usuarios.usuario"
-              + " from usuarios where usuarios.usuario=? ");  
+                "select * from usuarios where usuarios.usuario=? ");  
                 ps.setString(1,user);  
                 
             ResultSet rs=ps.executeQuery();  
             
             rs.next();
-            String id = rs.getString("usuarios.id");
-            String cv_id = rs.getString("usuarios.curriculum_id");
-            String nombre = rs.getString("usuarios.nombre");
+            String id =        rs.getString("usuarios.id");
+            String cv_id =     rs.getString("usuarios.curriculum_id");
+            String nombre =    rs.getString("usuarios.nombre");
             String apellidos = rs.getString("usuarios.apellidos");
-            String usuario = rs.getString("usuarios.usuario");
+            String usuario =   rs.getString("usuarios.usuario");
             
             res = new Hashtable<String, String>();
             
