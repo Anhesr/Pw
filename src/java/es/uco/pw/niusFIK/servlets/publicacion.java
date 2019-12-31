@@ -19,6 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.WebServlet;
 
 /**
  *
@@ -73,17 +76,8 @@ void publicar(){
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Hashtable<String, String>> resultPb;
-        resultPb = publicacionesDAO.queryByUserID(1);
-        ArrayList<Hashtable<String, String>> resultCom;
-        resultCom = comentariosDAO.queryByPublicationID(1);
-        request.setAttribute("comentarios", resultCom);
-        Hashtable<String, String> user;
-        user = comentariosDAO.userByID(1);
-        request.setAttribute("usuarioActual", user);
-        
-        request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp");
+        rd.include(request,response);
     }  
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -112,10 +106,65 @@ void publicar(){
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+               
+        response.setContentType("text/html;charset=UTF-8");
+        String cuerpo = request.getParameter("Coment");
+        String idP = request.getParameter("idP");
+        String idUsuario = request.getParameter("idUsuario");
+        PrintWriter out = response.getWriter();
+        out.print(cuerpo);
+        out.print(idP);
+        out.print(idUsuario);
+        /* ESTO VA EN EL JSP EN LA MARCA 1
+        <%
+                                                          if (comentarios.size() == 0) {
+                                                        } else { 
+                                                            for (Hashtable<String, String> comentario : comentarios) {
+                                                      %>
+                                                      <div class="comentario"> 
+                                                          <p><strong>Usuario: <%= //comentario.get("autor")%> . Fecha: <%= //comentario.get("fecha")%></strong></p>
+                                                          <p><%= //comentario.get("cuerpo")%></p>
+                                                          <br/>
+                                                      </div>
+                                                      
+                                                      <%
+                                                          //}
+                                                      %>
         
-         response.setContentType("text/html;charset=UTF-8");
-         
-         Hashtable<String, String> coment;
+        MARCA 2
+        
+        <% /*if (publicaciones.size() == 0) {
+                                                        } else { 
+                                                        for (Hashtable<String, String> publicacion : publicaciones) {
+                                                            if (publicacion.get("id") == id){
+								out.print(publicacion.get("cuerpo"));
+                                                                }
+                                                            }
+                                                        } %>
+        
+        MARCA 3
+        <% /*ArrayList<Hashtable<String, String>> publicaciones
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+
+    ArrayList<Hashtable<String, String>> comentarios
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
+    
+    String id = request.getParameter("idP");
+    String idUsuario = request.getParameter("idUsuario");
+%>
+        */
+        /*
+        response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Hashtable<String, String>> resultPb;
+        resultPb = publicacionesDAO.queryByUserID(1);
+        ArrayList<Hashtable<String, String>> resultCom;
+        resultCom = comentariosDAO.queryByPublicationID(1);
+        request.setAttribute("comentarios", resultCom);
+        Hashtable<String, String> user;
+        user = comentariosDAO.userByID(1);
+        request.setAttribute("usuarioActual", user);
+        
+        Hashtable<String, String> coment;
          coment = (Hashtable<String, String>) request.getAttribute("comentario");
          if(coment != null){
             int idP = parseInt(coment.get("idPublicacion"));
@@ -134,6 +183,8 @@ void publicar(){
              request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
             processRequest(request, response);
          }
+        
+        request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);*/
     }
 
     /**

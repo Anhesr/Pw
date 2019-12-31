@@ -5,12 +5,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
-<% ArrayList<Hashtable<String, String>> publicaciones
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
-
-    ArrayList<Hashtable<String, String>> comentarios
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
-    
+<!-- MARCA 3 -->
+<%
     String id = request.getParameter("idP");
     String idUsuario = request.getParameter("idUsuario");
 %>
@@ -43,33 +39,13 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <% if (publicaciones.size() == 0) {
-                                                        } else { 
-                                                        for (Hashtable<String, String> publicacion : publicaciones) {
-                                                            if (publicacion.get("id") == id){
-								out.print(publicacion.get("cuerpo"));
-                                                                }
-                                                            }
-                                                        } %>
+                                                    <!-- MARCA 2 -->
                                                 </div>
 						<!-- Fin Publicación -->
 					<br/>
 						<!-- Comentarios -->
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
-                                                      <%
-                                                          if (comentarios.size() == 0) {
-                                                        } else { 
-                                                            for (Hashtable<String, String> comentario : comentarios) {
-                                                      %>
-                                                      <div class="comentario"> 
-                                                          <p><strong>Usuario: <%= comentario.get("autor")%> . Fecha: <%= comentario.get("fecha")%></strong></p>
-                                                          <p><%= comentario.get("cuerpo")%></p>
-                                                          <br/>
-                                                      </div>
-                                                      
-                                                      <%
-                                                          }
-                                                      %>
+                                                      <!-- MARCA 1 -->
                                                 </div>
 						<br/>
 						<!-- Fin Comentarios -->
@@ -85,9 +61,13 @@
 				    			theme: "snow"
 				  				});
 							</script>-->
+                                                        <%@ page import="es.uco.pw.niusFIK.servlets.publicacion" %>
+                                                        <form action="publicacion" method="post">
                                                         <br/>
-                                                        <textarea id="Coment" rows="3" cols="80" method="POST" placeholder="Escribe tu comentario..."></textarea>
-                                                        <input type="button" value="Publicar comentario" onclick="comentar()" /> 
+                                                        <text type="text" name="idP" value=<%=id%>>
+                                                        <textarea id="Coment" name="Coment" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
+                                                        <input type="submit" value="Publicar comentario"" /> 
+                                                        </form>
                                                          <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							<!-- Fin Escribir comentarios -->
 						</div>
