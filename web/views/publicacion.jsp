@@ -6,8 +6,8 @@
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <%
-    ArrayList<Hashtable<String, String>> publicaciones
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+    Hashtable<String, String> publicacion
+            = (Hashtable<String, String>) request.getAttribute("publicacion");
 
     ArrayList<Hashtable<String, String>> comentarios
             = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
@@ -42,15 +42,10 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <% if (publicaciones.size() == 0) {
-                                                        } else { 
-                                                        for (Hashtable<String, String> publicacion : publicaciones) {
-                                                            if (publicacion.get("id") == id){
-                                                                out.print(publicacion.get("nombre\n\n"));
-								out.print(publicacion.get("cuerpo"));
-                                                                }
-                                                            }
-                                                        } %>
+                                                    <% 
+                                                    out.print(publicacion.get("nombre"));
+                                                    out.print(publicacion.get("cuerpo"));
+                                                    %>
                                                 </div>
 						<!-- Fin Publicación -->
 					<br/>
@@ -68,7 +63,7 @@
                                                       </div>
                                                       
                                                       <%
-                                                          //}
+                                                          }
                                                       %>
                                                 </div>
 						<br/>

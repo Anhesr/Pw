@@ -60,6 +60,23 @@ public class publicacionesDAO {
         return result;
     }
     
+    public static Hashtable<String, String> loadPublication(int id){
+        Hashtable<String, String> result = null;
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.createStatement();
+	    ResultSet rs = stmt.executeQuery("select nombre, cuerpo from publicaciones where id = "+ id + ");");
+            rs.next();
+            result = new Hashtable<String, String>();
+            result.put("nombre", rs.getString("nombre"));
+            result.put("cuerpo", rs.getString("cuerpo"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+    
     public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas){
         Statement stmt = null;
         Connection con = getConnection();

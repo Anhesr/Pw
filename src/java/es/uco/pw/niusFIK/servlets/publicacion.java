@@ -48,6 +48,9 @@ public class publicacion extends HttpServlet {
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> resultCom;
         resultCom = comentariosDAO.queryByPublicationID(Integer.parseInt(request.getParameter("idP")));
+        Hashtable<String, String> resultOnePublication;
+        resultOnePublication = publicacionesDAO.loadPublication(Integer.parseInt(request.getParameter("idP")));
+        request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
         request.setAttribute("comentarios", resultCom);
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
@@ -91,8 +94,7 @@ public class publicacion extends HttpServlet {
         String apellidos = user.get("apellido");
         Date f = new Date();
         String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
-        int idComentario = comentariosDAO.idComentarioDisponible();
-        comentariosDAO.publicarComentario(idPublicacion, idComentario, nombre, apellidos, cuerpo, fecha);
+        comentariosDAO.publicarComentario(idPublicacion, nombre, apellidos, cuerpo, fecha);
         processRequest(request, response);
         /*
         
