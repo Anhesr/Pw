@@ -69,7 +69,7 @@ public class perfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = 1;
+        int id = publicacionesDAO.idPublicacionDisponible();
         String cuerpo = request.getParameter("Publicacion");
         String nombre = request.getParameter("Titulo");
         String idUsuario = (String) request.getSession().getAttribute("uID");

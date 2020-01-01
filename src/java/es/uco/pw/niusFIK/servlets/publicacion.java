@@ -31,42 +31,6 @@ import javax.servlet.annotation.WebServlet;
  */
 public class publicacion extends HttpServlet {
     
-/* ERROR
-void comentar() {
-    //Hashtable<String, String> res;
-    String cuerpo = document.getElementById("Coment").value ;
-    Date f = new Date();
-    String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
-    int idPublicacion = document.getElementById("idP").value ;
-    String nombre = request.getAttribute("usuarioActual").get("nombre");
-    String apellidos = request.getAttribute("usuarioActual").get("apellido");
-    comentariosDAO.publicarComentario(idPublicacion, 1, nombre, apellidos, cuerpo, fecha);
-    res.put("idPublicacion", idPublicacion);
-    res.put("idComment", 1);
-    res.put("nombre", nombre);
-    res.put("apellidos", apellidos);
-    res.put("cuerpo", cuerpo);
-    res.put("fecha", fecha);
-    //int idPublicacion, int idComment, String nombre, String apellidos, String cuerpo, String fecha
-    request.setAttribute("comentario", res);
-}
-
-void publicar(){
-    Hashtable<String, String> res;
-    String nombre = document.getElementById("Titulo").value ;
-    String cuerpo = document.getElementById("Publicacion").value ;
-    Date f = new Date();
-    String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
-    int visitas = 1;
-    int id = 1;
-    publicacionesDAO.publicarPublicacion(id, nombre, cuerpo, fecha, visitas);
-    request.setAttribute("publicacion", res);
-    
-    //insert into publicaciones(id, nombre,"
-    //            + "cuerpo, fecha_publicacion, visitas)
-    //window.location = "../views/publicacion.jsp?idP="+???+"&idUsuario="+???;
-}
-*/
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -79,6 +43,7 @@ void publicar(){
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
         ArrayList<Hashtable<String, String>> resultPb;
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> resultCom;
@@ -126,7 +91,8 @@ void publicar(){
         String apellidos = user.get("apellido");
         Date f = new Date();
         String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
-        comentariosDAO.publicarComentario(idPublicacion, NULL, nombre, apellidos, cuerpo, fecha);
+        int idComentario = comentariosDAO.idComentarioDisponible();
+        comentariosDAO.publicarComentario(idPublicacion, idComentario, nombre, apellidos, cuerpo, fecha);
         processRequest(request, response);
         /*
         

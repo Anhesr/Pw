@@ -77,11 +77,26 @@ public class comentariosDAO {
         try {
         ResultSet rs = stmt.executeQuery("insert into comentarios(idPublicacion, id,"
                 + "nombre, apellidos, cuerpo, fecha_publicacion) values "
-                + "("+idPublicacion+","+idComment+","+nombre+","+apellidos
+                + "("+Integer.toString(idPublicacion)+","+Integer.toString(idComment)+","+nombre+","+apellidos
                 + ","+cuerpo+","+fecha+")");
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    
+    public static int idComentarioDisponible(){
+        int result = 0;
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.createStatement();
+	    ResultSet rs = stmt.executeQuery("select max(id) from comentarios");
+            rs.next();
+            result = 1 + (Integer.parseInt(rs.getString("max(id)")));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
     }
     
 }

@@ -66,7 +66,38 @@ public class publicacionesDAO {
         try {
         ResultSet rs = stmt.executeQuery("insert into publicaciones(id, autor_id, nombre,"
                 + "cuerpo, fecha_publicacion, visitas) values "
-                + "("+id+","+autor_id+","+nombre+","+cuerpo+","+fecha+","+visitas+")");
+                + "("+Integer.toString(id)+","+Integer.toString(autor_id)+","+nombre+","+cuerpo+","+fecha+","+Integer.toString(visitas)+")");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public static int idPublicacionDisponible(){
+        int result = 0;
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.createStatement();
+	    ResultSet rs = stmt.executeQuery("select max(id) from publicaciones");
+            rs.next();
+            result = 1 + (Integer.parseInt(rs.getString("max(id)")));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+    
+    public static void ActualizarVisita(int idP){
+        int result = 0;
+        Statement stmt = null;
+        Connection con = getConnection();
+        try {
+            stmt = con.createStatement();
+	    ResultSet rs = stmt.executeQuery("select visitas from publicaciones where id = " + idP);
+            rs.next();
+            result = 1 + (Integer.parseInt(rs.getString("visitas")));
+            ResultSet fin = stmt.executeQuery("update publicaciones set visitas = " + result 
+                    + "where id = " + idP);
         } catch (Exception e) {
             System.out.println(e);
         }
