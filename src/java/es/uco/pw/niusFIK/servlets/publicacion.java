@@ -43,7 +43,7 @@ public class publicacion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
+       /* publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
         ArrayList<Hashtable<String, String>> resultPb;
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> resultCom;
@@ -52,7 +52,7 @@ public class publicacion extends HttpServlet {
         resultOnePublication = publicacionesDAO.loadPublication(Integer.parseInt(request.getParameter("idP")));
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
-        request.setAttribute("comentarios", resultCom);
+        request.setAttribute("comentarios", resultCom);*/
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  
@@ -86,7 +86,11 @@ public class publicacion extends HttpServlet {
                
         response.setContentType("text/html;charset=UTF-8");
         String cuerpo = request.getParameter("Coment");
-        String idP = request.getParameter("idP");
+        String cuerpo2 = request.getParameter("Coment2");
+        PrintWriter out = response.getWriter();
+        out.print(cuerpo);
+        out.print(cuerpo2);
+        /*String idP = request.getParameter("idP");
         String idUsuario = (String) request.getSession().getAttribute("uID");
         int idPublicacion = Integer.parseInt(idP);
         Hashtable<String, String> user = comentariosDAO.userByID(Integer.parseInt(idUsuario));
@@ -95,7 +99,7 @@ public class publicacion extends HttpServlet {
         Date f = new Date();
         String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
         comentariosDAO.publicarComentario(idPublicacion, nombre, apellidos, cuerpo, fecha);
-        processRequest(request, response);
+        processRequest(request, response);*/
         /*
         
         
