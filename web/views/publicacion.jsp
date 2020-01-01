@@ -5,10 +5,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
-<!-- MARCA 3 -->
 <%
+    ArrayList<Hashtable<String, String>> publicaciones
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+
+    ArrayList<Hashtable<String, String>> comentarios
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
     String id = request.getParameter("idP");
-    String idUsuario = request.getParameter("idUsuario");
 %>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
@@ -39,36 +42,45 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <!-- MARCA 2 -->
+                                                    <% if (publicaciones.size() == 0) {
+                                                        } else { 
+                                                        for (Hashtable<String, String> publicacion : publicaciones) {
+                                                            if (publicacion.get("id") == id){
+                                                                out.print(publicacion.get("nombre\n\n"));
+								out.print(publicacion.get("cuerpo"));
+                                                                }
+                                                            }
+                                                        } %>
                                                 </div>
 						<!-- Fin Publicación -->
 					<br/>
 						<!-- Comentarios -->
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
-                                                      <!-- MARCA 1 -->
+                                                      <%
+                                                          if (comentarios.size() == 0) {
+                                                        } else { 
+                                                            for (Hashtable<String, String> comentario : comentarios) {
+                                                      %>
+                                                      <div class="comentario"> 
+                                                          <p><strong>Usuario: <%= comentario.get("autor")%> . Fecha: <%= comentario.get("fecha")%></strong></p>
+                                                          <p><%= comentario.get("cuerpo")%></p>
+                                                          <br/>
+                                                      </div>
+                                                      
+                                                      <%
+                                                          //}
+                                                      %>
                                                 </div>
 						<br/>
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
-							<!--<div class="borde" style=" position: relative; margin-bottom: 10px; " width="708">
-				  				<div id="snow-container"></div>
-							</div>
-							<script src="../assets/quill/quill.min.js"></script>
-							<script id="Comment" method="POST">
-				  				var quill = new Quill("#snow-container", {
-				    			placeholder: "Introduzca un comentario...",
-				    			theme: "snow"
-				  				});
-							</script>-->
                                                         <%@ page import="es.uco.pw.niusFIK.servlets.publicacion" %>
-                                                        <form action="publicacion" method="post">
+                                                        <form action="publicacion?idP=<%=id%>" method="post">
                                                         <br/>
-                                                        <text type="text" name="idP" value=<%=id%>>
                                                         <textarea id="Coment" name="Coment" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
                                                         <input type="submit" value="Publicar comentario"" /> 
                                                         </form>
-                                                         <!-- AQUÍ IMPLEMENTAR LA PUBLICACION DEL COMENTARIO-->
 							<!-- Fin Escribir comentarios -->
 						</div>
 					<br/>		

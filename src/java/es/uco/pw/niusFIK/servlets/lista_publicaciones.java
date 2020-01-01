@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author skrotex
  */
-public class perfil extends HttpServlet {
+public class lista_publicaciones extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +40,7 @@ public class perfil extends HttpServlet {
         Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("publicaciones",resultPb);
         request.setAttribute("curriculum", resultCV);
-        request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

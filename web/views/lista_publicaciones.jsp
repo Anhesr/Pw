@@ -46,22 +46,13 @@
 				<!-- Creación de las publicaciones -->
 				<div class="texto-publicacion" style="position: relative; margin: auto;">
 
-					<!--<div class="borde" style="position: relative; margin: auto;">
-					  <div id="snow-container"></div>
-					  <input type="button" value="Publicar" class="publbut buttonsPerfil" /> 
-
-					</div>
-					<script src="../quill/quill.min.js"></script>
-					<script>
-					  var quill = new Quill("#snow-container", {
-					    placeholder: "Introduzca el texto...",
-					    theme: "snow"
-					  });
-					</script> -->
-                                        <!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+					<%@ page import="es.uco.pw.niusFIK.servlets.lista_publicaciones" %>
+                                        <form action="lista_publicaciones" method="post">
                                         <br/>
-                                        <textarea id="Publicacion" rows="3" cols="80" method="POST" placeholder="Escribe tu publicaci�n..."></textarea>
-                                        <input type="button" value="Publicar" onclick="publicar()" /> 
+                                        <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
+                                        <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" placeholder="Escribe tu publicacion"></textarea>
+                                        <input type="submit" value="Publicar" /> 
+                                        </form>
 
 				</div>
 				<!-- Fin creación de las publicaciones -->

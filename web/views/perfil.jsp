@@ -58,7 +58,14 @@
             <div class="newPublis">
                 <div class="borde" style=" position: relative; margin-bottom: 10px; ">
                     <div id="snow-container"></div>
-                    <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+                    <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+                    <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
+                    <form action="perfil" method="post">
+                    <br/>
+                    <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
+                    <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" placeholder="Escribe tu publicacion"></textarea>
+                    <input type="submit" value="Publicar" /> 
+                    </form>
                 </div>
             </div>
         </div>

@@ -60,13 +60,13 @@ public class publicacionesDAO {
         return result;
     }
     
-    public static void publicarPublicacion(int id, String nombre, String cuerpo, String fecha, int visitas){
+    public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas){
         Statement stmt = null;
         Connection con = getConnection();
         try {
-        ResultSet rs = stmt.executeQuery("insert into publicaciones(id, nombre,"
+        ResultSet rs = stmt.executeQuery("insert into publicaciones(id, autor_id, nombre,"
                 + "cuerpo, fecha_publicacion, visitas) values "
-                + "("+id+","+nombre+","+cuerpo+","+fecha+","+visitas+")");
+                + "("+id+","+autor_id+","+nombre+","+cuerpo+","+fecha+","+visitas+")");
         } catch (Exception e) {
             System.out.println(e);
         }
