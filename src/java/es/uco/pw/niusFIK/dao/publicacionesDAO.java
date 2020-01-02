@@ -29,15 +29,20 @@ public class publicacionesDAO {
     public static ArrayList<Hashtable<String, String>> queryByUserID(int UserID) {
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
-        Statement stmt = null;
+        PreparedStatement ps = null;   
         Connection con = getConnection();
+        
         try {
             result = new ArrayList<Hashtable<String, String>>();
-            stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos, publicaciones.id, "
+	    ps = con.prepareStatement("select usuarios.nombre, usuarios.apellidos, publicaciones.id, "
                     + "publicaciones.nombre, publicaciones.cuerpo, publicaciones.fecha_publicacion, publicaciones.visitas "
-                    + "from usuarios, publicaciones where usuarios.id = " + Integer.toString(UserID) + 
-                    " and publicaciones.autor_id = " + Integer.toString(UserID) + ";");
+                    + "from usuarios, publicaciones where usuarios.id = ? and publicaciones.autor_id = ?;");
+            
+            ps.setString(1,Integer.toString(UserID));  
+            ps.setString(2,Integer.toString(UserID));
+   
+            ResultSet rs=ps.executeQuery();  
+                    
             while (rs.next()) {
                 String id = rs.getString("publicaciones.id");
                 String autor = rs.getString("usuarios.nombre") + " " + rs.getString("usuarios.apellidos");
@@ -63,16 +68,20 @@ public class publicacionesDAO {
     public static ArrayList<Hashtable<String, String>> loadPublication(int id){
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
-        Statement stmt = null;
+        PreparedStatement ps = null;   
         Connection con = getConnection();
+        
         try {
-            stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select nombre, cuerpo from publicaciones where id = "+ Integer.toString(id) + ");");
+            result = new ArrayList<Hashtable<String, String>>();
+	    ps = con.prepareStatement("select nombre, cuerpo from publicaciones where id = ?;");
+            ps.setString(1,Integer.toString(id));  
+   
+            ResultSet rs=ps.executeQuery();
             while (rs.next()) {
-            res = new Hashtable<String, String>();
-            res.put("nombre", rs.getString("nombre"));
-            res.put("cuerpo", rs.getString("cuerpo"));
-            result.add(res);
+                res = new Hashtable<String, String>();
+                res.put("nombre", rs.getString("nombre"));
+                res.put("cuerpo", rs.getString("cuerpo"));
+                result.add(res);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -81,13 +90,20 @@ public class publicacionesDAO {
     }
     
     public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas){
-        Statement stmt = null;
+        PreparedStatement ps = null;   
         Connection con = getConnection();
         try {
-            stmt = con.createStatement();
-            stmt.executeUpdate("insert into publicaciones(id, autor_id, nombre,"
-                + "cuerpo, fecha_publicacion, visitas) values "
-                + "("+Integer.toString(id)+","+Integer.toString(autor_id)+","+nombre+","+cuerpo+","+fecha+","+Integer.toString(visitas)+");");
+            ps = con.prepareStatement("insert into publicaciones(id, autor_id, nombre,"
+                + "cuerpo, fecha_publicacion, visitas) values (?,?,?,?,?,?);");
+            
+            ps.setString(1,Integer.toString(id));
+            ps.setString(2,Integer.toString(autor_id));
+            ps.setString(3,nombre);
+            ps.setString(4,cuerpo);
+            ps.setString(5,fecha);
+            ps.setString(6,Integer.toString(visitas));
+          
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -95,11 +111,11 @@ public class publicacionesDAO {
     
     public static int idPublicacionDisponible(){
         int result = 0;
-        Statement stmt = null;
+        PreparedStatement ps = null; 
         Connection con = getConnection();
         try {
-            stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select max(id) from publicaciones;");
+	    ps = con.prepareStatement("select max(id) from publicaciones;");
+            ResultSet rs = ps.executeQuery();
             rs.next();
             result = 1 + (Integer.parseInt(rs.getString("max(id)")));
         } catch (Exception e) {
@@ -110,16 +126,21 @@ public class publicacionesDAO {
     
     public static void ActualizarVisita(int idP){
         int result = 0;
-        Statement stmt = null;
+        PreparedStatement ps = null; 
         Connection con = getConnection();
         try {
-            stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select visitas from publicaciones where id = " + Integer.toString(idP) + ";");
+            ps = con.prepareStatement("select visitas from publicaciones where id = ?;");
+            ps.setString(1,Integer.toString(idP));
+            ResultSet rs = ps.executeQuery();
+            
             rs.next();
             result = 1 + (Integer.parseInt(rs.getString("visitas")));
-            stmt = con.createStatement();
-            stmt.executeUpdate("update publicaciones set visitas = " + Integer.toString(result) 
-                    + "where id = " + Integer.toString(idP) + ";");
+            
+            ps = null;
+            ps = con.prepareStatement("update publicaciones set visitas = ? where id = ?;");
+            ps.setString(1,Integer.toString(result));
+            ps.setString(2,Integer.toString(idP));
+            ps.executeUpdate();
             
         } catch (Exception e) {
             System.out.println(e);

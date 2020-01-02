@@ -8,22 +8,15 @@ package es.uco.pw.niusFIK.servlets;
 //import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
-import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Date;
-import java.util.Locale;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-import static java.sql.Types.NULL;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.annotation.WebServlet;
 
 /**
  *
@@ -43,16 +36,25 @@ public class publicacion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
+        /*PrintWriter out = response.getWriter();
+        out.print(request.getParameter("idP"));*/
+        int idPu = Integer.parseInt((String)request.getParameter("idP"));
+        
+        publicacionesDAO.ActualizarVisita(idPu);
+        
         ArrayList<Hashtable<String, String>> resultPb;
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        
         ArrayList<Hashtable<String, String>> resultCom;
-        resultCom = comentariosDAO.queryByPublicationID(Integer.parseInt((String)request.getParameter("idP")));
+        resultCom = comentariosDAO.loadComments(idPu);
+        
         ArrayList<Hashtable<String, String>> resultOnePublication;
-        resultOnePublication = publicacionesDAO.loadPublication(Integer.parseInt((String)request.getParameter("idP")));
+        resultOnePublication = publicacionesDAO.loadPublication(idPu);
+        
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
-        request.setAttribute("comentarios", resultCom);
+        request.setAttribute("comentariosP", resultCom);
+        
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  
@@ -86,20 +88,21 @@ public class publicacion extends HttpServlet {
                
         response.setContentType("text/html;charset=UTF-8");
         String cuerpo = request.getParameter("Coment");
-        String cuerpo2 = request.getParameter("Coment2");
+        /*String cuerpo2 = request.getParameter("Coment2");
         PrintWriter out = response.getWriter();
         out.print(cuerpo);
-        out.print(cuerpo2);
-        /*String idP = request.getParameter("idP");
+        out.print(cuerpo2);*/
+        
+        String idP = request.getParameter("idP");
         String idUsuario = (String) request.getSession().getAttribute("uID");
         int idPublicacion = Integer.parseInt(idP);
-        Hashtable<String, String> user = comentariosDAO.userByID(Integer.parseInt(idUsuario));
-        String nombre = user.get("nombre");
-        String apellidos = user.get("apellido");
+        ArrayList<Hashtable<String, String>> user = comentariosDAO.userByID(Integer.parseInt(idUsuario));
+        String nombre = user.get(0).get("nombre");
+        String apellidos = user.get(0).get("apellido");
         Date f = new Date();
         String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
         comentariosDAO.publicarComentario(idPublicacion, nombre, apellidos, cuerpo, fecha);
-        processRequest(request, response);*/
+        processRequest(request, response);
         /*
         
         
