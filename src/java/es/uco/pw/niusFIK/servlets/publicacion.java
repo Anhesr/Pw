@@ -43,16 +43,16 @@ public class publicacion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       /* publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
+        publicacionesDAO.ActualizarVisita(Integer.parseInt(request.getParameter("idP")));
         ArrayList<Hashtable<String, String>> resultPb;
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> resultCom;
-        resultCom = comentariosDAO.queryByPublicationID(Integer.parseInt(request.getParameter("idP")));
-        Hashtable<String, String> resultOnePublication;
-        resultOnePublication = publicacionesDAO.loadPublication(Integer.parseInt(request.getParameter("idP")));
+        resultCom = comentariosDAO.queryByPublicationID(Integer.parseInt((String)request.getParameter("idP")));
+        ArrayList<Hashtable<String, String>> resultOnePublication;
+        resultOnePublication = publicacionesDAO.loadPublication(Integer.parseInt((String)request.getParameter("idP")));
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
-        request.setAttribute("comentarios", resultCom);*/
+        request.setAttribute("comentarios", resultCom);
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  

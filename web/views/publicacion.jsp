@@ -5,8 +5,8 @@
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <%
-    Hashtable<String, String> publicacion
-            = (Hashtable<String, String>) request.getAttribute("publicacion");
+     ArrayList<Hashtable<String, String>> publicacionT
+            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicacion");
 
     ArrayList<Hashtable<String, String>> comentarios
             = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
@@ -39,34 +39,40 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <% 
-                                                        /*if(!publicacion.isEmpty()){
-                                                            out.print(publicacion.get("nombre"));
-                                                            out.print(publicacion.get("cuerpo"));
-                                                        }*/
+                                                    <% if (publicacionT.isEmpty()) { //ERROR A LA HORA DE COGER LA PUBLICACION
+                                                        } else { 
+                                                            for (Hashtable<String, String> publicacion : publicacionT) {
+                                                                if(!publicacion.isEmpty()){
                                                     %>
+                                                            <p><%=publicacion.get("nombre")%></p>
+                                                            <p><%=publicacion.get("cuerpo")%></p>
+                                                    <%
+                                                                }
+                                                            }
+                                                        }
+                                                      %>
                                                 </div>
 						<!-- Fin Publicación -->
 					<br/>
 						<!-- Comentarios -->
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
                                                       <%
-                                                        /*  if (comentarios.isEmpty()) {
+                                                          if (comentarios.isEmpty()) {
                                                         } else { 
                                                             for (Hashtable<String, String> comentario : comentarios) {
-                                                                if(!comentario.isEmpty()){*/
+                                                                if(!comentario.isEmpty()){
                                                             
                                                       %>
                                                       <div class="comentario"> 
-                                                          <p><strong>Usuario: <% //comentario.get("autor")%> . Fecha: <% //comentario.get("fecha")%></strong></p>
-                                                          <p><% //comentario.get("cuerpo")%></p>
+                                                          <p><strong>Usuario: <%=comentario.get("autor")%> . Fecha: <%=comentario.get("fecha")%></strong></p>
+                                                          <p><%=comentario.get("cuerpo")%></p>
                                                           <br/>
                                                       </div>
                                                       
                                                       <%
-                                                         /*       }
+                                                                }
                                                             }
-                                                        }*/
+                                                        }
                                                       %>
                                                 </div>
 						<br/>

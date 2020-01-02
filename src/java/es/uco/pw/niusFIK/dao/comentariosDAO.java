@@ -36,7 +36,7 @@ public class comentariosDAO {
             stmt = con.createStatement();
 	    ResultSet rs = stmt.executeQuery("select comentarios.idPublicacion, comentarios.id, "
                     + "comentarios.nombre, comentarios.apellidos, comentarios.cuerpo, comentarios.fecha_publicacion "
-                    + "from comentarios where comentarios.idPublicacion = " + PublicationID);
+                    + "from comentarios where comentarios.idPublicacion = " + Integer.toString(PublicationID) + ";");
             while (rs.next()) {
                 String idPublicacion = rs.getString("comentarios.idPublicacion");
                 String autor = rs.getString("comentarios.nombre") + " " + rs.getString("comentarios.apellidos");
@@ -61,7 +61,7 @@ public class comentariosDAO {
         Connection con = getConnection();
         try {
         ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos" +
-                " from usuarios where usuarios.id =" + ID);
+                " from usuarios where usuarios.id =" + Integer.toString(ID) + ";");
         String name = rs.getString("usuarios.nombre");
         String apell = rs.getString("usuarios.apellidos");
         res.put("nombre", name);
@@ -78,7 +78,7 @@ public class comentariosDAO {
         ResultSet rs = stmt.executeQuery("insert into comentarios(idPublicacion, id,"
                 + "nombre, apellidos, cuerpo, fecha_publicacion) values "
                 + "("+Integer.toString(idPublicacion)+",NULL,"+nombre+","+apellidos
-                + ","+cuerpo+","+fecha+")");
+                + ","+cuerpo+","+fecha+");");
         } catch (Exception e) {
             System.out.println(e);
         }

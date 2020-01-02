@@ -36,8 +36,8 @@ public class publicacionesDAO {
             stmt = con.createStatement();
 	    ResultSet rs = stmt.executeQuery("select usuarios.nombre, usuarios.apellidos, publicaciones.id, "
                     + "publicaciones.nombre, publicaciones.cuerpo, publicaciones.fecha_publicacion, publicaciones.visitas "
-                    + "from usuarios, publicaciones where usuarios.id = " + UserID + 
-                    " and publicaciones.autor_id = " + UserID);
+                    + "from usuarios, publicaciones where usuarios.id = " + Integer.toString(UserID) + 
+                    " and publicaciones.autor_id = " + Integer.toString(UserID) + ";");
             while (rs.next()) {
                 String id = rs.getString("publicaciones.id");
                 String autor = rs.getString("usuarios.nombre") + " " + rs.getString("usuarios.apellidos");
@@ -60,17 +60,20 @@ public class publicacionesDAO {
         return result;
     }
     
-    public static Hashtable<String, String> loadPublication(int id){
-        Hashtable<String, String> result = null;
+    public static ArrayList<Hashtable<String, String>> loadPublication(int id){
+        ArrayList<Hashtable<String, String>> result = null;
+        Hashtable<String, String> res = null;
         Statement stmt = null;
         Connection con = getConnection();
         try {
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select nombre, cuerpo from publicaciones where id = "+ id + ");");
-            rs.next();
-            result = new Hashtable<String, String>();
-            result.put("nombre", rs.getString("nombre"));
-            result.put("cuerpo", rs.getString("cuerpo"));
+	    ResultSet rs = stmt.executeQuery("select nombre, cuerpo from publicaciones where id = "+ Integer.toString(id) + ");");
+            while (rs.next()) {
+            res = new Hashtable<String, String>();
+            res.put("nombre", rs.getString("nombre"));
+            res.put("cuerpo", rs.getString("cuerpo"));
+            result.add(res);
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -81,9 +84,10 @@ public class publicacionesDAO {
         Statement stmt = null;
         Connection con = getConnection();
         try {
-        ResultSet rs = stmt.executeQuery("insert into publicaciones(id, autor_id, nombre,"
+            stmt = con.createStatement();
+            stmt.executeUpdate("insert into publicaciones(id, autor_id, nombre,"
                 + "cuerpo, fecha_publicacion, visitas) values "
-                + "("+Integer.toString(id)+","+Integer.toString(autor_id)+","+nombre+","+cuerpo+","+fecha+","+Integer.toString(visitas)+")");
+                + "("+Integer.toString(id)+","+Integer.toString(autor_id)+","+nombre+","+cuerpo+","+fecha+","+Integer.toString(visitas)+");");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -95,7 +99,7 @@ public class publicacionesDAO {
         Connection con = getConnection();
         try {
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select max(id) from publicaciones");
+	    ResultSet rs = stmt.executeQuery("select max(id) from publicaciones;");
             rs.next();
             result = 1 + (Integer.parseInt(rs.getString("max(id)")));
         } catch (Exception e) {
@@ -110,11 +114,13 @@ public class publicacionesDAO {
         Connection con = getConnection();
         try {
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select visitas from publicaciones where id = " + idP);
+	    ResultSet rs = stmt.executeQuery("select visitas from publicaciones where id = " + Integer.toString(idP) + ";");
             rs.next();
             result = 1 + (Integer.parseInt(rs.getString("visitas")));
-            ResultSet fin = stmt.executeQuery("update publicaciones set visitas = " + result 
-                    + "where id = " + idP);
+            stmt = con.createStatement();
+            stmt.executeUpdate("update publicaciones set visitas = " + Integer.toString(result) 
+                    + "where id = " + Integer.toString(idP) + ";");
+            
         } catch (Exception e) {
             System.out.println(e);
         }
