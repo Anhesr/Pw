@@ -30,7 +30,9 @@ public class amigos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        ArrayList<Hashtable<String, String>> resultPb = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        request.setAttribute("listaAmigos", resultCV);
+        request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
