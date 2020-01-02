@@ -5,11 +5,12 @@
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <%
-     ArrayList<Hashtable<String, String>> publicacionT
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicacion");
+    ArrayList<Hashtable<String, String>> publicacionT;
+    publicacionT = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicacion");
 
-    ArrayList<Hashtable<String, String>> comentarios
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentarios");
+    ArrayList<Hashtable<String, String>> comentariosT;
+    comentariosT = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentariosP");
+    
     String id = request.getParameter("idP");
 %>
 <html>
@@ -39,13 +40,13 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <% if (publicacionT.isEmpty()) { //ERROR A LA HORA DE COGER LA PUBLICACION
+                                                    <% if (publicacionT.isEmpty()) { 
                                                         } else { 
-                                                            for (Hashtable<String, String> publicacion : publicacionT) {
-                                                                if(!publicacion.isEmpty()){
+                                                            for (Hashtable<String, String> publicacionAux : publicacionT) {
+                                                                if(!publicacionAux.isEmpty()){
                                                     %>
-                                                            <p><%=publicacion.get("nombre")%></p>
-                                                            <p><%=publicacion.get("cuerpo")%></p>
+                                                            <p><%=publicacionAux.get("nombre")%></p>
+                                                            <p><%=publicacionAux.get("cuerpo")%></p>
                                                     <%
                                                                 }
                                                             }
@@ -57,15 +58,15 @@
 						<!-- Comentarios -->
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
                                                       <%
-                                                          if (comentarios.isEmpty()) {
+                                                          if (comentariosT.isEmpty()) { // DETECTA QUE ESTA VACIO
                                                         } else { 
-                                                            for (Hashtable<String, String> comentario : comentarios) {
-                                                                if(!comentario.isEmpty()){
+                                                            for (Hashtable<String, String> comentarioAux : comentariosT) {
+                                                                if(!comentarioAux.isEmpty()){
                                                             
                                                       %>
                                                       <div class="comentario"> 
-                                                          <p><strong>Usuario: <%=comentario.get("autor")%> . Fecha: <%=comentario.get("fecha")%></strong></p>
-                                                          <p><%=comentario.get("cuerpo")%></p>
+                                                          <p><strong>Usuario: <%=comentarioAux.get("nombre")%> <%=comentarioAux.get("apellidos")%> . Fecha: <%=comentarioAux.get("fecha")%></strong></p>
+                                                          <p><%=comentarioAux.get("cuerpo")%></p>
                                                           <br/>
                                                       </div>
                                                       
@@ -82,12 +83,12 @@
                                                         <%@ page import="es.uco.pw.niusFIK.servlets.publicacion" %>
                                                         <form action="publicacion?idP=<%=id%>" method="post">
                                                         <br/>
-                                                        <textarea id="Coment2" name="Coment2" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
-                                                        <input id="Coment" name="Coment" required="" type="text">
-                                                        <div id="snow-container"></div>
+                                                        <textarea id="Coment" name="Coment" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
+                                                        <!--<input id="Coment" name="Coment" required="" type="text">
+                                                        <div id="snow-container"></div>-->
                                                         <input type="submit" value="Publicar comentario" /> 
                                                         </form>
-                                                        <script src="assets/quill/quill.min.js"></script>
+                                                        <!--<script src="assets/quill/quill.min.js"></script>
                                                         <script>
                                                             var quill = new Quill("#snow-container", {
                                                             placeholder: "Introduzca el texto...",
@@ -95,7 +96,7 @@
                                                             }).on('text-change', function(){
                                                                 $('#Coment').val($('#snow-container').html());
                                                             });
-                                                        </script>
+                                                        </script>-->
 							<!-- Fin Escribir comentarios -->
 						</div>
 					<br/>		
