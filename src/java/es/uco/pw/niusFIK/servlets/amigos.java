@@ -5,8 +5,13 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import es.uco.pw.niusFIK.dao.amigosDAO;
+import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Hashtable;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +35,8 @@ public class amigos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Hashtable<String, String>> resultPb = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
-        request.setAttribute("listaAmigos", resultCV);
+        ArrayList<Hashtable<String, String>> result = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        request.setAttribute("listaAmigos", result);
         request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);     
     }
 
