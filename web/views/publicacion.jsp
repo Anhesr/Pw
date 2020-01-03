@@ -5,12 +5,12 @@
 <%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <%
-    ArrayList<Hashtable<String, String>> publicacionT;
-    publicacionT = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicacion");
-
     ArrayList<Hashtable<String, String>> comentariosT;
     comentariosT = (ArrayList<Hashtable<String, String>>) request.getAttribute("comentariosP");
     
+    ArrayList<Hashtable<String, String>> publicacionT;
+    publicacionT = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicacion");
+ 
     String id = request.getParameter("idP");
 %>
 <html>
@@ -65,7 +65,7 @@
                                                             
                                                       %>
                                                       <div class="comentario"> 
-                                                          <p><strong>Usuario: <%=comentarioAux.get("nombre")%> <%=comentarioAux.get("apellidos")%> . Fecha: <%=comentarioAux.get("fecha")%></strong></p>
+                                                          <p><strong>Usuario: <%=comentarioAux.get("nombre")%> <%=comentarioAux.get("apellidos")%> . Fecha: <%=comentarioAux.get("fecha_publicacion")%></strong></p>
                                                           <p><%=comentarioAux.get("cuerpo")%></p>
                                                           <br/>
                                                       </div>
@@ -81,9 +81,9 @@
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
                                                         <%@ page import="es.uco.pw.niusFIK.servlets.publicacion" %>
-                                                        <form action="publicacion?idP=<%=id%>" method="post">
+                                                        <form method="post">
                                                         <br/>
-                                                        <textarea id="Coment" name="Coment" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
+                                                        <textarea id="Coment2" name="Coment2" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
                                                         <!--<input id="Coment" name="Coment" required="" type="text">
                                                         <div id="snow-container"></div>-->
                                                         <input type="submit" value="Publicar comentario" /> 

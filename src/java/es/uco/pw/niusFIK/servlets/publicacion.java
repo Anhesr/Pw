@@ -5,10 +5,12 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
-//import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
+import es.uco.pw.niusFIK.dao.loginDAO;
+import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Date;
@@ -45,15 +47,16 @@ public class publicacion extends HttpServlet {
         ArrayList<Hashtable<String, String>> resultPb;
         resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         
-        ArrayList<Hashtable<String, String>> resultCom;
-        resultCom = comentariosDAO.loadComments(idPu);
-        
         ArrayList<Hashtable<String, String>> resultOnePublication;
         resultOnePublication = publicacionesDAO.loadPublication(idPu);
         
+        ArrayList<Hashtable<String, String>> resultCom;
+        resultCom = comentariosDAO.loadComments(idPu);
+        
+        request.setAttribute("comentariosP", resultCom);
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
-        request.setAttribute("comentariosP", resultCom);
+        
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
@@ -87,46 +90,25 @@ public class publicacion extends HttpServlet {
             throws ServletException, IOException {
                
         response.setContentType("text/html;charset=UTF-8");
-        String cuerpo = request.getParameter("Coment");
-        /*String cuerpo2 = request.getParameter("Coment2");
+        String cuerpo = (String)request.getParameter("Coment2");
+        //String cuerpo2 = request.getParameter("Coment2");
         PrintWriter out = response.getWriter();
-        out.print(cuerpo);
-        out.print(cuerpo2);*/
+        //out.print(cuerpo);
+        //out.print(cuerpo2);
         
         String idP = request.getParameter("idP");
-        String idUsuario = (String) request.getSession().getAttribute("uID");
+        int idUsuario = Integer.parseInt((String)request.getSession().getAttribute("uID"));
         int idPublicacion = Integer.parseInt(idP);
-        ArrayList<Hashtable<String, String>> user = comentariosDAO.userByID(Integer.parseInt(idUsuario));
-        String nombre = user.get(0).get("nombre");
-        String apellidos = user.get(0).get("apellido");
+        Hashtable<String, String> user = comentariosDAO.DatosUser(idUsuario);
+        
+        String nombre = user.get("nombre");
+        String apellidos = user.get("apellidos");
         Date f = new Date();
-        String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String fecha = formatter.format(f);        
         comentariosDAO.publicarComentario(idPublicacion, nombre, apellidos, cuerpo, fecha);
         processRequest(request, response);
-        /*
-        
-        
-        Hashtable<String, String> coment;
-         coment = (Hashtable<String, String>) request.getAttribute("comentario");
-         if(coment != null){
-            int idP = parseInt(coment.get("idPublicacion"));
-            int idC =  parseInt(coment.get("idComment"));
-            comentariosDAO.publicarComentario(idP, idC, coment.get("nombre"), coment.get("apellidos"), 
-            coment.get("cuerpo"), coment.get("fecha"));
-            request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
-            processRequest(request, response);
-         }
-         Hashtable<String, String> publicacion;
-         publicacion = (Hashtable<String, String>) request.getAttribute("publicacion");
-         if(publicacion != null){
-             int id = parseInt(publicacion.get("id"));
-             publicacionesDAO.publicarPublicacion(id, publicacion.get("nombre"), publicacion.get("cuerpo"), 
-                     publicacion.get("fecha"), 1);
-             request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
-            processRequest(request, response);
-         }
-        
-        request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);*/
+     
     }
 
     /**

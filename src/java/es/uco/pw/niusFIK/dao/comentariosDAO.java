@@ -6,6 +6,8 @@
 package es.uco.pw.niusFIK.dao;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -36,14 +38,15 @@ public class comentariosDAO {
             result = new ArrayList<Hashtable<String, String>>();
 	    ps = con.prepareStatement("select nombre, apellidos, cuerpo, fecha_publicacion from comentarios where idpublicacion = ?;");
             ps.setString(1,Integer.toString(idP));  
-            ResultSet rs = ps.executeQuery();
             
+            ResultSet rs=ps.executeQuery();
             while (rs.next()) {
                 res = new Hashtable<String, String>();
                 res.put("nombre", rs.getString("nombre"));
                 res.put("apellidos", rs.getString("apellidos"));
                 res.put("cuerpo", rs.getString("cuerpo"));
-                res.put("fecha_publicacion", rs.getString("fecha_publicacion"));
+                String fecha = rs.getString("fecha_publicacion");
+                res.put("fecha_publicacion", fecha); 
                 result.add(res);
             }
         } catch (Exception e) {
@@ -52,42 +55,44 @@ public class comentariosDAO {
         return result;
     }
     
-    public static ArrayList<Hashtable<String, String>> userByID(int ID){
-        ArrayList<Hashtable<String, String>> result = null;
+    public static Hashtable<String, String> DatosUser(int ID){
         Hashtable<String, String> res = null;
-        PreparedStatement ps = null; 
-        Connection con = getConnection();
-        try {
-        ps = con.prepareStatement("select nombre, apellidos from usuarios where id = ?;");
-        ps.setString(1,Integer.toString(ID));
-        
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        res = new Hashtable<String, String>();
-        String name = rs.getString("nombre");
-        String apell = rs.getString("apellidos");
-        res.put("nombre", name);
-        res.put("apellido", apell);
-        result.add(res);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return result;
-    }
-    public static void publicarComentario(int idPublicacion, String nombre, String apellidos, String cuerpo, String fecha){
         PreparedStatement ps = null;
         Connection con = getConnection();
         try {
-        ps = con.prepareStatement("insert into comentarios(idPublicacion, id,"
-                + "nombre, apellidos, cuerpo, fecha_publicacion) values "
-                + "(?,NULL,\"?\",\"?\",\"?\",?);");
-        ps.setString(1,Integer.toString(idPublicacion));
-        ps.setString(2,nombre);
-        ps.setString(3,apellidos);
-        ps.setString(4,cuerpo);
-        ps.setString(5,fecha);
-        
-        ps.executeUpdate();
+        ps = con.prepareStatement(  
+                "select * from usuarios where usuarios.id=? ");  
+                ps.setString(1,Integer.toString(ID));  
+                
+            ResultSet rs=ps.executeQuery();  
+            
+            rs.next();
+            String id =        rs.getString("usuarios.id");
+            String cv_id =     rs.getString("usuarios.curriculum_id");
+            String nombre =    rs.getString("usuarios.nombre");
+            String apellidos = rs.getString("usuarios.apellidos");
+            String usuario =   rs.getString("usuarios.usuario");
+            
+            res = new Hashtable<String, String>();
+            
+            res.put("id", id);
+            res.put("cv_id", cv_id);
+            res.put("nombre", nombre);
+            res.put("apellidos", apellidos);
+            res.put("user", usuario);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+    public static void publicarComentario(int idPublicacion, String nombre, String apellidos, String cuerpo, String fecha){
+        Connection con = getConnection();
+        try {
+        String sentencia = "insert into comentarios(idPublicacion, id, nombre, apellidos,"
+                + " cuerpo, fecha_publicacion) values (" + Integer.toString(idPublicacion) 
+                + ",NULL,'"+nombre+"','"+apellidos+"','"+cuerpo+"','"+fecha+"');";
+        Statement statement = con.createStatement();
+        statement.executeUpdate(sentencia);
         
         } catch (Exception e) {
             System.out.println(e);
