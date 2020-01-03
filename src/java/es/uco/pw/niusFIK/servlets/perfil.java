@@ -5,10 +5,13 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import es.uco.pw.niusFIK.dao.comentariosDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
 import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
@@ -74,8 +77,24 @@ public class perfil extends HttpServlet {
         String nombre = request.getParameter("Titulo");
         String idUsuario = (String) request.getSession().getAttribute("uID");
         Date f = new Date();
-        String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String fecha = formatter.format(f);
         publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
+        
+        publicacionesDAO.ActualizarVisita(id);
+        
+        ArrayList<Hashtable<String, String>> resultPb;
+        resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        
+        ArrayList<Hashtable<String, String>> resultOnePublication;
+        resultOnePublication = publicacionesDAO.loadPublication(id);
+        
+        ArrayList<Hashtable<String, String>> resultCom;
+        resultCom = comentariosDAO.loadComments(id);
+        
+        request.setAttribute("comentariosP", resultCom);
+        request.setAttribute("publicacion", resultOnePublication);
+        request.setAttribute("publicaciones", resultPb);
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+id);
         rd.include(request,response);
     }

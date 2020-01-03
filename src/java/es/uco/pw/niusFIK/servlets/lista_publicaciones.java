@@ -69,14 +69,7 @@ public class lista_publicaciones extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = publicacionesDAO.idPublicacionDisponible();
-        String cuerpo = request.getParameter("Publicacion");
-        String nombre = request.getParameter("Titulo");
-        String idUsuario = (String) request.getSession().getAttribute("uID");
-        Date f = new Date();
-        String fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getYear();
-        publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
-        RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+id);
+        RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
         rd.include(request,response);
     }
 

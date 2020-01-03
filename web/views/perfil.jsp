@@ -61,6 +61,13 @@
                     <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <form action="perfil" method="post">
+                        <!-- <script src="assets/quill/quill.min.js"></script>
+                            <script>
+                            var quill = new Quill("#snow-container", {
+                                placeholder: "Introduzca el texto...",
+                                theme: "snow"
+                            });
+                             </script>-->
                     <br/>
                     <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
                     <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" placeholder="Escribe tu publicacion"></textarea>
