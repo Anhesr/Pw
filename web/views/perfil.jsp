@@ -60,17 +60,21 @@
                     <div id="snow-container"></div>
                     <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
-                    <form action="perfil" method="post">
-                        <!-- <script src="assets/quill/quill.min.js"></script>
+                    
+                            <script src="assets/quill/quill.min.js"></script>
                             <script>
                             var quill = new Quill("#snow-container", {
-                                placeholder: "Introduzca el texto...",
+                                placeholder: "Escribe tu publicacion...",
                                 theme: "snow"
                             });
-                             </script>-->
+                            $('#myForm').submit(function() {
+                             $('textarea[name=Publicacion]').val(quill.container.innerHTML);
+                            });
+                             </script>
+                    <form id="myForm" action="perfil" method="post">
                     <br/>
                     <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
-                    <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" placeholder="Escribe tu publicacion"></textarea>
+                    <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" style="display:none;"></textarea>
                     <input type="submit" value="Publicar" /> 
                     </form>
                 </div>

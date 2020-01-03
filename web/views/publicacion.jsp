@@ -80,15 +80,30 @@
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
-                                                        <%@ page import="es.uco.pw.niusFIK.servlets.publicacion" %>
-                                                        <form method="post">
+                                                        <div id="snow-container"></div>
+                                                        <script src="assets/quill/quill.min.js"></script>
+							<script>
+				  				var quill = new Quill("#snow-container", {
+				    			placeholder: "Escribe tu comentario...",
+				    			theme: "snow"
+				  				});
+							</script>
+                                                        <script>
+                                                        $('#myForm').submit(function() {
+                                                        $('textarea[name=Coment2]').val(quill.container.innerHTML);
+                                                        });
+                                                        </script>
+                                                        <form id="myForm" method="post">
+                                                        <br/>
+                                                        <textarea id="Coment2" name="Coment2" style="display:none;"></textarea>
+                                                        <!--<form method="post">
                                                         <br/>
                                                         <textarea id="Coment2" name="Coment2" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
                                                         <!--<input id="Coment" name="Coment" required="" type="text">
                                                         <div id="snow-container"></div>-->
                                                         <input type="submit" value="Publicar comentario" /> 
                                                         </form>
-                                                        <!--<script src="assets/quill/quill.min.js"></script>
+                                                        <!--
                                                         <script>
                                                             var quill = new Quill("#snow-container", {
                                                             placeholder: "Introduzca el texto...",
