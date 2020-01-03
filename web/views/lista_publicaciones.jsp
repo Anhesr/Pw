@@ -1,4 +1,13 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
+<%
+    ArrayList<Hashtable<String, String>> amigosList;
+    amigosList = (ArrayList<Hashtable<String, String>>) request.getAttribute("listaAmigos");
+    
+%>
 <html>
 	<link rel="icon" type="image/png" href="../img/logo.png" />
 	<head>
@@ -70,7 +79,17 @@
 						<div class="borde">
 						  <p class="titulo">Lista publicaciones</p>
 						  <hr />
-						  	<!-- Mostrar lista de publicaciones -->
+						  	<% if (amigosList.isEmpty()) { 
+                                                        } else { 
+                                                            for (Hashtable<String, String> amigoAux : amigosList) {
+                                                                if(!publicacionAux.isEmpty()){
+                                                    %>
+                                                            <p><%=amigoAux.get("nombreAmigo")%></p>
+                                                    <%
+                                                                }
+                                                            }
+                                                        }
+                                                      %>
 						</div>
 
 					</div>
@@ -85,7 +104,7 @@
 					<div class="borde">
 					  <p class="titulo">Lista amigos</p>
 					  <hr />
-					  <!-- Mostrar lista de amigos -->
+					  
 
 					</div>
 

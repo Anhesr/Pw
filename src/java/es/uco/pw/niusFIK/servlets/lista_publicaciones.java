@@ -5,6 +5,7 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import es.uco.pw.niusFIK.dao.amigosDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
 import es.uco.pw.niusFIK.javabean.userBean;
@@ -38,6 +39,8 @@ public class lista_publicaciones extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        ArrayList<Hashtable<String, String>> result = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        request.setAttribute("listaAmigos", result);
         request.setAttribute("publicaciones",resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);
