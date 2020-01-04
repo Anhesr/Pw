@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,8 +40,13 @@ public class perfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
-        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        /*ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));*/
+        
+        ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(1);
+        HashMap<String, Object> resultCV = curriculumDAO.queryByUserID(1);
+        System.out.println(resultCV);
+        
         request.setAttribute("publicaciones",resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
@@ -72,8 +78,9 @@ public class perfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = publicacionesDAO.idPublicacionDisponible();
-        String cuerpo = request.getParameter("Publicacion");
+        //int id = publicacionesDAO.idPublicacionDisponible();
+        int id = 1;
+        /*String cuerpo = request.getParameter("Publicacion");
         String nombre = request.getParameter("Titulo");
         String idUsuario = (String) request.getSession().getAttribute("uID");
         Date f = new Date();
@@ -96,7 +103,7 @@ public class perfil extends HttpServlet {
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+id);
-        rd.include(request,response);
+        rd.include(request,response);*/
     }
 
     /**

@@ -6,20 +6,18 @@
 package es.uco.pw.niusFIK.servlets;
 
 import es.uco.pw.niusFIK.dao.curriculumDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Hashtable;
-import java.util.Map;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import es.uco.pw.niusFIK.dao.loginDAO;
+import java.io.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.*;
 
 /**
  *
  * @author skrotex
  */
+@MultipartConfig
 public class modificarCV extends HttpServlet {
 
     /**
@@ -33,7 +31,13 @@ public class modificarCV extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            HashMap<String, Object> result = curriculumDAO.queryByUserID(1);
+            request.setAttribute("curriculum", result);
+        } catch (Exception e) {
+            System.out.print(e);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,15 +52,8 @@ public class modificarCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            response.setContentType("text/html;charset=UTF-8");
-            Hashtable<String, String> result = curriculumDAO.queryByUserID(1);
-            request.setAttribute("curriculum", result);
-            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
-        } catch (Exception e) {
-            System.out.print(e);
-        }
-
+        processRequest(request, response);
+        request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
     }
 
     /**
@@ -71,40 +68,35 @@ public class modificarCV extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
-            PrintWriter out = response.getWriter();
-            out.print("<html>");
-            out.print("<body>");
-            out.print("El tipo es " + session.getAttribute("cv_type"));
-            Hashtable<String, String> updateMap = new Hashtable<String, String>();
-            out.print("<p>");
-            out.print("name: " + request.getParameter("name"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("surname: " + request.getParameter("surname"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("email: " + request.getParameter("email"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("date: " + request.getParameter("date"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("formac: " + request.getParameter("formac"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("intprof: " + request.getParameter("intprof"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("expC: " + request.getParameter("expC"));
-            out.print("</p>");
-            out.print("<p>");
-            out.print("prodC: " + request.getParameter("prodC"));
-            out.print("</p>");
-
-            out.print("</body>");
-            out.print("</html>");
-            //request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+            HashMap<String, Object> updateMap = new HashMap<String, Object>();
+            Map<String, String[]> parameters = (Map<String, String[]>) request.getParameterMap();
+            updateMap.put("id", 1);
+            for (String parameter : parameters.keySet()) {
+                String[] values = parameters.get(parameter);
+                if (!values[0].equals("") && !parameter.equals("valPass")) {
+                    updateMap.put(parameter, values[0]);
+                }
+            }
+            if (updateMap.containsKey("lastPass")) {
+                if (!loginDAO.checkPassword(1, (String) updateMap.get("lastPass"))) {
+                    updateMap.remove("password");
+                    request.setAttribute("passChanged", false);
+                } else {
+                    request.setAttribute("passChanged", true);
+                }
+                updateMap.remove("lastPass");
+            }
+            if (request.getPart("imagen") != null) {
+                InputStream inputStream = null;
+                Part filePart = request.getPart("imagen");
+                if (filePart != null) {
+                    inputStream = filePart.getInputStream();
+                }
+                updateMap.put("imagen", inputStream);
+            }
+            curriculumDAO.updateCV(updateMap);
+            processRequest(request, response);
+            request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -12,6 +12,7 @@ import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,9 +39,9 @@ public class lista_publicaciones extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
-        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> result = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("listaAmigos", result);
+        HashMap<String, Object> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("publicaciones",resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);

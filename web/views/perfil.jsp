@@ -1,13 +1,16 @@
-<%@page import="java.util.Locale"%>
-<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.sql.Blob"%>
 <%@page import="java.util.Hashtable"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <% ArrayList<Hashtable<String, String>> publicaciones
             = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
-    Hashtable<String, String> curriculum
-            = (Hashtable<String, String>) request.getAttribute("curriculum");%>
+    HashMap<String, Object> curriculum
+            = (HashMap<String, Object>) request.getAttribute("curriculum");%>
 <html lang="es">
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <head>
@@ -41,9 +44,22 @@
 
         <div class="gridPag1">
             <div class="imgPerfil">
+                <%
+                    String photo64;
+                    if (curriculum.get("imagen") != null) {
+                        Blob blob = (Blob) curriculum.get("imagen");
+                        byte[] ba = blob.getBytes(1, (int) blob.length());
+                        byte[] img64 = Base64.encodeBase64(ba);
+                        photo64 = new String(img64);
+                        photo64 = "data:image;base64," + photo64;
+                    } else {
+                        photo64 = "assets/img/perfil.jpg";
+                    }
+
+                %>
                 <img
                     class="bordeImg"
-                    src="<%= curriculum.get("imagen")%>"
+                    src="<%= photo64%>"
                     alt="Imagen de perfil"
                     width="125"
                     />
@@ -76,6 +92,11 @@
                     <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
                     <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" style="display:none;"></textarea>
                     <input type="submit" value="Publicar" /> 
+                             
+                        <br/>
+                        <textarea id="Titulo" name="Titulo" rows="3" cols="80" placeholder="Titulo"></textarea>
+                        <textarea id="Publicacion" name="Publicacion" rows="3" cols="80" placeholder="Escribe tu publicacion"></textarea>
+                        <input type="submit" value="Publicar" /> 
                     </form>
                 </div>
             </div>
@@ -93,6 +114,7 @@
                         <p><strong>Nombre:</strong> <%= curriculum.get("nombre")%></p>
                         <p><strong>Apellidos:</strong> <%= curriculum.get("apellidos")%></p>
                         <p><strong>Correo electrónico:</strong> <%= curriculum.get("correo_electronico")%></p>
+                        <p><strong>Fecha de nacimiento:</strong> <%= curriculum.get("fecha_nacimiento")%></p>
                     </div>
                 </div>
                 <div id="pubCVper" class="publicacion borde2 front">
@@ -113,7 +135,7 @@
                 <p class="titulo">Mis publicaciones</p>
                 <hr />
                 <!-- CreaciÃ³n de las publicaciones -->
-                <div style="overflow: auto; height: 21em;">
+                <div style="overflow: auto; height: 23em;">
                     <% if (publicaciones.size() == 0) { %>
                     <script>
                         noPublis();
@@ -157,12 +179,13 @@
                 <!-- Fin de creación de publicaciones -->
             </div>
         </div>
-        <script src="assets/quill/quill.min.js"></script>
+        <script src="assets/quill/quill.js"></script>
         <script>
                             var quill = new Quill("#snow-container", {
                                 placeholder: "Introduzca el texto...",
                                 theme: "snow"
                             });
+                            console.log(quill.getText(0));
         </script>
         <footer class="footer" style="clear: both;">
             <ul style="list-style-type:disc;">
