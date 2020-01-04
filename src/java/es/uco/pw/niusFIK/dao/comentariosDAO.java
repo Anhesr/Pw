@@ -100,4 +100,17 @@ public class comentariosDAO {
         }
     }
     
+    public static void EliminarComentarioByID(int id){
+        int result = 0;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("delete from comentarios where id = ?;");
+            ps.setString(1, Integer.toString(id));
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
 }

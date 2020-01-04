@@ -112,12 +112,14 @@ public class publicacionesDAO {
 
         try {
             result = new ArrayList<Hashtable<String, String>>();
-            ps = con.prepareStatement("select nombre, cuerpo from publicaciones where id = ?;");
+            ps = con.prepareStatement("select autor_id, nombre, cuerpo from publicaciones where id = ?;");
             ps.setString(1, Integer.toString(id));
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 res = new Hashtable<String, String>();
+                String autorID = Integer.toString(rs.getInt("autor_id"));
+                res.put("autor_id", autorID);
                 res.put("nombre", rs.getString("nombre"));
                 res.put("cuerpo", rs.getString("cuerpo"));
                 result.add(res);
@@ -181,6 +183,23 @@ public class publicacionesDAO {
             ps.setString(2, Integer.toString(idP));
             ps.executeUpdate();
 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public static void EliminarPublicacionByID(int idP){
+        int result = 0;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("delete from publicaciones where id = ?;");
+            ps.setString(1, Integer.toString(idP));
+            ps.executeUpdate();
+            ps=null;
+            ps = con.prepareStatement("delete from comentarios where idpublicacion = ?;");
+            ps.setString(1, Integer.toString(idP));
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
