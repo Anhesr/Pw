@@ -67,7 +67,7 @@
                                 name="pass"
                                 id="pass"
                                 pattern=".{7,}"
-                                title="La contraseÃ±a debe contener al menos 7 carÃ¡cteres"
+                                title="La contraseña debe contener al menos 7 carácteres"
                                 oninput="validarPass()"
                                 required>
                             <br>

@@ -35,14 +35,10 @@ public class registroDAO {
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
-                "INSERT INTO usuarios (ID, CURRICULUM_ID, NOMBRE, APELLIDOS,"
-              + " FECHA_NACIMIENTO, CORREO_ELECTRONICO, TELEFONO, USUARIO, PASSWORD, IMAGEN)"
-              + "VALUES (NULL,'0','?','?','?','?','?','?','?','/assets/img/perfil.jpg')");   
-            
-            /*
-            (`ID`, `CURRICULUM_ID`, `NOMBRE`, `APELLIDOS`, `FECHA_NACIMIENTO`, 
-            `CORREO_ELECTRONICO`, `TELEFONO`, `USUARIO`, `PASSWORD`, `IMAGEN`)
-            */  
+                "insert into usuarios (nombre, apellidos, fecha_nacimiento, "
+              + "correo_electronico, telefono, usuario, password) "
+              + "values (?,?,?,?,?,?,?)");  
+            //           1 2 3 4 5 6 7
                 
                 ps.setString(1,name);
                 ps.setString(2,lastname);

@@ -89,6 +89,7 @@ public class registro extends HttpServlet {
         if(passwd == "")   {allRight = false;}
         
         if(allRight == false){
+            out.println(birthdate);
             out.print("Faltan datos para el registro.\n");
             
             RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
@@ -103,10 +104,10 @@ public class registro extends HttpServlet {
             request.getSession().setAttribute("uLogin", user);
             //request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/inicio.jsp");
             rd.forward(request,response);
         }
-
+   
         out.close();
     }
 
