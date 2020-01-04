@@ -84,6 +84,7 @@ public class loginDAO {
         }
         return status;
     }
+    
 
     public static Hashtable<String, String> queryByUser(String user) {
         Hashtable<String, String> res = null;

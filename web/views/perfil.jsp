@@ -17,6 +17,7 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/perfil.css" />
         <link rel="stylesheet" href="assets/quill/quill.snow.css" />
+        <link rel="stylesheet" href="css/publicacion.css">
         <link rel="stylesheet" href="css/footer_header.css" />
 
         <title>Perfil - NiusFIK</title>
@@ -72,27 +73,40 @@
             </div>
 
             <div class="newPublis">
-                <div class="borde" style=" position: relative; margin-bottom: 10px; ">
+                <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
                     
                     <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
-                    <form id="myForm" action="perfil" method="post">
-                    <br/>
-                    <textarea id="Titulo" name="Titulo" rows="2" cols="30" placeholder="Titulo"></textarea>
-                    <div id="snow-container"></div>-
-                            <!--<script src="assets/quill/quill.min.js"></script>-->
-                            <script>
-                            var quill = new Quill("#snow-container", {
-                                placeholder: "Escribe tu publicacion...",
-                                theme: "snow"
-                            });
-                            $('#myForm').submit(function() {
-                             $('textarea[name=Publicacion]').val(quill.container.innerHTML);
-                            });
-                             </script>
-                    <textarea id="Publicacion" name="Publicacion" style="display:none;"></textarea>
-                    <input type="submit" value="Publicar" /> 
+                    <script src="assets/quill/quill.min.js"></script>
+                    <form id="myForm" method="post" action="perfil">
+                    <div class="row form-group">
+                    <textarea id="Titulo" name="Titulo" style="resize: none; -webkit-border-radius: 5px;
+                              -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="129" placeholder="Titulo"></textarea>
+                    <input name="Publicacion" type="hidden">
+                    <div id="snow-container"></div>
+                    </div>
+                    <input type="submit" value="Publicar publicación" /> 
                     </form>
+                    <script>
+                    var quill = new Quill('#snow-container', {
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic'],
+                                ['link'],
+                                [{ list: 'ordered' }, { list: 'bullet' }]
+                            ]
+                        },
+                        placeholder: 'Escribe tu publicación...',
+                        theme: 'snow'
+                    });
+
+                    var form = document.querySelector('form');
+                    form.onsubmit = function() {
+                    // Populate hidden form on submit
+                        var about = document.querySelector('input[name=Publicacion]');
+                        about.value = JSON.stringify(quill.root.innerHTML);
+                    };
+                    </script>
                 </div>
             </div>
         </div>
@@ -100,7 +114,7 @@
             <p class="borde publicacion" style="padding-top: 0.5em;
                padding-bottom: 0.5em;">No hay publicaciones.</p>
         </div>
-        <div class="gridPag2" id="gridForCVPubls" style="height: 25em;">
+        <div class="gridPag2" id="gridForCVPubls" style="height: 30em;">
             <div id="miCV" class="borde">
                 <p class="titulo">Mi Currí­culum Vitae</p>
                 <hr />
@@ -130,7 +144,7 @@
                 <p class="titulo">Mis publicaciones</p>
                 <hr />
                 <!-- CreaciÃ³n de las publicaciones -->
-                <div style="overflow: auto; height: 23em;">
+                <div style="overflow: auto; height: 27em;">
                     <% if (publicaciones.size() == 0) { %>
                     <script>
                         noPublis();
@@ -143,7 +157,7 @@
                         id="publicacion"
                         onmouseover="hoverOnPublication(<% out.print(publicacion.get("id")); %>)"
                         onmouseout="outHoverOnPublication(<% out.print(publicacion.get("id")); %>)"
-                        onclick="goToPubli(<% out.print(publicacion.get("id")); %>)"
+                        onclick="location='publicacion?idP=<%=publicacion.get("id")%>'";
                         >
                         <div class="titPublicacion" id="titPublicacion<% out.print(publicacion.get("id"));%>">
                             <p class="left">
@@ -174,14 +188,6 @@
                 <!-- Fin de creación de publicaciones -->
             </div>
         </div>
-        <script src="assets/quill/quill.js"></script>
-        <script>
-                            var quill = new Quill("#snow-container", {
-                                placeholder: "Introduzca el texto...",
-                                theme: "snow"
-                            });
-                            console.log(quill.getText(0));
-        </script>
         <footer class="footer" style="clear: both;">
             <ul style="list-style-type:disc;">
                 <li><a href="">Sobre nosotros</a></li>

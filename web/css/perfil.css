@@ -65,15 +65,14 @@ body {
   clear: both;
   gap: 1px;
   grid-template-columns: 50% 50%;
-  margin-bottom: 30px;
+  margin-bottom: 5em;
 }
 .newPublis {
   grid-column: 2;
 }
 .CVfields {
   text-align: left;
-  padding-left: 20%;
-  vertical-align: middle;
+  padding-left: 4%;
 }
 .buttonsPerfil {
   width: 8em;

@@ -91,16 +91,10 @@ public class publicacion extends HttpServlet {
                
         response.setContentType("text/html;charset=UTF-8");
         String cuerpo = (String)request.getParameter("Coment2");
-        //String cuerpo2 = request.getParameter("Coment2");
-        PrintWriter out = response.getWriter();
-        //out.print(cuerpo);
-        //out.print(cuerpo2);
-        
         String idP = request.getParameter("idP");
         int idUsuario = Integer.parseInt((String)request.getSession().getAttribute("uID"));
         int idPublicacion = Integer.parseInt(idP);
         Hashtable<String, String> user = comentariosDAO.DatosUser(idUsuario);
-        
         String nombre = user.get("nombre");
         String apellidos = user.get("apellidos");
         Date f = new Date();
