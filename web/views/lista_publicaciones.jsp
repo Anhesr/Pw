@@ -106,17 +106,7 @@
                         <div class="borde">
                             <p class="titulo">Lista publicaciones</p>
                             <hr />
-                            <% if (amigosList.isEmpty()) {
-                                } else {
-                                    for (Hashtable<String, String> amigoAux : amigosList) {
-                                        if (!amigoAux.isEmpty()) {
-                            %>
-                            <p><%=amigoAux.get("nombreAmigo")%></p>
-                            <%
-                                        }
-                                    }
-                                }
-                            %>
+                            
                         </div>
 
                     </div>
@@ -131,7 +121,17 @@
                     <div class="borde">
                         <p class="titulo">Lista amigos</p>
                         <hr />
-
+                            <% if (amigosList.isEmpty()) {
+                                } else {
+                                    for (Hashtable<String, String> amigoAux : amigosList) {
+                                        if (!amigoAux.isEmpty()) {
+                            %>
+                            <p><%=amigoAux.get("nombreAmigo")%></p>
+                            <%
+                                        }
+                                    }
+                                }
+                            %>
 
                     </div>
 
