@@ -10,10 +10,12 @@ import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
 import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
+import static java.util.Objects.isNull;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,8 +75,22 @@ public class lista_publicaciones extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
-        rd.include(request,response);
+        
+        if(!isNull(request.getParameter("botonPublicar"))){
+            request.setAttribute("botonPublicar", null);
+            int id = publicacionesDAO.idPublicacionDisponible();
+            String cuerpo = request.getParameter("Publicacion");
+            String nombre = request.getParameter("Titulo");
+            String idUsuario = (String) request.getSession().getAttribute("uID");
+            Date f = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String fecha = formatter.format(f);
+            publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
+            response.sendRedirect(request.getContextPath()+"/publicacion?idP="+id);
+        }
+        
+        //RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
+        //rd.include(request,response);
     }
 
     /**

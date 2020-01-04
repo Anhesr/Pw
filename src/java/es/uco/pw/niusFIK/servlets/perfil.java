@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
+import static java.util.Objects.isNull;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -78,32 +79,23 @@ public class perfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //int id = publicacionesDAO.idPublicacionDisponible();
-        int id = 1;
-        /*String cuerpo = request.getParameter("Publicacion");
-        String nombre = request.getParameter("Titulo");
-        String idUsuario = (String) request.getSession().getAttribute("uID");
-        Date f = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String fecha = formatter.format(f);
-        publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
         
-        publicacionesDAO.ActualizarVisita(id);
+        if(!isNull(request.getParameter("botonPublicar"))){
+            request.setAttribute("botonPublicar", null);
+            int id = publicacionesDAO.idPublicacionDisponible();
+            String cuerpo = request.getParameter("Publicacion");
+            String nombre = request.getParameter("Titulo");
+            String idUsuario = (String) request.getSession().getAttribute("uID");
+            Date f = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String fecha = formatter.format(f);
+            publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
+            response.sendRedirect(request.getContextPath()+"/publicacion?idP="+id);
+        }
         
-        ArrayList<Hashtable<String, String>> resultPb;
-        resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        //RequestDispatcher rd = request.getRequestDispatcher("/views/perfil.jsp");
+        //rd.include(request,response);
         
-        ArrayList<Hashtable<String, String>> resultOnePublication;
-        resultOnePublication = publicacionesDAO.loadPublication(id);
-        
-        ArrayList<Hashtable<String, String>> resultCom;
-        resultCom = comentariosDAO.loadComments(id);
-        
-        request.setAttribute("comentariosP", resultCom);
-        request.setAttribute("publicacion", resultOnePublication);
-        request.setAttribute("publicaciones", resultPb);
-        RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+id);
-        rd.include(request,response);*/
     }
 
     /**

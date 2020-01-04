@@ -130,21 +130,17 @@ public class publicacionesDAO {
         return result;
     }
 
-    public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas) {
-        PreparedStatement ps = null;
+    public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas) {  
         Connection con = getConnection();
         try {
-            ps = con.prepareStatement("insert into publicaciones(id, autor_id, nombre,"
-                    + "cuerpo, fecha_publicacion, visitas) values (?,?,?,?,?,?);");
-
-            ps.setString(1, Integer.toString(id));
-            ps.setString(2, Integer.toString(autor_id));
-            ps.setString(3, nombre);
-            ps.setString(4, cuerpo);
-            ps.setString(5, fecha);
-            ps.setString(6, Integer.toString(visitas));
-
-            ps.executeUpdate();
+        String sentencia = "insert into publicaciones(id, autor_id, nombre,"
+                    + "cuerpo, fecha_publicacion, visitas)"
+                + " values (" + Integer.toString(id) 
+                +","+ Integer.toString(autor_id) + ",'"+ nombre
+                + "',"+cuerpo+",'"+fecha+"'," + Integer.toString(visitas) + ");";
+        Statement statement = con.createStatement();
+        statement.executeUpdate(sentencia);
+        
         } catch (Exception e) {
             System.out.println(e);
         }

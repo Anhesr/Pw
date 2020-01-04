@@ -66,7 +66,7 @@ public class comentariosDAO {
         Connection con = getConnection();
         try {
         ps = con.prepareStatement(  
-                "select * from usuarios where usuarios.id=? ");  
+                "select * from usuarios where id=? ");  
                 ps.setString(1,Integer.toString(ID));  
                 
             ResultSet rs=ps.executeQuery();  

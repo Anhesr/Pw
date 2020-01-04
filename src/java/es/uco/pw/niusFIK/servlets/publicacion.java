@@ -59,7 +59,6 @@ public class publicacion extends HttpServlet {
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
         
-        
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  
@@ -102,16 +101,14 @@ public class publicacion extends HttpServlet {
         if(!isNull(request.getParameter("deletPublic"))){
             publicacionesDAO.EliminarPublicacionByID(Integer.parseInt(request.getParameter("idP")));
             request.setAttribute("deletPublic", null);
-            RequestDispatcher rd = request.getRequestDispatcher("perfil");
-            rd.include(request,response);
+            response.sendRedirect(request.getContextPath()+"/perfil");
         }
         
-        if(!isNull(request.getParameter("PublicComent"))){
-            request.setAttribute("deletPublic", null);
+        if(!isNull(request.getParameter("botonComentar"))){
+            request.setAttribute("botonComentar", null);
             String cuerpo = (String)request.getParameter("Coment2");
-            String idP = request.getParameter("idP");
             int idUsuario = Integer.parseInt((String)request.getSession().getAttribute("uID"));
-            int idPublicacion = Integer.parseInt(idP);
+            int idPublicacion = Integer.parseInt(request.getParameter("idP"));
             Hashtable<String, String> user = comentariosDAO.DatosUser(idUsuario);
             String nombre = user.get("nombre");
             String apellidos = user.get("apellidos");
@@ -121,7 +118,6 @@ public class publicacion extends HttpServlet {
             comentariosDAO.publicarComentario(idUsuario, idPublicacion, nombre, apellidos, cuerpo, fecha);
             processRequest(request, response);
         }
-     
     }
 
     /**
