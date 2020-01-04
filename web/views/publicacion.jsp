@@ -53,7 +53,9 @@
                                                             <%
                                                                 if(Integer.parseInt(publicacionAux.get("autor_id")) == Integer.parseInt((String)request.getSession().getAttribute("uID"))){
                                                             %>
-                                                             <input type="submit" value="Eliminar publicacion">
+                                                            <form method="post">
+                                                            <input name="deletPublic" type="submit" value="Eliminar publicacion">
+                                                            </form>
                                                     <%              }
                                                                 }
                                                             }
@@ -75,10 +77,16 @@
                                                       <div class="comentario"> 
                                                           <p><strong>Usuario: <%=comentarioAux.get("nombre")%> <%=comentarioAux.get("apellidos")%> . Fecha: <%=comentarioAux.get("fecha_publicacion")%></strong></p>
                                                           <p><%=comentarioAux.get("cuerpo")%></p>
+                                                          <% if(Integer.parseInt((String)request.getSession().getAttribute("uID")) == Integer.parseInt(comentarioAux.get("idusuario"))){ %>
+                                                          <form method="post">
+                                                          <input name="delCom" type="submit" value="Eliminar comentario">
+                                                          <textarea style="display:none" name="idComentario"><%=comentarioAux.get("id")%></textarea>
+                                                          </form>
+                                                          <% } %>
                                                           <br/>
                                                       </div>
                                                       
-                                                      <%
+                                                      <%            
                                                                 }
                                                             }
                                                         }
@@ -95,7 +103,7 @@
                                                        <input name="Coment2" type="hidden" rows="3" cols="80">
                                                        <div id="snow-container"></div>
                                                        </div>
-                                                        <input type="submit" value="Publicar comentario" /> 
+                                                        <input name="PublicComent" type="submit" value="Publicar comentario" /> 
                                                         </form>
                                                         <script>
                                                         var quill = new Quill('#snow-container', {

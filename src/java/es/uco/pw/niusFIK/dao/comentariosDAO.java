@@ -36,12 +36,16 @@ public class comentariosDAO {
         
         try {
             result = new ArrayList<Hashtable<String, String>>();
-	    ps = con.prepareStatement("select nombre, apellidos, cuerpo, fecha_publicacion from comentarios where idpublicacion = ?;");
+	    ps = con.prepareStatement("select id, idusuario, nombre, apellidos, cuerpo, fecha_publicacion from comentarios where idpublicacion = ?;");
             ps.setString(1,Integer.toString(idP));  
             
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
                 res = new Hashtable<String, String>();
+                String idusuario = Integer.toString(rs.getInt("idusuario"));
+                res.put("idusuario", idusuario);
+                String id = Integer.toString(rs.getInt("id"));
+                res.put("id", id);
                 res.put("nombre", rs.getString("nombre"));
                 res.put("apellidos", rs.getString("apellidos"));
                 res.put("cuerpo", rs.getString("cuerpo"));
@@ -86,11 +90,11 @@ public class comentariosDAO {
         }
         return res;
     }
-    public static void publicarComentario(int idPublicacion, String nombre, String apellidos, String cuerpo, String fecha){
+    public static void publicarComentario(int idusuario, int idPublicacion, String nombre, String apellidos, String cuerpo, String fecha){
         Connection con = getConnection();
         try {
-        String sentencia = "insert into comentarios(idPublicacion, id, nombre, apellidos,"
-                + " cuerpo, fecha_publicacion) values (" + Integer.toString(idPublicacion) 
+        String sentencia = "insert into comentarios(idusuario, idPublicacion, id, nombre, apellidos,"
+                + " cuerpo, fecha_publicacion) values (" + Integer.toString(idusuario) +","+ Integer.toString(idPublicacion) 
                 + ",NULL,'"+nombre+"','"+apellidos+"',"+cuerpo+",'"+fecha+"');";
         Statement statement = con.createStatement();
         statement.executeUpdate(sentencia);
