@@ -33,7 +33,7 @@ public class modificarCV extends HttpServlet {
             throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
-            HashMap<String, Object> result = curriculumDAO.queryByUserID(1);
+            HashMap<String, Object> result = curriculumDAO.queryByUserID(19);
             request.setAttribute("curriculum", result);
         } catch (Exception e) {
             System.out.print(e);

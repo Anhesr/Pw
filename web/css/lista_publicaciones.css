@@ -1,7 +1,23 @@
 .columnas{
   display: grid;
 }
-
+p.left {
+  text-align: left;
+  margin: auto;
+  padding-left: 5%;
+}
+p.right {
+  text-align: right;
+  margin: auto;
+  padding-right: 5%;
+}
+div.titPublicacion {
+  height: 2.5em;
+  background-color: rgba(51, 153, 255, 0.5);
+  transition: 1s;
+  border-radius: 28px 28px 28px 28px;
+  margin-bottom: 4px;
+}
 .columna_recomendaciones {
   grid-column: 1;
   padding: 20px;
