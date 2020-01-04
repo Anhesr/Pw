@@ -40,17 +40,24 @@
 			<center>
 						<!-- Publicación -->
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
-                                                    <% if (publicacionT.isEmpty()) { 
+                                                    <% if (publicacionT.isEmpty()) { %>
+                                                          <p>ERROR 404. La publicacion que buscas no existe</p>
+                                                          </div>
+                                                       <%
                                                         } else { 
                                                             for (Hashtable<String, String> publicacionAux : publicacionT) {
                                                                 if(!publicacionAux.isEmpty()){
                                                     %>
                                                             <p><%=publicacionAux.get("nombre")%></p>
                                                             <p><%=publicacionAux.get("cuerpo")%></p>
-                                                    <%
+                                                            <%
+                                                                if(Integer.parseInt(publicacionAux.get("autor_id")) == Integer.parseInt((String)request.getSession().getAttribute("uID"))){
+                                                            %>
+                                                             <input type="submit" value="Eliminar publicacion">
+                                                    <%              }
                                                                 }
                                                             }
-                                                        }
+                                                            
                                                       %>
                                                 </div>
 						<!-- Fin Publicación -->
@@ -58,8 +65,9 @@
 						<!-- Comentarios -->
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
                                                       <%
-                                                          if (comentariosT.isEmpty()) { // DETECTA QUE ESTA VACIO
-                                                        } else { 
+                                                          if (comentariosT.isEmpty()) { %>
+                                                          <p>No hay comentarios aun. S� el primero en comentar</p>
+                                                       <% } else { 
                                                             for (Hashtable<String, String> comentarioAux : comentariosT) {
                                                                 if(!comentarioAux.isEmpty()){
                                                             
@@ -111,7 +119,8 @@
                                                         </script>
 							<!-- Fin Escribir comentarios -->
 						</div>
-					<br/>		
+					<br/>
+                                        <% } %>
 			</center>	
 		</div>
 		<footer>
