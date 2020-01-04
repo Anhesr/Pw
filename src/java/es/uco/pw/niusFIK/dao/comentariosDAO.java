@@ -45,7 +45,8 @@ public class comentariosDAO {
                 res.put("nombre", rs.getString("nombre"));
                 res.put("apellidos", rs.getString("apellidos"));
                 res.put("cuerpo", rs.getString("cuerpo"));
-                String fecha = rs.getString("fecha_publicacion");
+                String fechaAux = rs.getString("fecha_publicacion");
+                String fecha = fechaAux.substring(0, fechaAux.length()-5);
                 res.put("fecha_publicacion", fecha); 
                 result.add(res);
             }
@@ -90,7 +91,7 @@ public class comentariosDAO {
         try {
         String sentencia = "insert into comentarios(idPublicacion, id, nombre, apellidos,"
                 + " cuerpo, fecha_publicacion) values (" + Integer.toString(idPublicacion) 
-                + ",NULL,'"+nombre+"','"+apellidos+"','"+cuerpo+"','"+fecha+"');";
+                + ",NULL,'"+nombre+"','"+apellidos+"',"+cuerpo+",'"+fecha+"');";
         Statement statement = con.createStatement();
         statement.executeUpdate(sentencia);
         

@@ -80,38 +80,35 @@
 						<!-- Fin Comentarios -->
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
-                                                        <div id="snow-container"></div>
                                                         <script src="assets/quill/quill.min.js"></script>
-							<script>
-				  				var quill = new Quill("#snow-container", {
-				    			placeholder: "Escribe tu comentario...",
-				    			theme: "snow"
-				  				});
-							</script>
-                                                        <script>
-                                                        $('#myForm').submit(function() {
-                                                        $('textarea[name=Coment2]').val(quill.container.innerHTML);
-                                                        });
-                                                        </script>
                                                         <form id="myForm" method="post">
-                                                        <br/>
-                                                        <textarea id="Coment2" name="Coment2" style="display:none;"></textarea>
-                                                        <!--<form method="post">
-                                                        <br/>
-                                                        <textarea id="Coment2" name="Coment2" rows="3" cols="80" placeholder="Escribe tu comentario..."></textarea>
-                                                        <!--<input id="Coment" name="Coment" required="" type="text">
-                                                        <div id="snow-container"></div>-->
+                                                        <div class="row form-group">
+                                                       
+                                                       <input name="Coment2" type="hidden" rows="3" cols="80">
+                                                       <div id="snow-container"></div>
+                                                       </div>
                                                         <input type="submit" value="Publicar comentario" /> 
                                                         </form>
-                                                        <!--
                                                         <script>
-                                                            var quill = new Quill("#snow-container", {
-                                                            placeholder: "Introduzca el texto...",
-                                                            theme: "snow"
-                                                            }).on('text-change', function(){
-                                                                $('#Coment').val($('#snow-container').html());
-                                                            });
-                                                        </script>-->
+                                                        var quill = new Quill('#snow-container', {
+                                                        modules: {
+                                                            toolbar: [
+                                                              ['bold', 'italic'],
+                                                              ['link'],
+                                                              [{ list: 'ordered' }, { list: 'bullet' }]
+                                                            ]
+                                                          },
+                                                          placeholder: 'Escribe tu comentario...',
+                                                          theme: 'snow'
+                                                        });
+
+                                                        var form = document.querySelector('form');
+                                                        form.onsubmit = function() {
+                                                          // Populate hidden form on submit
+                                                          var about = document.querySelector('input[name=Coment2]');
+                                                          about.value = JSON.stringify(quill.root.innerHTML);
+                                                        };
+                                                        </script>
 							<!-- Fin Escribir comentarios -->
 						</div>
 					<br/>		
