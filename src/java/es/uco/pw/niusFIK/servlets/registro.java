@@ -79,7 +79,7 @@ public class registro extends HttpServlet {
         String user = request.getParameter("user");
         String passwd = request.getParameter("pass");
         
-        //register.put("name", request.getParameter("name"));
+        // Comprueba si hay campos nulos en el registro
         if(name == "")     {allRight = false;}
         if(lastname == "") {allRight = false;}
         if(birthdate == ""){allRight = false;}
@@ -89,13 +89,31 @@ public class registro extends HttpServlet {
         if(passwd == "")   {allRight = false;}
         
         if(allRight == false){
-            out.println(birthdate);
             out.print("Faltan datos para el registro.\n");
             
             RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
             rd.include(request,response);
         }
         
+        // Se comprueba si ya existe ese login en la base de datos
+        else if(registroDAO.checkUserExist(user))
+        {
+            out.print("El usuario introducido ya existe.\n");
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            rd.include(request,response);
+        }
+        
+        // Se comprueba si el email ya esta siendo usadopor alguien registrado
+        else if(registroDAO.checkEmailExist(email))
+        {
+            out.print("El correo introducido ya existe.\n");
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            rd.include(request,response);
+        }
+        
+        // Si no falta / falla nada, el usuario es insertado
         else{
             registroDAO.insertUserData(name,lastname,birthdate,email,phone,user,passwd);
             

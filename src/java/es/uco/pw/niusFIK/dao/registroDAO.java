@@ -27,6 +27,42 @@ public class registroDAO {
         return con;
     }
     
+    public static boolean checkUserExist(String user) {
+        boolean status = false;
+        PreparedStatement ps;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("select * from usuarios where usuario=?");
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            if (user.equals(rs.getString("usuario"))) {
+                status = true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
+    
+    public static boolean checkEmailExist(String email) {
+        boolean status = false;
+        PreparedStatement ps;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("select * from usuarios where correo_electronico=?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            if (email.equals(rs.getString("correo_electronico"))) {
+                status = true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
+    
     
     public static void insertUserData(String name, String lastname, String birthdate, 
                                       String email, String phone, String user, String passwd)
