@@ -38,13 +38,13 @@ public class lista_publicaciones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ArrayList<HashMap<String, String>> recomendaciones = publicacionesDAO.getRecomendations();
         ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> result = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("listaAmigos", result);
-        HashMap<String, Object> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("publicaciones",resultPb);
-        request.setAttribute("curriculum", resultCV);
-        request.getRequestDispatcher("/views/lista-publicaciones.jsp").forward(request, response);
+        request.setAttribute("recomendaciones", recomendaciones);
+        request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -9,6 +9,10 @@
         <servlet-class>es.uco.pw.niusFIK.servlets.login</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>lista_publicaciones</servlet-name>
+        <servlet-class>es.uco.pw.niusFIK.servlets.lista_publicaciones</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>inicio</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.inicio</servlet-class>
     </servlet>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>perfil</servlet-name>
         <url-pattern>/perfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lista_publicaciones</servlet-name>
+        <url-pattern>/inicio</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
@@ -77,11 +85,4 @@
             30
         </session-timeout>
     </session-config>
-    <context-param> 
-   <description>Location to store uploaded file</description> 
-   <param-name>file-upload</param-name> 
-   <param-value>
-      /home/skrotex/prueba/
-   </param-value> 
-</context-param>
 </web-app>

@@ -100,7 +100,7 @@
             <p class="borde publicacion" style="padding-top: 0.5em;
                padding-bottom: 0.5em;">No hay publicaciones.</p>
         </div>
-        <div class="gridPag2" id="gridForCVPubls" style="height: 25em;">
+        <div class="gridPag2" id="gridForCVPubls" style="height: 30em;">
             <div id="miCV" class="borde">
                 <p class="titulo">Mi Currí­culum Vitae</p>
                 <hr />
@@ -130,7 +130,7 @@
                 <p class="titulo">Mis publicaciones</p>
                 <hr />
                 <!-- CreaciÃ³n de las publicaciones -->
-                <div style="overflow: auto; height: 23em;">
+                <div style="overflow: auto; height: 27em;">
                     <% if (publicaciones.size() == 0) { %>
                     <script>
                         noPublis();
