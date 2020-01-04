@@ -82,7 +82,7 @@
 						  	<% if (amigosList.isEmpty()) { 
                                                         } else { 
                                                             for (Hashtable<String, String> amigoAux : amigosList) {
-                                                                if(!publicacionAux.isEmpty()){
+                                                                if(!amigoAux.isEmpty()){
                                                     %>
                                                             <p><%=amigoAux.get("nombreAmigo")%></p>
                                                     <%
