@@ -46,17 +46,17 @@ public class amigosDAO {
         
         return result;
     }
-    public static void insertUserFriend(int UserID, int FriendID)
+    public static void insertUserFriend(String UserID, String FriendID)
     {
         PreparedStatement ps = null;
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
                 "INSERT INTO amigos (ID_USUARIO, ID_AMIGO,"
-              + "VALUES ('?','?')");   
+              + "VALUES (?,?)");   
             
-                ps.setInt(1,UserID);
-                ps.setInt(2,FriendID);
+                ps.setString(1,UserID);
+                ps.setString(2,FriendID);
                 
                 ps.executeUpdate();
                 
@@ -64,7 +64,7 @@ public class amigosDAO {
             System.out.println(e.getMessage());
         }
     }
-    public static void deleteUserFriend(int UserID, int FriendID)
+    public static void deleteUserFriend(String UserID, String FriendID)
     {
         PreparedStatement ps = null;
         Connection con = getConnection();
@@ -108,5 +108,21 @@ public class amigosDAO {
         
         return result;
     }
-    
+    public static String friendIDByName(String name){
+        String idAmigo=null;
+        Connection con = getConnection();
+         Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+	    ResultSet rs = stmt.executeQuery("select usuarios.id "
+                     + "from usuarios where usuarios.nombre = " + name);
+            
+            idAmigo = rs.getString("usuarios.id");
+              
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return idAmigo;
+    }
 }

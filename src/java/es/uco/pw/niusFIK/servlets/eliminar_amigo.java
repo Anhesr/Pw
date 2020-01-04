@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author bixde
  */
-public class insertar_amigo extends HttpServlet {
+public class eliminar_amigo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,7 +68,7 @@ public class insertar_amigo extends HttpServlet {
         
         String nombreAmigo = request.getParameter("nombreAmigo");
         String idAmigo = amigosDAO.friendIDByName(nombreAmigo);
-        amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+        amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
         request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request, response);
     }
 
