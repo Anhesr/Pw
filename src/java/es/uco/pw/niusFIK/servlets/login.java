@@ -70,7 +70,7 @@ public class login extends HttpServlet {
             request.getSession().setAttribute("uLogin", data.get("user"));
             request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
-            request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request,response);
+            response.sendRedirect("inicio");
         }
         
         else{
