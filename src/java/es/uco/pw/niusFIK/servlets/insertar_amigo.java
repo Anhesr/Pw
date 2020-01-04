@@ -34,7 +34,7 @@ public class insertar_amigo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/lista_publicaciones.jsp");
         rd.include(request,response);
     }
 
@@ -66,9 +66,10 @@ public class insertar_amigo extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         
-        String name = request.getParameter("id");
-        
-        processRequest(request, response);
+        String nombreAmigo = request.getParameter("nombreAmigo");
+        String idAmigo = amigosDAO.friendIDByName(nombreAmigo);
+        amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+        request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request, response);
     }
 
     /**

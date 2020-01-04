@@ -89,27 +89,27 @@ public class registro extends HttpServlet {
         if(passwd == "")   {allRight = false;}
         
         if(allRight == false){
-            out.print("Faltan datos para el registro.\n");
+            //out.print("Faltan datos para el registro.\n");
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorDatos.jsp");
             rd.include(request,response);
         }
         
         // Se comprueba si ya existe ese login en la base de datos
         else if(registroDAO.checkUserExist(user))
         {
-            out.print("El usuario introducido ya existe.\n");
+            //out.print("El usuario introducido ya existe.\n");
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorLogin.jsp");
             rd.include(request,response);
         }
         
-        // Se comprueba si el email ya esta siendo usadopor alguien registrado
+        // Se comprueba si el email ya esta siendo usado por alguien registrado
         else if(registroDAO.checkEmailExist(email))
         {
-            out.print("El correo introducido ya existe.\n");
+            //out.print("El correo introducido ya existe.\n");
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/registro.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorEmail.jsp");
             rd.include(request,response);
         }
         
@@ -122,8 +122,7 @@ public class registro extends HttpServlet {
             request.getSession().setAttribute("uLogin", user);
             //request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/inicio.jsp");
-            rd.forward(request,response);
+            response.sendRedirect("perfil/mod");
         }
    
         out.close();
