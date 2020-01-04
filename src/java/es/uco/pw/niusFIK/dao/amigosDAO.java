@@ -46,17 +46,17 @@ public class amigosDAO {
         
         return result;
     }
-    public static void insertUserFriend(int UserID, int FriendID)
+    public static void insertUserFriend(String UserID, String FriendID)
     {
         PreparedStatement ps = null;
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
                 "INSERT INTO amigos (ID_USUARIO, ID_AMIGO,"
-              + "VALUES ('?','?')");   
+              + "VALUES (?,?)");   
             
-                ps.setInt(1,UserID);
-                ps.setInt(2,FriendID);
+                ps.setString(1,UserID);
+                ps.setString(2,FriendID);
                 
                 ps.executeUpdate();
                 
