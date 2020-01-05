@@ -125,6 +125,7 @@ public class registro extends HttpServlet {
             request.getSession().setAttribute("uName", name + " " + lastname);
             request.getSession().setAttribute("uLogin", user);
             request.getSession().setAttribute("uID", data.get("id"));
+            request.getSession().setAttribute("justRegistered", "true");
             
             // El ID del Curriculum no se le asigna dado que aun no lo ha rellenado
             

@@ -39,95 +39,116 @@ public class curriculumDAO {
                         query = "update curriculums set situacion_laboral=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("situacion_laboral"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "formacion_academica":
                         query = "update curriculums set formacion_academica=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("formacion_academica"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "universidad":
                         query = "update curriculums set universidad=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("universidad"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "intereses_profesionales":
                         query = "update curriculums set intereses_profesionales=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("intereses_profesionales"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "experiencia_cientifica":
                         query = "update curriculums set experiencia_cientifica=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("experiencia_cientifica"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "produccion_cientifica":
                         query = "update curriculums set logros_cientificos=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("produccion_cientifica"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "nombre":
                         query = "update usuarios set nombre=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("nombre"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "apellidos":
                         query = "update usuarios set apellidos=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("apellidos"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "fecha_nacimiento":
                         query = "update usuarios set fecha_nacimiento=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("fecha_nacimiento"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "correo_electronico":
                         query = "update usuarios set correo_electronico=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("correo_electronico"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "telefono":
                         query = "update usuarios set telefono=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("telefono"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "password":
                         query = "update usuarios set password=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setString(1, (String) updateMap.get("password"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                     case "imagen":
                         query = "update usuarios set imagen=? where id=?";
                         stmt = con.prepareStatement(query);
                         stmt.setBinaryStream(1, (InputStream) updateMap.get("imagen"));
-                        stmt.setInt(2, (Integer) updateMap.get("id"));
+                        stmt.setInt(2, Integer.parseInt((String) updateMap.get("id")));
                         stmt.executeUpdate();
                         break;
                 }
             }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void createCurriculum(HashMap<String, Object> updateMap) {
+        PreparedStatement stmt;
+        Connection con = getConnection();
+        try {
+            stmt = con.prepareStatement("insert into curriculums (user_id, situacion_laboral, "
+                    + "formacion_academica, universidad, intereses_profesionales, experiencia_cientifica, "
+                    + "logros_cientificos) values (?, ?, ?, ?, ?, ?, ?)");
+            stmt.setString(1, (String) updateMap.get("id"));
+            stmt.setString(2, (String) updateMap.get("situacion_laboral"));
+            stmt.setString(3, (String) updateMap.get("formacion_academica"));
+            stmt.setString(4, (String) updateMap.get("universidad"));
+            stmt.setString(5, (String) updateMap.get("intereses_profesionales"));
+            stmt.setString(6, (String) updateMap.get("experiencia_cientifica"));
+            stmt.setString(7, (String) updateMap.get("produccion_cientifica"));
+            stmt.executeUpdate();
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -145,7 +166,7 @@ public class curriculumDAO {
                     + "curriculums.universidad, curriculums.intereses_profesionales, "
                     + "curriculums.experiencia_cientifica, curriculums.logros_cientificos "
                     + "from usuarios, curriculums where usuarios.id = " + UserID
-                    + " and usuarios.curriculum_id = curriculums.id");
+                    + " and usuarios.id = curriculums.user_id");
             rs.next();
             String nombre = rs.getString("usuarios.nombre");
             String apellidos = rs.getString("usuarios.apellidos");

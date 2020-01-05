@@ -28,7 +28,7 @@
 
         <header class="header">
             <div class="logo">
-                <a href=""
+                <a href="inicio"
                    ><h1><img src="assets/img/logo.png" />NiusFIK</h1></a
                 >
             </div>

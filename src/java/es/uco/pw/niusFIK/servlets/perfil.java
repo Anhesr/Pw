@@ -41,14 +41,21 @@ public class perfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
-        Hashtable<String, String> resultCV = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));*/
-        
-        ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(1);
-        HashMap<String, Object> resultCV = curriculumDAO.queryByUserID(1);
-        System.out.println(resultCV);
-        
-        request.setAttribute("publicaciones",resultPb);
+        ArrayList<Hashtable<String, String>> resultPb = null;
+        HashMap<String, Object> resultCV = null;
+        if (request.getParameter("id") == null) {
+            resultPb
+                    = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+            resultCV
+                    = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        } else {
+            resultPb
+                    = publicacionesDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
+            resultCV
+                    = curriculumDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
+        }
+
+        request.setAttribute("publicaciones", resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
     }
@@ -79,8 +86,8 @@ public class perfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        if(!isNull(request.getParameter("botonPublicar"))){
+
+        if (!isNull(request.getParameter("botonPublicar"))) {
             request.setAttribute("botonPublicar", null);
             int id = publicacionesDAO.idPublicacionDisponible();
             String cuerpo = request.getParameter("Publicacion");
@@ -90,12 +97,11 @@ public class perfil extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String fecha = formatter.format(f);
             publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
-            response.sendRedirect(request.getContextPath()+"/publicacion?idP="+id);
+            response.sendRedirect(request.getContextPath() + "/publicacion?idP=" + id);
         }
-        
+
         //RequestDispatcher rd = request.getRequestDispatcher("/views/perfil.jsp");
         //rd.include(request,response);
-        
     }
 
     /**

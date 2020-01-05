@@ -1,5 +1,33 @@
 function irPerfil() {
-    window.location = "/niusFIK/perfil";
+    window.location = "perfil";
+}
+
+function allFilled() {
+    if (document.getElementById("sitlab").value !== "") {
+        if (document.getElementById("formac").value !== "") {
+            if (document.getElementById("univ").value !== "") {
+                if (document.getElementById("intprof").value !== "") {
+                    if (document.getElementById("expC").value !== "") {
+                        if (document.getElementById("procC").value !== "") {
+                            document.getElementById("submitButtonPublic").disabled = false;
+                        } else {
+                            document.getElementById("submitButtonPublic").disabled = true;
+                        }
+                    } else {
+                        document.getElementById("submitButtonPublic").disabled = true;
+                    }
+                } else {
+                    document.getElementById("submitButtonPublic").disabled = true;
+                }
+            } else {
+                document.getElementById("submitButtonPublic").disabled = true;
+            }
+        } else {
+            document.getElementById("submitButtonPublic").disabled = true;
+        }
+    } else {
+        document.getElementById("submitButtonPublic").disabled = true;
+    }
 }
 
 function onSubmit() {

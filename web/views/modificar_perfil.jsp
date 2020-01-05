@@ -2,8 +2,10 @@
 <html lang="es">
     <%@page import="java.util.HashMap"%>
     <%@page pageEncoding="UTF-8"%>
-    <% HashMap<String, Object> cv
-                = (HashMap<String, Object>) request.getAttribute("curriculum");
+    <% HashMap<String, Object> cv = null;
+        if (request.getSession().getAttribute("justRegistered") == null) {
+            cv = (HashMap<String, Object>) request.getAttribute("curriculum");
+        }
         request.setCharacterEncoding("UTF-8");%>
     <link rel="icon" type="image/png" href="/niusFIK/assets/img/logo.png" />
     <head>
@@ -16,6 +18,7 @@
     <body>
         <script src="/niusFIK/js/modificar_perfil.js"></script>
         <div class="formulario" id="formCV">
+            <% if (request.getSession().getAttribute("justRegistered") == null) { %>
             <div style="text-align: right;">
                 <p class="pubCV" id="pubCVBut" onclick="changeCVType('lab')">
                     Perfil laboral
@@ -24,29 +27,59 @@
                     Datos privados
                 </p>
             </div>
+            <% } %>
+            <% if (request.getSession().getAttribute("justRegistered") == null) {%>
             <form id="pubCV" action="/niusFIK/perfil/mod" enctype="multipart/form-data" method="POST">
                 <p class="encabezados">Situación laboral</p>
-                <select name="situacion_laboral" class="forms" value="<%= cv.get("situacion_laboral")%>">
+                <select id="sitlab" name="situacion_laboral" class="forms" value="<%= cv.get("situacion_laboral")%>">
                     <option value="Activo">Activo</option>
                     <option value="En paro">En paro</option>
                     <option value="Estudiante">Estudiante</option>
                 </select>
                 <p class="encabezados">Formación académica</p>
-                <input name="formacion_academica" type="text" class="forms" value="<%= cv.get("formacion_academica")%>" />
+                <input id="formac" name="formacion_academica" type="text" class="forms" value="<%= cv.get("formacion_academica")%>" onchange="allFilled()" />
                 <p class="encabezados">Universidad / centro de origen</p>
-                <input name="universidad" type="text" class="forms" value="<%= cv.get("universidad")%>" />
+                <input id="univ" name="universidad" type="text" class="forms" value="<%= cv.get("universidad")%>" onchange="allFilled()" />
                 <p class="encabezados">Intereses profesionales</p>
-                <input name="intereses_profesionales" type="text" class="forms" value="<%= cv.get("intereses_profesionales")%>" />
+                <input id="intprof" name="intereses_profesionales" type="text" class="forms" value="<%= cv.get("intereses_profesionales")%>" onchange="allFilled()" />
                 <p class="encabezados">Experiencia cientí­fica</p>
-                <input name="experiencia_cientifica" type="text" class="forms" value="<%= cv.get("experiencia_cientifica")%>" />
+                <input id="expC" name="experiencia_cientifica" type="text" class="forms" value="<%= cv.get("experiencia_cientifica")%>" onchange="allFilled()" />
                 <p class="encabezados">Producción cientí­fica</p>
-                <input name="produccion_cientifica" type="text" class="forms" value="<%= cv.get("produccion_cientifica")%>" /> <br/>
+                <input id="prodC" name="produccion_cientifica" type="text" class="forms" value="<%= cv.get("produccion_cientifica")%>" onchange="allFilled()" /> <br/>
                 <input
                     type="submit"
+                    id="submitButtonPublic"
                     value="Guardar cambios"
                     class="submitbutton"
                     />
             </form>
+            <% } else {%>
+            <form id="pubCV" action="/niusFIK/perfil/mod" enctype="multipart/form-data" method="POST">
+                <p class="encabezados">Situación laboral</p>
+                <select id="sitlab" name="situacion_laboral" class="forms" onchange="allFilled()">
+                    <option value="Activo">Activo</option>
+                    <option value="En paro">En paro</option>
+                    <option value="Estudiante">Estudiante</option>
+                </select>
+                <p class="encabezados">Formación académica</p>
+                <input id="formac" name="formacion_academica" type="text" class="forms" onchange="allFilled()" />
+                <p class="encabezados">Universidad / centro de origen</p>
+                <input id="univ" name="universidad" type="text" class="forms" onchange="allFilled()" />
+                <p class="encabezados">Intereses profesionales</p>
+                <input id="intprof" name="intereses_profesionales" type="text" class="forms" onchange="allFilled()" />
+                <p class="encabezados">Experiencia cientí­fica</p>
+                <input id="expC" name="experiencia_cientifica" type="text" class="forms" onchange="allFilled()" />
+                <p class="encabezados">Producción cientí­fica</p>
+                <input id="prodC" name="produccion_cientifica" type="text" class="forms" onchange="allFilled()" /> <br/>
+                <input
+                    type="submit"
+                    id="submitButtonPublic"
+                    value="Guardar cambios"
+                    class="submitbutton"
+                    />
+            </form>
+            <% }
+                if (request.getSession().getAttribute("justRegistered") == null) {%>
             <form id="privCV" style="display: none;" enctype="multipart/form-data" action="/niusFIK/perfil/mod" method="POST">
                 <p class="encabezados">Nombre</p>
                 <input name="nombre" type="text" class="forms" value="<%= cv.get("nombre")%>" />
@@ -79,11 +112,15 @@
                     class="submitbutton"
                     />
             </form>
+            <%}%>
+            <% if (request.getSession().getAttribute("justRegistered") == null) {%>
             <input
                 type="button"
                 value="Ir al perfil"
                 class="submitbutton"
                 onclick="irPerfil()"
+                />
+            <% }%>
         </div>
         <footer class="footer" id="footer">
             <ul style="list-style-type:disc;">

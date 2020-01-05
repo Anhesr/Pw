@@ -34,17 +34,19 @@ public class modificarCV extends HttpServlet {
         try {
             //------------------------------------------------------------------ 
             //Prueba para comprobar si los valores de getSession llegan.
-            
+
             //PrintWriter out = response.getWriter();
             //out.print(request.getSession().getAttribute("uID"));
             //out.close();
-            
-            //Integer user_ID = (Integer)request.getSession().getAttribute("uID"); <-- Aqui es donde peta
+            Integer user_ID
+                    = Integer.parseInt((String) request.getSession().getAttribute("uID"));
             //------------------------------------------------------------------
-            
+
             response.setContentType("text/html;charset=UTF-8");
-            HashMap<String, Object> result = curriculumDAO.queryByUserID(19);
-            request.setAttribute("curriculum", result);
+            if (request.getSession().getAttribute("justRegistered") == null) {
+                HashMap<String, Object> result = curriculumDAO.queryByUserID(user_ID);
+                request.setAttribute("curriculum", result);
+            }
         } catch (Exception e) {
             System.out.print(e);
         }
@@ -80,12 +82,16 @@ public class modificarCV extends HttpServlet {
         try {
             HashMap<String, Object> updateMap = new HashMap<String, Object>();
             Map<String, String[]> parameters = (Map<String, String[]>) request.getParameterMap();
-            updateMap.put("id", 1);
+            updateMap.put("id", (String) request.getSession().getAttribute("uID"));
             for (String parameter : parameters.keySet()) {
                 String[] values = parameters.get(parameter);
                 if (!values[0].equals("") && !parameter.equals("valPass")) {
                     updateMap.put(parameter, values[0]);
                 }
+            }
+            if (request.getSession().getAttribute("justRegistered") != null) {
+                curriculumDAO.createCurriculum(updateMap);
+                request.getSession().removeAttribute("justRegistered");
             }
             if (updateMap.containsKey("lastPass")) {
                 if (!loginDAO.checkPassword(1, (String) updateMap.get("lastPass"))) {
