@@ -10,10 +10,12 @@ import es.uco.pw.niusFIK.dao.loginDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.exit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Date;
+import static java.util.Objects.isNull;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +59,6 @@ public class publicacion extends HttpServlet {
         request.setAttribute("publicacion", resultOnePublication);
         request.setAttribute("publicaciones", resultPb);
         
-        
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  
@@ -90,19 +91,33 @@ public class publicacion extends HttpServlet {
             throws ServletException, IOException {
                
         response.setContentType("text/html;charset=UTF-8");
-        String cuerpo = (String)request.getParameter("Coment2");
-        String idP = request.getParameter("idP");
-        int idUsuario = Integer.parseInt((String)request.getSession().getAttribute("uID"));
-        int idPublicacion = Integer.parseInt(idP);
-        Hashtable<String, String> user = comentariosDAO.DatosUser(idUsuario);
-        String nombre = user.get("nombre");
-        String apellidos = user.get("apellidos");
-        Date f = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String fecha = formatter.format(f);        
-        comentariosDAO.publicarComentario(idPublicacion, nombre, apellidos, cuerpo, fecha);
-        processRequest(request, response);
-     
+        
+        if(!isNull(request.getParameter("delCom"))){
+            request.setAttribute("delCom", null);
+            comentariosDAO.EliminarComentarioByID(Integer.parseInt(request.getParameter("idComentario")));
+            processRequest(request, response);
+        }
+        
+        if(!isNull(request.getParameter("deletPublic"))){
+            publicacionesDAO.EliminarPublicacionByID(Integer.parseInt(request.getParameter("idP")));
+            request.setAttribute("deletPublic", null);
+            response.sendRedirect(request.getContextPath()+"/perfil");
+        }
+        
+        if(!isNull(request.getParameter("botonComentar"))){
+            request.setAttribute("botonComentar", null);
+            String cuerpo = (String)request.getParameter("Coment2");
+            int idUsuario = Integer.parseInt((String)request.getSession().getAttribute("uID"));
+            int idPublicacion = Integer.parseInt(request.getParameter("idP"));
+            Hashtable<String, String> user = comentariosDAO.DatosUser(idUsuario);
+            String nombre = user.get("nombre");
+            String apellidos = user.get("apellidos");
+            Date f = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String fecha = formatter.format(f);        
+            comentariosDAO.publicarComentario(idUsuario, idPublicacion, nombre, apellidos, cuerpo, fecha);
+            processRequest(request, response);
+        }
     }
 
     /**

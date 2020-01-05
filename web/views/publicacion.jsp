@@ -53,7 +53,9 @@
                                                             <%
                                                                 if(Integer.parseInt(publicacionAux.get("autor_id")) == Integer.parseInt((String)request.getSession().getAttribute("uID"))){
                                                             %>
-                                                             <input type="submit" value="Eliminar publicacion">
+                                                            <form method="post">
+                                                            <input name="deletPublic" type="submit" value="Eliminar publicacion">
+                                                            </form>
                                                     <%              }
                                                                 }
                                                             }
@@ -66,7 +68,7 @@
 						<div class="publicacion-comentario" name="Comentarios" style=" height: 200px">Comentarios<br/>
                                                       <%
                                                           if (comentariosT.isEmpty()) { %>
-                                                          <p>No hay comentarios aun. Sé el primero en comentar</p>
+                                                          <p>No hay comentarios aún. Sé el primero en comentar</p>
                                                        <% } else { 
                                                             for (Hashtable<String, String> comentarioAux : comentariosT) {
                                                                 if(!comentarioAux.isEmpty()){
@@ -75,10 +77,16 @@
                                                       <div class="comentario"> 
                                                           <p><strong>Usuario: <%=comentarioAux.get("nombre")%> <%=comentarioAux.get("apellidos")%> . Fecha: <%=comentarioAux.get("fecha_publicacion")%></strong></p>
                                                           <p><%=comentarioAux.get("cuerpo")%></p>
+                                                          <% if(Integer.parseInt((String)request.getSession().getAttribute("uID")) == Integer.parseInt(comentarioAux.get("idusuario"))){ %>
+                                                          <form method="post">
+                                                          <input name="delCom" type="submit" value="Eliminar comentario">
+                                                          <textarea style="display:none" name="idComentario"><%=comentarioAux.get("id")%></textarea>
+                                                          </form>
+                                                          <% } %>
                                                           <br/>
                                                       </div>
                                                       
-                                                      <%
+                                                      <%            
                                                                 }
                                                             }
                                                         }
@@ -89,13 +97,13 @@
 						<!-- Escribir comentarios -->
 						<div class="publicacion-comentario" name="EscribeComentarios" style=" height: auto">
                                                         <script src="assets/quill/quill.min.js"></script>
-                                                        <form id="myForm" method="post">
+                                                        <form name="myForm" id="myForm" method="post">
                                                         <div class="row form-group">
                                                        
                                                        <input name="Coment2" type="hidden" rows="3" cols="80">
                                                        <div id="snow-container"></div>
                                                        </div>
-                                                        <input type="submit" value="Publicar comentario" /> 
+                                                        <input name="botonComentar" type="submit" value="Publicar comentario"> 
                                                         </form>
                                                         <script>
                                                         var quill = new Quill('#snow-container', {
@@ -110,7 +118,7 @@
                                                           theme: 'snow'
                                                         });
 
-                                                        var form = document.querySelector('form');
+                                                        var form = document.querySelector('form[name=myForm]');
                                                         form.onsubmit = function() {
                                                           // Populate hidden form on submit
                                                           var about = document.querySelector('input[name=Coment2]');

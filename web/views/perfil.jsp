@@ -78,14 +78,14 @@
                     <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <script src="assets/quill/quill.min.js"></script>
-                    <form id="myForm" method="post" action="perfil">
+                    <form name="myForm" id="myForm" method="post">
                     <div class="row form-group">
                     <textarea id="Titulo" name="Titulo" style="resize: none; -webkit-border-radius: 5px;
-                              -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="129" placeholder="Titulo"></textarea>
+                              -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="125" placeholder="Titulo"></textarea>
                     <input name="Publicacion" type="hidden">
                     <div id="snow-container"></div>
                     </div>
-                    <input type="submit" value="Publicar publicación" /> 
+                    <input name="botonPublicar" type="submit" value="Publicar publicación" /> 
                     </form>
                     <script>
                     var quill = new Quill('#snow-container', {
@@ -100,7 +100,7 @@
                         theme: 'snow'
                     });
 
-                    var form = document.querySelector('form');
+                    var form = document.querySelector('form[name=myForm]');
                     form.onsubmit = function() {
                     // Populate hidden form on submit
                         var about = document.querySelector('input[name=Publicacion]');
@@ -157,7 +157,7 @@
                         id="publicacion"
                         onmouseover="hoverOnPublication(<% out.print(publicacion.get("id")); %>)"
                         onmouseout="outHoverOnPublication(<% out.print(publicacion.get("id")); %>)"
-                        onclick="location='publicacion?idP=<%=publicacion.get("id")%>'";
+                        onclick="location='publicacion?idP=<%=publicacion.get("id")%>'"
                         >
                         <div class="titPublicacion" id="titPublicacion<% out.print(publicacion.get("id"));%>">
                             <p class="left">
