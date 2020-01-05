@@ -128,10 +128,7 @@ public class registro extends HttpServlet {
             request.getSession().setAttribute("justRegistered", "true");
             
             // El ID del Curriculum no se le asigna dado que aun no lo ha rellenado
-            
-            // request.getSession().setAttribute("cv_ID", data.get("cv_id"));
-            
-            
+           
             response.sendRedirect("perfil/mod");
         }
    
