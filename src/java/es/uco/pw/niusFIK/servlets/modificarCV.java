@@ -32,6 +32,16 @@ public class modificarCV extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            //------------------------------------------------------------------ 
+            //Prueba para comprobar si los valores de getSession llegan.
+            
+            //PrintWriter out = response.getWriter();
+            //out.print(request.getSession().getAttribute("uID"));
+            //out.close();
+            
+            //Integer user_ID = (Integer)request.getSession().getAttribute("uID"); <-- Aqui es donde peta
+            //------------------------------------------------------------------
+            
             response.setContentType("text/html;charset=UTF-8");
             HashMap<String, Object> result = curriculumDAO.queryByUserID(19);
             request.setAttribute("curriculum", result);

@@ -6,6 +6,7 @@
 package es.uco.pw.niusFIK.servlets;
 
 import es.uco.pw.niusFIK.dao.registroDAO;
+import es.uco.pw.niusFIK.dao.loginDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -117,10 +118,18 @@ public class registro extends HttpServlet {
         else{
             registroDAO.insertUserData(name,lastname,birthdate,email,phone,user,passwd);
             
-            //request.getSession().setAttribute("uID", data.get("id"));
+            while(!loginDAO.checkUser(user)){};
+            
+            Hashtable<String, String> data = loginDAO.queryByUser(user);
+              
             request.getSession().setAttribute("uName", name + " " + lastname);
             request.getSession().setAttribute("uLogin", user);
-            //request.getSession().setAttribute("cv_ID", data.get("cv_id"));
+            request.getSession().setAttribute("uID", data.get("id"));
+            
+            // El ID del Curriculum no se le asigna dado que aun no lo ha rellenado
+            
+            // request.getSession().setAttribute("cv_ID", data.get("cv_id"));
+            
             
             response.sendRedirect("perfil/mod");
         }
