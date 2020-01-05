@@ -32,6 +32,7 @@
 			    <button>Buscar</button>	
 			</div>
 			<div class="botones-principal">
+                            <INPUT type="button" onclick="location = 'inicio'" name="Inicio" value="Inicio" />
 			    <INPUT type="button" onclick="location='perfil'" name="Mi Perfil" value="Mi Perfil" />
 			</div>
 		</header>	

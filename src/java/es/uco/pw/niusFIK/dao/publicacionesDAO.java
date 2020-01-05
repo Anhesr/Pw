@@ -200,5 +200,41 @@ public class publicacionesDAO {
             System.out.println(e);
         }
     }
+    
+    public static ArrayList<Hashtable<String, String>> AllPublicationExceptYou(int idUser){
+        ArrayList<Hashtable<String, String>> result = null;
+        Hashtable<String, String> res = null;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+
+        try {
+            result = new ArrayList<Hashtable<String, String>>();
+            ps = con.prepareStatement("select usuarios.nombre, usuarios.apellidos, "
+                    + "publicaciones.id, publicaciones.nombre, publicaciones.fecha_publicacion "
+                    + "from publicaciones, usuarios where usuarios.id = publicaciones.autor_id "
+                    + "and publicaciones.autor_id != ? order by publicaciones.fecha_publicacion desc;");
+            ps.setString(1, Integer.toString(idUser));
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String nombre = rs.getString("usuarios.nombre");
+                String apellidos = rs.getString("usuarios.apellidos");
+                String id = rs.getString("publicaciones.id");
+                String titulo = rs.getString("publicaciones.nombre");
+                String fechaAux = rs.getString("fecha_publicacion");
+                String fecha = fechaAux.substring(0, fechaAux.length()-5);
+                res = new Hashtable<String, String>();
+                res.put("nombre", nombre);
+                res.put("apellidos", apellidos);
+                res.put("id", id);
+                res.put("titulo", titulo);
+                res.put("fecha", fecha);
+                result.add(res);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
 
 }

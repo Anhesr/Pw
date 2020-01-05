@@ -94,7 +94,7 @@ public class perfil extends HttpServlet {
             String nombre = request.getParameter("Titulo");
             String idUsuario = (String) request.getSession().getAttribute("uID");
             Date f = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = formatter.format(f);
             publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
             response.sendRedirect(request.getContextPath() + "/publicacion?idP=" + id);

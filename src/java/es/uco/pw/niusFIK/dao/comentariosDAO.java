@@ -36,7 +36,7 @@ public class comentariosDAO {
         
         try {
             result = new ArrayList<Hashtable<String, String>>();
-	    ps = con.prepareStatement("select id, idusuario, nombre, apellidos, cuerpo, fecha_publicacion from comentarios where idpublicacion = ?;");
+	    ps = con.prepareStatement("select id, idusuario, nombre, apellidos, cuerpo, fecha_publicacion from comentarios where idpublicacion = ? order by fecha_publicacion desc;");
             ps.setString(1,Integer.toString(idP));  
             
             ResultSet rs=ps.executeQuery();

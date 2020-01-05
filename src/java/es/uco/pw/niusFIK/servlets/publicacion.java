@@ -113,7 +113,7 @@ public class publicacion extends HttpServlet {
             String nombre = user.get("nombre");
             String apellidos = user.get("apellidos");
             Date f = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = formatter.format(f);        
             comentariosDAO.publicarComentario(idUsuario, idPublicacion, nombre, apellidos, cuerpo, fecha);
             processRequest(request, response);

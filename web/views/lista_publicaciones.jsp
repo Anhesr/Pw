@@ -9,6 +9,8 @@
     amigosList = (ArrayList<Hashtable<String, String>>) request.getAttribute("listaAmigos");
     ArrayList<HashMap<String, String>> recomendaciones =
         (ArrayList<HashMap<String, String>>) request.getAttribute("recomendaciones");
+    ArrayList<Hashtable<String, String>> allPublications =
+        (ArrayList<Hashtable<String, String>>) request.getAttribute("allPublication");
 %>
 <html>
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
@@ -106,7 +108,16 @@
                         <div class="borde">
                             <p class="titulo">Lista publicaciones</p>
                             <hr />
-                            
+                            <% for(Hashtable<String, String> publicacion: allPublications) { %>
+                            <div class="titPublicacion" id="titPublicacion<%= publicacion.get("id") %>" onclick="location='publicacion?idP=<%=publicacion.get("id")%>'">
+                            <p class="left">
+                                <%= publicacion.get("titulo")%> 
+                            </p>
+                            <p class="right">
+                                Fecha: <%= publicacion.get("fecha")%> / Autor: <%= publicacion.get("nombre")%> <%= publicacion.get("apellidos")%>.
+                            </p>
+                            </div>    
+                            <% } %>
                         </div>
 
                     </div>

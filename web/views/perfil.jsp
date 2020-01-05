@@ -41,6 +41,9 @@
                     />
                 <button>Buscar</button>
             </div>
+            <div class="botones-principal">
+                <INPUT type="button" onclick="location = 'inicio'" name="Inicio" value="Inicio" />
+            </div>
         </header>
 
         <div class="gridPag1">

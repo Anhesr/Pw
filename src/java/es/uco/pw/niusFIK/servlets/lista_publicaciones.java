@@ -43,9 +43,11 @@ public class lista_publicaciones extends HttpServlet {
         ArrayList<HashMap<String, String>> recomendaciones = publicacionesDAO.getRecomendations();
         ArrayList<Hashtable<String, String>> resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         ArrayList<Hashtable<String, String>> result = amigosDAO.friendsNameByID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
+        ArrayList<Hashtable<String, String>> publicacionesTotales = publicacionesDAO.AllPublicationExceptYou(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         request.setAttribute("listaAmigos", result);
         request.setAttribute("publicaciones",resultPb);
         request.setAttribute("recomendaciones", recomendaciones);
+        request.setAttribute("allPublication", publicacionesTotales);
         request.getRequestDispatcher("/views/lista_publicaciones.jsp").forward(request, response);
     }
 
@@ -83,7 +85,7 @@ public class lista_publicaciones extends HttpServlet {
             String nombre = request.getParameter("Titulo");
             String idUsuario = (String) request.getSession().getAttribute("uID");
             Date f = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fecha = formatter.format(f);
             publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
             response.sendRedirect(request.getContextPath()+"/publicacion?idP="+id);
