@@ -64,8 +64,17 @@ public class modificarCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+        try {
+            if (loginDAO.existsUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")))) {
+                processRequest(request, response);
+                request.getRequestDispatcher("/views/modificar_perfil.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/views/modificar_perfilError.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            System.out.print(e);
+            request.getRequestDispatcher("/views/modificar_perfilError.jsp").forward(request, response);
+        }
     }
 
     /**

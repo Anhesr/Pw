@@ -3,10 +3,14 @@
     <%@page import="java.util.HashMap"%>
     <%@page pageEncoding="UTF-8"%>
     <% HashMap<String, Object> cv = null;
-        if (request.getSession().getAttribute("justRegistered") == null) {
-            cv = (HashMap<String, Object>) request.getAttribute("curriculum");
+        try {
+            if (request.getSession().getAttribute("justRegistered") == null) {
+                cv = (HashMap<String, Object>) request.getAttribute("curriculum");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        request.setCharacterEncoding("UTF-8");%>
+    %>
     <link rel="icon" type="image/png" href="/niusFIK/assets/img/logo.png" />
     <head>
         <meta charset="UTF-8" />

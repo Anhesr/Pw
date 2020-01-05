@@ -26,30 +26,43 @@ public class loginDAO {
         return con;
     }
 
-    public static boolean checkUser(String user){
+    public static boolean checkUser(String user) {
         boolean status = false;
         PreparedStatement ps = null;
         Connection con = getConnection();
-        try{
-            ps = con.prepareStatement(  
-                "select * from usuarios where usuarios.usuario=? ");  
-                ps.setString(1,user);  
-                
-            ResultSet rs=ps.executeQuery();  
-            rs.next(); 
-            
-            if (user.equals(rs.getString("usuario")))
-            {
+        try {
+            ps = con.prepareStatement(
+                    "select * from usuarios where usuarios.usuario=? ");
+            ps.setString(1, user);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            if (user.equals(rs.getString("usuario"))) {
                 status = true;
             }
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
         return status;
     }
-    
-    
+
+    public static boolean existsUserID(int userID) {
+        boolean status = false;
+        PreparedStatement ps = null;
+        Connection con = getConnection();
+        try {
+            ps = con.prepareStatement("select * from usuarios where id=?");
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            status = rs.next();
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+        return status;
+    }
+
     public static boolean checkLogin(String user, String passwd) {
         boolean status = false;
         PreparedStatement ps = null;
@@ -90,7 +103,6 @@ public class loginDAO {
         }
         return status;
     }
-    
 
     public static Hashtable<String, String> queryByUser(String user) {
         Hashtable<String, String> res = null;

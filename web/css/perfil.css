@@ -23,7 +23,7 @@ body {
   border-radius: 30px;
 }
 .bordeImg {
-  border-radius: 70px;
+  border-radius: 90px;
   border: solid 2px;
   border-color: rgba(224, 222, 219, 1);
 }
@@ -76,6 +76,7 @@ body {
 }
 .buttonsPerfil {
   width: 8em;
+  height: 2em;
   margin-top: 3%;
   margin-left: 3%;
   border: solid #fff 2px;
@@ -98,6 +99,7 @@ div.imgPerfil {
   margin: auto;
   margin-left: 20px;
   margin-right: 16px;
+  display: grid;
 }
 .publicacion {
   width: 95%;
