@@ -120,12 +120,14 @@ public class perfil extends HttpServlet {
         }
         
         if (!isNull(request.getParameter("botonAnadir"))) {
+            request.setAttribute("botonAnadir", null);
             String idAmigo = request.getParameter("id");
             amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
             response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
         }
         
         if (!isNull(request.getParameter("botonEliminar"))) {
+            request.setAttribute("botonEliminar", null);
             String idAmigo = request.getParameter("id");
             amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
             response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
