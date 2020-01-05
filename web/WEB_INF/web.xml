@@ -37,10 +37,6 @@
         <servlet-class>es.uco.pw.niusFIK.servlets.amigos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>insertar_amigo</servlet-name>
-        <servlet-class>insertar_amigo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>eliminar_amigo</servlet-name>
         <servlet-class>es.uco.pw.niusFIK.servlets.eliminar_amigo</servlet-class>
     </servlet>
@@ -79,10 +75,6 @@
     <servlet-mapping>
         <servlet-name>amigos</servlet-name>
         <url-pattern>/amigos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>insertar_amigo</servlet-name>
-        <url-pattern>/insertar_amigo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>eliminar_amigo</servlet-name>

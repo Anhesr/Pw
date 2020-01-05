@@ -5,6 +5,7 @@
  */
 package es.uco.pw.niusFIK.servlets;
 
+import es.uco.pw.niusFIK.dao.amigosDAO;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
@@ -44,6 +45,7 @@ public class perfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Hashtable<String, String>> resultPb = null;
         HashMap<String, Object> resultCV = null;
+        boolean friends=false;
         if (request.getParameter("id") == null) {
             resultPb
                     = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
@@ -54,6 +56,10 @@ public class perfil extends HttpServlet {
                     = publicacionesDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
             resultCV
                     = curriculumDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
+            if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {    
+            } else {
+               /**friends=amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")),request.getParameter("id"));*/ 
+            }
         }
 
         request.setAttribute("publicaciones", resultPb);
@@ -112,7 +118,19 @@ public class perfil extends HttpServlet {
             publicacionesDAO.publicarPublicacion(id, Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
             response.sendRedirect(request.getContextPath() + "/publicacion?idP=" + id);
         }
-
+        
+        if (!isNull(request.getParameter("botonAnadir"))) {
+            String idAmigo = request.getParameter("id");
+            amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+            response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
+        }
+        
+        if (!isNull(request.getParameter("botonEliminar"))) {
+            String idAmigo = request.getParameter("id");
+            amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+            response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
+        }
+        
         //RequestDispatcher rd = request.getRequestDispatcher("/views/perfil.jsp");
         //rd.include(request,response);
     }

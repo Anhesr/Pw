@@ -82,18 +82,28 @@
                     onclick="modificarPerfil()"
                     />
                 <%      } else { %>
-                <input
+               
+                <form name="FormAnadir" id="FormAnadir" method="post">
+                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                    <input
                     style="grid-column: 2; grid-row: 1; margin-top: 2em;"
                     class="buttonsPerfil"
-                    type="button"
+                    name="botonAnadir"
+                    type="submit"
                     value="Añadir amigo"
                     />
-                <input
-                    style="grid-column: 2; grid-row: 1; margin-top: 5em;"
+                </form>
+                
+                <form name="FormBorrar" id="FormBorrar" method="post">
+                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                    <input
+                    style="grid-column: 2; grid-row: 1; margin-top: 2em;"
                     class="buttonsPerfil"
-                    type="button"
+                    name="botonEliminar"
+                    type="submit"
                     value="Borrar amigo"
                     />
+                </form>
                 <%}
                     } catch (Exception e) {
                     }%>

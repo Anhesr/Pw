@@ -108,21 +108,33 @@ public class amigosDAO {
         
         return result;
     }
-    public static String friendIDByName(String name){
-        String idAmigo=null;
+    public static boolean checkIfFriends(int userID,int friendID) {
+        boolean status = false;
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
         Connection con = getConnection();
-         Statement stmt = null;
+        Connection con2 = getConnection();
         try {
-            stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select usuarios.id "
-                     + "from usuarios where usuarios.nombre = " + name);
+            ps = con.prepareStatement(
+                    "select * from amigos where amigos.id_usuario=? AND amigos.id_amigo=? ");
+            ps.setString(1, Integer.toString(userID));
+            ps.setString(2, Integer.toString(friendID));
+
+            ResultSet rs = ps.executeQuery();
+            status = rs.next();
             
-            idAmigo = rs.getString("usuarios.id");
-              
+            ps2 = con2.prepareStatement(
+                    "select * from amigos where amigos.id_usuario=? AND amigos.id_amigo=? ");
+            ps2.setString(1, Integer.toString(friendID));
+            ps2.setString(2, Integer.toString(userID));
+            
+            ResultSet rs2 = ps.executeQuery();
+            status = rs2.next();
+
         } catch (Exception e) {
             System.out.println(e);
         }
-        
-        return idAmigo;
+        return status;
     }
+    
 }
