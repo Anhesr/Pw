@@ -7,10 +7,17 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-<% ArrayList<Hashtable<String, String>> publicaciones
-            = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
-    HashMap<String, Object> curriculum
-            = (HashMap<String, Object>) request.getAttribute("curriculum");%>
+<%
+    ArrayList<Hashtable<String, String>> publicaciones = null;
+    HashMap<String, Object> curriculum = null;
+    try {
+        publicaciones
+                = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
+        curriculum
+                = (HashMap<String, Object>) request.getAttribute("curriculum");
+    } catch (Exception e) {
+        System.out.println(e);
+    }%>
 <html lang="es">
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <head>
@@ -41,74 +48,91 @@
                     />
                 <button>Buscar</button>
             </div>
-            <div class="botones-principal">
-                <INPUT type="button" onclick="location = 'inicio'" name="Inicio" value="Inicio" />
-            </div>
         </header>
 
         <div class="gridPag1">
             <div class="imgPerfil">
-                <%
-                    String photo64;
-                    if (curriculum.get("imagen") != null) {
+                <%  String photo64 = null;
+                    try {
                         Blob blob = (Blob) curriculum.get("imagen");
                         byte[] ba = blob.getBytes(1, (int) blob.length());
                         byte[] img64 = Base64.encodeBase64(ba);
                         photo64 = new String(img64);
                         photo64 = "data:image;base64," + photo64;
-                    } else {
+                    } catch (Exception e) {
+                        System.out.println(e);
                         photo64 = "assets/img/perfil.jpg";
                     }
 
                 %>
                 <img
+                    style="grid-column: 1;"
                     class="bordeImg"
                     src="<%= photo64%>"
                     alt="Imagen de perfil"
                     width="125"
                     />
+                <% try {
+                        if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {%>
                 <input
+                    style="grid-column: 2; grid-row: 1; margin-top: 3em;"
                     class="buttonsPerfil"
                     type="button"
                     value="Modificar perfil"
                     onclick="modificarPerfil()"
                     />
+                <%      } else { %>
+                <input
+                    style="grid-column: 2; grid-row: 1; margin-top: 2em;"
+                    class="buttonsPerfil"
+                    type="button"
+                    value="Añadir amigo"
+                    />
+                <input
+                    style="grid-column: 2; grid-row: 1; margin-top: 5em;"
+                    class="buttonsPerfil"
+                    type="button"
+                    value="Borrar amigo"
+                    />
+                <%}
+                    } catch (Exception e) {
+                    }%>
             </div>
 
             <div class="newPublis">
                 <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
-                    
+
                     <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <script src="assets/quill/quill.min.js"></script>
                     <form name="myForm" id="myForm" method="post">
-                    <div class="row form-group">
-                    <textarea id="Titulo" name="Titulo" style="resize: none; -webkit-border-radius: 5px;
-                              -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="125" placeholder="Titulo"></textarea>
-                    <input name="Publicacion" type="hidden">
-                    <div id="snow-container"></div>
-                    </div>
-                    <input name="botonPublicar" type="submit" value="Publicar publicación" /> 
+                        <div class="row form-group">
+                            <textarea id="Titulo" name="Titulo" style="resize: none; -webkit-border-radius: 5px;
+                                      -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="125" placeholder="Titulo"></textarea>
+                            <input name="Publicacion" type="hidden">
+                            <div id="snow-container"></div>
+                        </div>
+                        <input name="botonPublicar" type="submit" value="Publicar publicación" /> 
                     </form>
                     <script>
-                    var quill = new Quill('#snow-container', {
-                        modules: {
-                            toolbar: [
-                                ['bold', 'italic'],
-                                ['link'],
-                                [{ list: 'ordered' }, { list: 'bullet' }]
-                            ]
-                        },
-                        placeholder: 'Escribe tu publicación...',
-                        theme: 'snow'
-                    });
+                        var quill = new Quill('#snow-container', {
+                            modules: {
+                                toolbar: [
+                                    ['bold', 'italic'],
+                                    ['link'],
+                                    [{list: 'ordered'}, {list: 'bullet'}]
+                                ]
+                            },
+                            placeholder: 'Escribe tu publicación...',
+                            theme: 'snow'
+                        });
 
-                    var form = document.querySelector('form[name=myForm]');
-                    form.onsubmit = function() {
-                    // Populate hidden form on submit
-                        var about = document.querySelector('input[name=Publicacion]');
-                        about.value = JSON.stringify(quill.root.innerHTML);
-                    };
+                        var form = document.querySelector('form[name=myForm]');
+                        form.onsubmit = function () {
+                            // Populate hidden form on submit
+                            var about = document.querySelector('input[name=Publicacion]');
+                            about.value = JSON.stringify(quill.root.innerHTML);
+                        };
                     </script>
                 </div>
             </div>
@@ -159,8 +183,8 @@
                         class="borde publicacion"
                         id="publicacion"
                         onmouseover="hoverOnPublication(<% out.print(publicacion.get("id")); %>)"
-                        onmouseout="outHoverOnPublication(<% out.print(publicacion.get("id")); %>)"
-                        onclick="location='publicacion?idP=<%=publicacion.get("id")%>'"
+                        onmouseout="outHoverOnPublication(<% out.print(publicacion.get("id"));%>)"
+                        onclick="location = 'publicacion?idP=<%=publicacion.get("id")%>'"
                         >
                         <div class="titPublicacion" id="titPublicacion<% out.print(publicacion.get("id"));%>">
                             <p class="left">

@@ -8,6 +8,7 @@ package es.uco.pw.niusFIK.servlets;
 import es.uco.pw.niusFIK.dao.comentariosDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
+import es.uco.pw.niusFIK.dao.loginDAO;
 import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,7 +73,19 @@ public class perfil extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            if (loginDAO.existsUserID(Integer.parseInt(request.getParameter("id")))) {
+                processRequest(request, response);
+            } else if (loginDAO.existsUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")))) {
+                processRequest(request, response);
+            } else {
+                request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            System.out.print(e);
+            request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
+        }
+
     }
 
     /**
