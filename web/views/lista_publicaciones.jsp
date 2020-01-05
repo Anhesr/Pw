@@ -35,6 +35,10 @@
             </div>
             <div class="botones-principal">
                 <INPUT type="button" onclick="location = 'perfil'" name="Mi Perfil" value="Mi Perfil" />
+                <input type="button" 
+                       onclick="location='logout'"
+                       name="cerrar_sesion" 
+                       value="Cerrar Sesión" />
             </div>
         </header>
 
