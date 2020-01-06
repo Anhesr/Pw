@@ -10,16 +10,20 @@
 <%
     ArrayList<Hashtable<String, String>> publicaciones = null;
     HashMap<String, Object> curriculum = null;
-    boolean friend=false;
+    boolean friends = false;
     try {
         publicaciones
                 = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
         curriculum
                 = (HashMap<String, Object>) request.getAttribute("curriculum");
-        friends
-                = (boolean) request.getAttribute("friends");
+        try {
+            friends
+                    = (boolean) request.getAttribute("friends");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     } catch (Exception e) {
-        System.out.println(e);
+        System.out.println(e + "Peto al recolectar datos jeje");
     }%>
 <html lang="es">
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
@@ -85,38 +89,38 @@
                     onclick="modificarPerfil()"
                     />
                 <%      } else { %>
-                <% if(!friends){%>
-                    <form name="FormAnadir" id="FormAnadir" method="post">
-                        <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
-                        <input
+                <% if (!friends) {%>
+                <form name="FormAnadir" id="FormAnadir" method="post">
+                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                    <input
                         style="grid-column: 2; grid-row: 1; margin-top: 2em;"
                         class="buttonsPerfil"
                         name="botonAnadir"
                         type="submit"
                         value="Añadir amigo"
                         />
-                    </form>
-                <%      } else { %>
-                    <form name="FormBorrar" id="FormBorrar" method="post">
-                        <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
-                        <input
+                </form>
+                <%      } else {%>
+                <form name="FormBorrar" id="FormBorrar" method="post">
+                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                    <input
                         style="grid-column: 2; grid-row: 1; margin-top: 2em;"
                         class="buttonsPerfil"
                         name="botonEliminar"
                         type="submit"
                         value="Borrar amigo"
                         />
-                    </form>
+                </form>
                 <%  }
-                  }
-                  } catch (Exception e) {
-                  }%>
+                        }
+                    } catch (Exception e) {
+                    }%>
             </div>
 
             <div class="newPublis">
                 <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
 
-                    
+
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <script src="assets/quill/quill.min.js"></script>
                     <form name="myForm" id="myForm" method="post">
@@ -126,9 +130,9 @@
                             <input name="Publicacion" type="hidden">
                             <div id="snow-container"></div>
                         </div>
-                        <% if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))){%>
+                        <% if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {%>
                         <input name="botonPublicar" type="submit" value="Publicar publicación" />
-                        <% } %>
+                        <% }%>
                     </form>
                     <script>
                         var quill = new Quill('#snow-container', {
@@ -150,7 +154,7 @@
                             about.value = JSON.stringify(quill.root.innerHTML);
                         };
                     </script>
-                    
+
                 </div>
             </div>
         </div>

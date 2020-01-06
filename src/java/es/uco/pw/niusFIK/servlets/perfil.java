@@ -45,7 +45,7 @@ public class perfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Hashtable<String, String>> resultPb = null;
         HashMap<String, Object> resultCV = null;
-        boolean friends=false;
+        boolean friends = false;
         if (request.getParameter("id") == null) {
             resultPb
                     = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
@@ -56,12 +56,16 @@ public class perfil extends HttpServlet {
                     = publicacionesDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
             resultCV
                     = curriculumDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
-            if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {    
-            } else {
-               friends=amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")),Integer.parseInt(request.getParameter("id"))); 
+            try {
+                if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {
+                } else {
+                    friends = amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")), Integer.parseInt((String) request.getParameter("id")));
+                }
+            } catch (Exception e) {
+                System.out.print(e);
             }
         }
-        request.setAttribute("friends",friends);
+        request.setAttribute("friends", friends);
         request.setAttribute("publicaciones", resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
@@ -80,15 +84,17 @@ public class perfil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            if (loginDAO.existsUserID(Integer.parseInt(request.getParameter("id")))) {
+            if (loginDAO.existsUserID(Integer.parseInt((String) request.getParameter("id")))) {
+                System.out.print("Entro en id");
                 processRequest(request, response);
             } else if (loginDAO.existsUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")))) {
+                System.out.print("Entro en uID");
                 processRequest(request, response);
             } else {
                 request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e + "Arriba españita");
             request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
         }
 
@@ -117,21 +123,21 @@ public class perfil extends HttpServlet {
             int id = publicacionesDAO.publicarPublicacion(Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
             response.sendRedirect(request.getContextPath() + "/publicacion?idP=" + id);
         }
-        
+
         if (!isNull(request.getParameter("botonAnadir"))) {
             request.setAttribute("botonAnadir", null);
             String idAmigo = request.getParameter("id");
-            amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+            amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"), idAmigo);
             response.sendRedirect(request.getContextPath() + "/perfil?id=" + idAmigo);
         }
-        
+
         if (!isNull(request.getParameter("botonEliminar"))) {
             request.setAttribute("botonEliminar", null);
             String idAmigo = request.getParameter("id");
-            amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
+            amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"), idAmigo);
             response.sendRedirect(request.getContextPath() + "/perfil?id=" + idAmigo);
         }
-        
+
         //RequestDispatcher rd = request.getRequestDispatcher("/views/perfil.jsp");
         //rd.include(request,response);
     }
