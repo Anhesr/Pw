@@ -64,7 +64,13 @@ public class publicacionesDAO {
         }
         return result;
     }
-
+    
+    /*
+    public static ArrayList<Hashtable<String, String>> queryByUserID(int UserID)
+    
+    Esta funcion devuelve un vector con las publicaciones y datos de un usuario
+    en concreto predeterminado por su id pasadolo como el parametro "UserID".
+    */
     public static ArrayList<Hashtable<String, String>> queryByUserID(int UserID) {
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
@@ -103,7 +109,14 @@ public class publicacionesDAO {
         }
         return result;
     }
-
+    
+    /*
+    public static ArrayList<Hashtable<String, String>> loadPublication(int id)
+    
+    Esta funcion devuelve un vector con los parametros que nos interesan
+    a la hora de mostrar y utilizar en una publicación seleccionada por 
+    la id que le hemos pasado en el parametro "id"
+    */
     public static ArrayList<Hashtable<String, String>> loadPublication(int id) {
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
@@ -129,7 +142,16 @@ public class publicacionesDAO {
         }
         return result;
     }
-
+    /*
+    public static int publicarPublicacion(int autor_id, String nombre, String cuerpo, String fecha, int visitas)
+    
+    Esta funcion crea en la base de datos una dupla en la tabla publicaciones
+    con los siguientes parametros pasados. La id de la publicación no se pasa
+    ya que es a NULL debido al autoincremento que le hemos proporcionado.
+    
+    Devuelve la id de la publicación recién creada para acceder a ella,
+    ya que a la hora de ir a su enlace la necesitamos como parametro
+    */
     public static int publicarPublicacion(int autor_id, String nombre, String cuerpo, String fecha, int visitas) {  
         Connection con = getConnection();
         PreparedStatement ps = null;
@@ -146,14 +168,23 @@ public class publicacionesDAO {
                 + "(SELECT max( fecha_publicacion )FROM publicaciones );");
         ResultSet rs = ps.executeQuery();
 
-            rs.next();
-            id = (Integer.parseInt(rs.getString("id")));
+        rs.next();
+        id = (Integer.parseInt(rs.getString("id")));
+        
         } catch (Exception e) {
             System.out.println(e);
         }
         return id;
     }
 
+    /*
+    public static void ActualizarVisita(int idP)
+    
+    Como su propio nombre indica actualiza la visita sumandole 1 a la publicacion
+    con la correspondiente id pasada en el parametro "idP". Es decir, esta funcion
+    se activa cada vez que se accede a dicha publicacion, 
+    para llevar un conteo y mostrar las recomendaciones
+    */
     public static void ActualizarVisita(int idP) {
         int result = 0;
         PreparedStatement ps = null;
@@ -177,6 +208,13 @@ public class publicacionesDAO {
         }
     }
     
+    /*
+    public static void EliminarPublicacionByID(int idP)
+    
+    Esta funcion elimina la publicacion con la correspondiente id pasada
+    en el parametro "idP". Esta funcion se entrará cada vez que el usuario
+    autor de una publicacion desee eliminar dicha publicación
+    */
     public static void EliminarPublicacionByID(int idP){
         int result = 0;
         PreparedStatement ps = null;
@@ -194,6 +232,12 @@ public class publicacionesDAO {
         }
     }
     
+    /*
+    public static ArrayList<Hashtable<String, String>> AllPublicationExceptYou(int idUser)
+    
+    Esta funcion devuelve un vector con todas las publicaciones excepto las del usuario actual.
+    El parametro "idUser" es la id del usuario actual.
+    */
     public static ArrayList<Hashtable<String, String>> AllPublicationExceptYou(int idUser){
         ArrayList<Hashtable<String, String>> result = null;
         Hashtable<String, String> res = null;
