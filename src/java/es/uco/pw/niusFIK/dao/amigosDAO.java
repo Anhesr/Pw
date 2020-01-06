@@ -24,6 +24,10 @@ public class amigosDAO {
         }
         return con;
     }
+    /*
+    Esta función devuelve un vector en el que estan incluidas todas las ID de los 
+    amigos de una persona, para sacarlos se le pasa como parámetro la ID del usuario.
+    */
     public static ArrayList<Hashtable<String, String>> friendsByID(int ID){
         ArrayList<Hashtable<String, String>> result=null;
         Hashtable<String, String> res = null;
@@ -46,6 +50,10 @@ public class amigosDAO {
         
         return result;
     }
+    /*
+    Esta función inserta las ID del usuario y las ID del amigo que quiere agregar 
+    en la base de datos ,agregandolos asi como amigos.
+    */
     public static void insertUserFriend(String UserID, String FriendID)
     {
         PreparedStatement ps = null;
@@ -63,6 +71,10 @@ public class amigosDAO {
             System.out.println(e.getMessage());
         }
     }
+    /* 
+    Esta función borra de la base de datos la entrada correspondiente a los id del
+    usuario actual y id del amigo a borrar, eliminandose como amigos.
+    */
     public static void deleteUserFriend(String UserID, String FriendID)
     {
         PreparedStatement ps = null;
@@ -77,7 +89,10 @@ public class amigosDAO {
             System.out.println(e.getMessage());
         }
     }
-    
+    /*
+    Esta función devuelve un vector con los nombres completos de todos los amigos agregados
+    por el usuario ,esto se realiza pasandole como parámetro la id del usuario.
+    */
     public static ArrayList<Hashtable<String, String>> friendsNameByID(int ID){
         ArrayList<Hashtable<String, String>> result=null;
         Hashtable<String, String> res = null;
@@ -87,7 +102,7 @@ public class amigosDAO {
             result = new ArrayList<Hashtable<String, String>>();
             stmt = con.createStatement();
 	    ResultSet rs = stmt.executeQuery("Select usuarios.nombre, usuarios.apellidos, amigos.id_amigo from usuarios, amigos " 
-                + "where usuarios.id = amigos.id_amigo AND amigos.id_usuario= "+ ID);
+                + "where usuarios.id = amigos.id_amigo AND amigos.id_usuario= "+ Integer.toString(ID));
             while (rs.next()) {
                 String nombreAmigo = rs.getString("usuarios.nombre") + " " + rs.getString("usuarios.apellidos");
                 String idAmigo = rs.getString("amigos.id_amigo");
@@ -102,7 +117,10 @@ public class amigosDAO {
         
         return result;
     }
-    
+    /*
+    Esta función comprueba si dos usuarios son amigos o no devolviendo un booleano.
+    Se le pasan mediante parámetro los id que se quieren comprobar si son amigos o no.
+    */
     public static boolean checkIfFriends(int userID,int friendID) {
         boolean status = false;
         PreparedStatement ps = null;
