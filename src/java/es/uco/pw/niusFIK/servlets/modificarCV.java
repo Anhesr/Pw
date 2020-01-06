@@ -92,18 +92,22 @@ public class modificarCV extends HttpServlet {
             HashMap<String, Object> updateMap = new HashMap<String, Object>();
             Map<String, String[]> parameters = (Map<String, String[]>) request.getParameterMap();
             updateMap.put("id", (String) request.getSession().getAttribute("uID"));
+            // Vamos recorriendo con un for el mapa de parámetros, y la guardamos en un mapa llavado updateMap.
             for (String parameter : parameters.keySet()) {
                 String[] values = parameters.get(parameter);
                 if (!values[0].equals("") && !parameter.equals("valPass")) {
                     updateMap.put(parameter, values[0]);
                 }
             }
+            // Si venía del registro, borramos el comprobante de tal acción.
             if (request.getSession().getAttribute("justRegistered") != null) {
                 curriculumDAO.createCurriculum(updateMap);
                 request.getSession().removeAttribute("justRegistered");
             }
+            // Comprobamos la contraseña, si es correcta podemos cambiarla.
             if (updateMap.containsKey("lastPass")) {
-                if (!loginDAO.checkPassword(1, (String) updateMap.get("lastPass"))) {
+                if (!loginDAO.checkPassword(Integer.parseInt((String) updateMap.get("id")),
+                        (String) updateMap.get("lastPass"))) {
                     updateMap.remove("password");
                     request.setAttribute("passChanged", false);
                 } else {
@@ -111,6 +115,8 @@ public class modificarCV extends HttpServlet {
                 }
                 updateMap.remove("lastPass");
             }
+            // Obtenemos la imagen desde el input file y la pasamos a una cadena de bytes, que serán
+            // convertidos en un blob.
             if (request.getPart("imagen") != null) {
                 InputStream inputStream = null;
                 Part filePart = request.getPart("imagen");

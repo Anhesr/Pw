@@ -51,6 +51,7 @@
                     <div class="borde">
                         <p class="titulo">Lista recomendaciones</p>
                         <hr />
+                        <!-- Recorro una estructura de datos que contiene las publicaciones en orden de visitas. -->
                         <% for(HashMap<String, String> publicacion: recomendaciones) { %>
                         <div class="titPublicacion" id="titPublicacion<%= publicacion.get("id") %>" onclick="location='publicacion?idP=<%=publicacion.get("id")%>'">
                             <p class="left">

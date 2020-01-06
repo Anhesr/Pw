@@ -7,6 +7,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
+<!-- Tomamos los valores obtenidos en el servlet de perfil como variables locales, con comprobación de errores. -->
 <%
     ArrayList<Hashtable<String, String>> publicaciones = null;
     HashMap<String, Object> curriculum = null;
@@ -23,7 +24,7 @@
             System.out.println(e);
         }
     } catch (Exception e) {
-        System.out.println(e + "Peto al recolectar datos jeje");
+        System.out.println(e);
     }%>
 <html lang="es">
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
@@ -36,6 +37,7 @@
 
         <title>Perfil - NiusFIK</title>
     </head>
+    <!-- Tomando la estructura básica ya hecha en prácticas anteriores y añadimos las partes necesarias para el funcionamiento. -->
     <body onresize="hideSearchBar()">
         <script src="js/perfil.js"></script>
         <script src="js/general_functions.js"></script>
@@ -56,6 +58,9 @@
                 <button>Buscar</button>
             </div>
         </header>
+
+        <!-- Para la parte de la imagen, lo que hemos hecho es guardarla en la bd con un formato blob, y para mostrarla
+        retomamos el valor del blob de la bd y lo pasamos a un string codificación base64. -->
 
         <div class="gridPag1">
             <div class="imgPerfil">
@@ -79,6 +84,8 @@
                     alt="Imagen de perfil"
                     width="125"
                     />
+                <!-- Comprobamos si somos el dueño del perfil que estamos visitando, y según lo seamos o no
+                mostramos los botones de amigo o el de modificar perfil. -->
                 <% try {
                         if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {%>
                 <input
@@ -162,6 +169,8 @@
             <p class="borde publicacion" style="padding-top: 0.5em;
                padding-bottom: 0.5em;">No hay publicaciones.</p>
         </div>
+        <!-- A la hora de mostrar tanto el currículum como las publicaciones, tenemos para las publicaciones simples obtenciones
+        de datos de la estructura obtenida de la bd, y para las publicaciones usamos un for donde vamos mostrando las publicaciones. -->
         <div class="gridPag2" id="gridForCVPubls" style="height: 30em;">
             <div id="miCV" class="borde">
                 <p class="titulo">Mi Currí­culum Vitae</p>

@@ -2,6 +2,7 @@
 <html lang="es">
     <%@page import="java.util.HashMap"%>
     <%@page pageEncoding="UTF-8"%>
+    <!-- Retomamos los datos y comprobamos si existe el parámetro "justRegistered", que indica si viene del registro. -->
     <% HashMap<String, Object> cv = null;
         try {
             if (request.getSession().getAttribute("justRegistered") == null) {
@@ -11,16 +12,19 @@
             System.out.println(e);
         }
     %>
-    <link rel="icon" type="image/png" href="/niusFIK/assets/img/logo.png" />
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="/niusFIK/css/modificar_perfil.css" />
-        <link rel="stylesheet" href="/niusFIK/css/footer_header.css" />
+        <link rel="stylesheet" href="../css/modificar_perfil.css" />
+        <link rel="stylesheet" href="../css/footer_header.css" />
 
         <title>Currí­culum - NiusFIK</title>
     </head>
     <body>
-        <script src="/niusFIK/js/modificar_perfil.js"></script>
+        
+        <script src="../js/modificar_perfil.js"></script>
+        <!-- Si está recién registrado, solo debe rellenar los campos del currículum público, por lo que deshabilitamos
+        el botón de cambiar de CV y el CV privado. -->
         <div class="formulario" id="formCV">
             <% if (request.getSession().getAttribute("justRegistered") == null) { %>
             <div style="text-align: right;">
@@ -33,13 +37,11 @@
             </div>
             <% } %>
             <% if (request.getSession().getAttribute("justRegistered") == null) {%>
-            <form id="pubCV" action="/niusFIK/perfil/mod" enctype="multipart/form-data" method="POST">
+            <!-- Los form le mandan la acción al mismo servlet de origen, pero en POST, por lo que podemos mandar la
+            información de una manera más segura. -->
+            <form id="pubCV" action="../perfil/mod" enctype="multipart/form-data" method="POST">
                 <p class="encabezados">Situación laboral</p>
-                <select id="sitlab" name="situacion_laboral" class="forms" value="<%= cv.get("situacion_laboral")%>">
-                    <option value="Activo">Activo</option>
-                    <option value="En paro">En paro</option>
-                    <option value="Estudiante">Estudiante</option>
-                </select>
+                <input id="sitlab" name="situacion_laboral" type="text" class="forms" value="<%= cv.get("situacion_laboral")%>" />
                 <p class="encabezados">Formación académica</p>
                 <input id="formac" name="formacion_academica" type="text" class="forms" value="<%= cv.get("formacion_academica")%>" onchange="allFilled()" />
                 <p class="encabezados">Universidad / centro de origen</p>
@@ -58,7 +60,7 @@
                     />
             </form>
             <% } else {%>
-            <form id="pubCV" action="/niusFIK/perfil/mod" enctype="multipart/form-data" method="POST">
+            <form id="pubCV" action="../perfil/mod" enctype="multipart/form-data" method="POST">
                 <p class="encabezados">Situación laboral</p>
                 <select id="sitlab" name="situacion_laboral" class="forms" onchange="allFilled()">
                     <option value="Activo">Activo</option>
@@ -84,7 +86,7 @@
             </form>
             <% }
                 if (request.getSession().getAttribute("justRegistered") == null) {%>
-            <form id="privCV" style="display: none;" enctype="multipart/form-data" action="/niusFIK/perfil/mod" method="POST">
+            <form id="privCV" style="display: none;" enctype="multipart/form-data" action="../perfil/mod" method="POST">
                 <p class="encabezados">Nombre</p>
                 <input name="nombre" type="text" class="forms" value="<%= cv.get("nombre")%>" />
                 <p class="encabezados">Apellidos</p>

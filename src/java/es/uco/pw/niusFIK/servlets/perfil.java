@@ -6,13 +6,10 @@
 package es.uco.pw.niusFIK.servlets;
 
 import es.uco.pw.niusFIK.dao.amigosDAO;
-import es.uco.pw.niusFIK.dao.comentariosDAO;
 import es.uco.pw.niusFIK.dao.publicacionesDAO;
 import es.uco.pw.niusFIK.dao.curriculumDAO;
 import es.uco.pw.niusFIK.dao.loginDAO;
-import es.uco.pw.niusFIK.javabean.userBean;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,16 +39,20 @@ public class perfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Marcamos el contentType como html y con codificación UTF-8.
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Hashtable<String, String>> resultPb = null;
         HashMap<String, Object> resultCV = null;
         boolean friends = false;
+        // Si no recibimos id, supuestamente imposible, tomamos primero el uID.
         if (request.getParameter("id") == null) {
+            // Obtenemos de las clases DAO respectivas la información necesaria.
             resultPb
                     = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
             resultCV
                     = curriculumDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
         } else {
+            // Obtenemos de las clases DAO respectivas la información necesaria.
             resultPb
                     = publicacionesDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
             resultCV
@@ -65,6 +66,7 @@ public class perfil extends HttpServlet {
                 System.out.print(e);
             }
         }
+        // Añadimos los atributos a la request y le mandamos el control al jsp del perfil.
         request.setAttribute("friends", friends);
         request.setAttribute("publicaciones", resultPb);
         request.setAttribute("curriculum", resultCV);
@@ -83,18 +85,18 @@ public class perfil extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Bloque try-catch para prevención de errores
         try {
+            // Comprueba si existe el usuario pasado como parámetro, en caso negativo se comprueba si existe el usuario supuestamente logueado.
+            // En caso negativo de ambos se manda a página de error.
             if (loginDAO.existsUserID(Integer.parseInt((String) request.getParameter("id")))) {
-                System.out.print("Entro en id");
                 processRequest(request, response);
             } else if (loginDAO.existsUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")))) {
-                System.out.print("Entro en uID");
                 processRequest(request, response);
             } else {
                 request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            System.out.print(e + "Arriba españita");
             request.getRequestDispatcher("/views/perfilError.jsp").forward(request, response);
         }
 
