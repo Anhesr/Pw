@@ -10,11 +10,14 @@
 <%
     ArrayList<Hashtable<String, String>> publicaciones = null;
     HashMap<String, Object> curriculum = null;
+    boolean friend=false;
     try {
         publicaciones
                 = (ArrayList<Hashtable<String, String>>) request.getAttribute("publicaciones");
         curriculum
                 = (HashMap<String, Object>) request.getAttribute("curriculum");
+        friends
+                = (boolean) request.getAttribute("friends");
     } catch (Exception e) {
         System.out.println(e);
     }%>
@@ -82,31 +85,32 @@
                     onclick="modificarPerfil()"
                     />
                 <%      } else { %>
-               
-                <form name="FormAnadir" id="FormAnadir" method="post">
-                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
-                    <input
-                    style="grid-column: 2; grid-row: 1; margin-top: 2em;"
-                    class="buttonsPerfil"
-                    name="botonAnadir"
-                    type="submit"
-                    value="Añadir amigo"
-                    />
-                </form>
-                
-                <form name="FormBorrar" id="FormBorrar" method="post">
-                    <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
-                    <input
-                    style="grid-column: 2; grid-row: 1; margin-top: 2em;"
-                    class="buttonsPerfil"
-                    name="botonEliminar"
-                    type="submit"
-                    value="Borrar amigo"
-                    />
-                </form>
-                <%}
-                    } catch (Exception e) {
-                    }%>
+                <% if(!friends){%>
+                    <form name="FormAnadir" id="FormAnadir" method="post">
+                        <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                        <input
+                        style="grid-column: 2; grid-row: 1; margin-top: 2em;"
+                        class="buttonsPerfil"
+                        name="botonAnadir"
+                        type="submit"
+                        value="Añadir amigo"
+                        />
+                    </form>
+                <%      } else { %>
+                    <form name="FormBorrar" id="FormBorrar" method="post">
+                        <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
+                        <input
+                        style="grid-column: 2; grid-row: 1; margin-top: 2em;"
+                        class="buttonsPerfil"
+                        name="botonEliminar"
+                        type="submit"
+                        value="Borrar amigo"
+                        />
+                    </form>
+                <%  }
+                  }
+                  } catch (Exception e) {
+                  }%>
             </div>
 
             <div class="newPublis">
