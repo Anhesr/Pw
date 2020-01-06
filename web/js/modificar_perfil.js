@@ -1,6 +1,3 @@
-function irPerfil() {
-    window.location = "perfil";
-}
 
 function allFilled() {
     if (document.getElementById("sitlab").value !== "") {
@@ -8,7 +5,7 @@ function allFilled() {
             if (document.getElementById("univ").value !== "") {
                 if (document.getElementById("intprof").value !== "") {
                     if (document.getElementById("expC").value !== "") {
-                        if (document.getElementById("procC").value !== "") {
+                        if (document.getElementById("prodC").value !== "") {
                             document.getElementById("submitButtonPublic").disabled = false;
                         } else {
                             document.getElementById("submitButtonPublic").disabled = true;

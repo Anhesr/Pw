@@ -62,21 +62,21 @@
             <% } else {%>
             <form id="pubCV" action="../perfil/mod" enctype="multipart/form-data" method="POST">
                 <p class="encabezados">Situación laboral</p>
-                <select id="sitlab" name="situacion_laboral" class="forms" onchange="allFilled()">
+                <select id="sitlab" name="situacion_laboral" class="forms" oninput="allFilled()">
                     <option value="Activo">Activo</option>
                     <option value="En paro">En paro</option>
                     <option value="Estudiante">Estudiante</option>
                 </select>
                 <p class="encabezados">Formación académica</p>
-                <input id="formac" name="formacion_academica" type="text" class="forms" onchange="allFilled()" />
+                <input id="formac" name="formacion_academica" type="text" class="forms" oninput="allFilled()" />
                 <p class="encabezados">Universidad / centro de origen</p>
-                <input id="univ" name="universidad" type="text" class="forms" onchange="allFilled()" />
+                <input id="univ" name="universidad" type="text" class="forms" oninput="allFilled()" />
                 <p class="encabezados">Intereses profesionales</p>
-                <input id="intprof" name="intereses_profesionales" type="text" class="forms" onchange="allFilled()" />
+                <input id="intprof" name="intereses_profesionales" type="text" class="forms" oninput="allFilled()" />
                 <p class="encabezados">Experiencia cientí­fica</p>
-                <input id="expC" name="experiencia_cientifica" type="text" class="forms" onchange="allFilled()" />
+                <input id="expC" name="experiencia_cientifica" type="text" class="forms" oninput="allFilled()" />
                 <p class="encabezados">Producción cientí­fica</p>
-                <input id="prodC" name="produccion_cientifica" type="text" class="forms" onchange="allFilled()" /> <br/>
+                <input id="prodC" name="produccion_cientifica" type="text" class="forms" oninput="allFilled()" /> <br/>
                 <input
                     type="submit"
                     id="submitButtonPublic"
@@ -124,7 +124,7 @@
                 type="button"
                 value="Ir al perfil"
                 class="submitbutton"
-                onclick="irPerfil()"
+                onclick="location = '../perfil?id=<%=request.getSession().getAttribute("uID")%>'"
                 />
             <% }%>
         </div>
