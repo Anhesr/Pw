@@ -57,9 +57,11 @@ public class perfil extends HttpServlet {
                     = publicacionesDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
             resultCV
                     = curriculumDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
+            //Comprobamos si el id pasado por parametro y el id del usuario son el mismo
             try {
                 if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {
                 } else {
+                    //si no son el mismo se comprueba si los usuarios son amigos y se asigna el resultado a una variable mediante la clase DAO
                     friends = amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")), Integer.parseInt((String) request.getParameter("id")));
                 }
             } catch (Exception e) {
@@ -125,14 +127,17 @@ public class perfil extends HttpServlet {
             int id = publicacionesDAO.publicarPublicacion(Integer.parseInt(idUsuario), nombre, cuerpo, fecha, 0);
             response.sendRedirect(request.getContextPath() + "/publicacion?idP=" + id);
         }
-
+        
+        //Si en la vista se activa el boton de añadir un amigo se activa esta parte del código obteniendo los parámetros  
+        //pasados por la vista y añadiendo las id de los dos usuarios a la base de datos mediante la clase DAO
         if (!isNull(request.getParameter("botonAnadir"))) {
             request.setAttribute("botonAnadir", null);
             String idAmigo = request.getParameter("id");
             amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"), idAmigo);
             response.sendRedirect(request.getContextPath() + "/perfil?id=" + idAmigo);
         }
-
+        //Si en la vista se activa el boton de borrar un amigo se activa esta parte del código obteniendo los parámetros  
+        //pasados por la vista y borrando las id de los dos usuarios de la base de datos mediante la clase DAO
         if (!isNull(request.getParameter("botonEliminar"))) {
             request.setAttribute("botonEliminar", null);
             String idAmigo = request.getParameter("id");

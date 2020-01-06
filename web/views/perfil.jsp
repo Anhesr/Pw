@@ -6,6 +6,7 @@
 <%@page import="java.util.Hashtable"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="es.uco.pw.niusFIK.servlets.perfil" %>
 <!DOCTYPE html>
 <!-- Tomamos los valores obtenidos en el servlet de perfil como variables locales, con comprobación de errores. -->
 <%
@@ -96,6 +97,8 @@
                     onclick="modificarPerfil()"
                     />
                 <%      } else { %>
+                <!-- Comprobamos si el dueño del perfil y el usuario son amigos y según lo sean o no se muestran
+                los botones de añadir amigo o borrar amigo. -->
                 <% if (!friends) {%>
                 <form name="FormAnadir" id="FormAnadir" method="post">
                     <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
@@ -118,7 +121,7 @@
                         value="Borrar amigo"
                         />
                 </form>
-                <%  }
+                <%          }
                         }
                     } catch (Exception e) {
                     }%>
@@ -128,7 +131,7 @@
                 <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
 
 
-                    <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
+                    
                     <script src="assets/quill/quill.min.js"></script>
                     <form name="myForm" id="myForm" method="post">
                         <div class="row form-group">

@@ -131,7 +131,8 @@
 
             </div>
 
-            <!-- Lista de amigos -->
+            <!-- Se muestra la lista de amigos agregagos obtenidos por mediante el servlet, 
+            cuando se pulse en el nombre de este amigo se redireccionará al perfil de este-->
             <div class="columna_amigos">
                 <div>
                     <div class="borde">
@@ -143,7 +144,7 @@
                                         if (!amigoAux.isEmpty()) {
                             %>
                             <div class="titPublicacion"  onclick="location='perfil?id=<%=amigoAux.get("idAmigo")%>'">
-                                <p><%=amigoAux.get("nombreAmigo")%></p>
+                                <p class="left"><%=amigoAux.get("nombreAmigo")%></p>
                             </div>
                             <%
                                         }
