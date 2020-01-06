@@ -114,7 +114,10 @@ public class amigosDAO {
             ps.setString(2, Integer.toString(friendID));
 
             ResultSet rs = ps.executeQuery();
-            status=rs.next();
+            
+            if (Integer.toString(userID).equals(rs.getString("id_usuario")) && Integer.toString(friendID).equals(rs.getString("id_amigo"))) {
+                status = true;
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
