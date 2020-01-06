@@ -112,7 +112,7 @@
             <div class="newPublis">
                 <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
 
-                    <% if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))){%>
+                    
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <script src="assets/quill/quill.min.js"></script>
                     <form name="myForm" id="myForm" method="post">
@@ -122,7 +122,9 @@
                             <input name="Publicacion" type="hidden">
                             <div id="snow-container"></div>
                         </div>
-                        <input name="botonPublicar" type="submit" value="Publicar publicación" /> 
+                        <% if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))){%>
+                        <input name="botonPublicar" type="submit" value="Publicar publicación" />
+                        <% } %>
                     </form>
                     <script>
                         var quill = new Quill('#snow-container', {
@@ -144,7 +146,7 @@
                             about.value = JSON.stringify(quill.root.innerHTML);
                         };
                     </script>
-                    <% } %>
+                    
                 </div>
             </div>
         </div>
