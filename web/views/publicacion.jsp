@@ -40,27 +40,25 @@
 		<div>
 			<center>
 						<!-- Publicación -->
+                                                <input type="button" onclick="location = 'perfil?id=<%=publicacionT.get(0).get("autor_id")%>'" name="Perfil del autor" value="Perfil del autor" />
 						<div class="publicacion-comentario" name="Publicacion" style=" height : 400px">
                                                     <% if (publicacionT.isEmpty()) { %>
                                                           <p>ERROR 404. La publicacion que buscas no existe</p>
                                                           </div>
                                                        <%
                                                         } else { 
-                                                            for (Hashtable<String, String> publicacionAux : publicacionT) {
-                                                                if(!publicacionAux.isEmpty()){
+                                                            
                                                     %>
-                                                            <p><%=publicacionAux.get("nombre")%></p>
-                                                            <p><%=publicacionAux.get("cuerpo")%></p>
+                                                            <p><%=publicacionT.get(0).get("nombre")%></p>
+                                                            <p><%=publicacionT.get(0).get("cuerpo")%></p>
                                                             <%
-                                                                if(Integer.parseInt(publicacionAux.get("autor_id")) == Integer.parseInt((String)request.getSession().getAttribute("uID"))){
+                                                                if(Integer.parseInt(publicacionT.get(0).get("autor_id")) == Integer.parseInt((String)request.getSession().getAttribute("uID"))){
                                                             %>
                                                             <form method="post">
                                                             <input name="deletPublic" type="submit" value="Eliminar publicacion">
                                                             </form>
-                                                    <%              }
+                                                    <%              
                                                                 }
-                                                            }
-                                                            
                                                       %>
                                                 </div>
 						<!-- Fin Publicación -->
