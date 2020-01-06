@@ -12,7 +12,7 @@
         <div class="contenedor">
             <header class="header">
                 <div class="logo">
-                    <a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
+                    <a href="javascript:history.back()"><h1><img src="img/logo.png">NiusFIK</h1></a>
                     <!--<p1> Conecta tu proyecto </p1>-->
                 </div>
                 <div class="barra-busqueda" align="right">
@@ -29,7 +29,7 @@
                 <div class="formulario">
                     <form id="infoRegistro" method="POST">
                         <fieldset>
-                            <legend>Información personal:</legend>
+                            <legend>InformaciÃ³n personal:</legend>
                             <br>
                             Nombre:<br>
                             <input 
@@ -48,7 +48,7 @@
                                 type="email" 
                                 name="correo"
                                 id="correo">
-                            <br><br>Teléfono:<br>
+                            <br><br>TelÃ©fono:<br>
                             <input 
                                 type="text" 
                                 name="phone"> 
@@ -67,11 +67,11 @@
                                 name="pass"
                                 id="pass"
                                 pattern=".{7,}"
-                                title="La contraseña debe contener al menos 7 carácteres"
+                                title="La contraseÃ±a debe contener al menos 7 carÃ¡cteres"
                                 oninput="validarPass()"
                                 required>
                             <br>
-                            <p id="msjErrorValidar" style="display: none; color: red"> *Mínimo 7 caracteres </p>
+                            <p id="msjErrorValidar" style="display: none; color: red"> *MÃ­nimo 7 caracteres </p>
                             <br><br>Introduzca de nuevo la contrasena:<br>
                             <input 
                                 type="password" 
@@ -79,7 +79,7 @@
                                 id="pass2"
                                 oninput ="verificarPass()"> 
                             <br>
-                            <p id="msjErrorVerificar" style="display: none; color: red">** Las contraseñas no coinciden</p>  
+                            <p id="msjErrorVerificar" style="display: none; color: red">** Las contraseÃ±as no coinciden</p>  
                             <br>
                         </fieldset>
                         <br>
@@ -92,9 +92,9 @@
                 </div>
 
                 <div class="link_login">
-                    <p>¿Tienes ya una cuenta?</p>
+                    <p>Â¿Tienes ya una cuenta?</p>
 
-                    <a onclick="location='login'">Inicia sesión</a>
+                    <a onclick="location='login'">Inicia sesiÃ³n</a>
                 </div>
 
                 <div class="clear"></div>
