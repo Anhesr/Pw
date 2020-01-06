@@ -101,7 +101,7 @@ public class publicacion extends HttpServlet {
         if(!isNull(request.getParameter("deletPublic"))){
             publicacionesDAO.EliminarPublicacionByID(Integer.parseInt(request.getParameter("idP")));
             request.setAttribute("deletPublic", null);
-            response.sendRedirect(request.getContextPath()+"/perfil");
+            response.sendRedirect(request.getContextPath()+"/perfil?id="+(String)request.getSession().getAttribute("uID"));
         }
         
         if(!isNull(request.getParameter("botonComentar"))){

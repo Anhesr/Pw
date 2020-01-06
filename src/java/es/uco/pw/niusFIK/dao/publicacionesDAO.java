@@ -130,35 +130,28 @@ public class publicacionesDAO {
         return result;
     }
 
-    public static void publicarPublicacion(int id, int autor_id, String nombre, String cuerpo, String fecha, int visitas) {  
+    public static int publicarPublicacion(int autor_id, String nombre, String cuerpo, String fecha, int visitas) {  
         Connection con = getConnection();
+        PreparedStatement ps = null;
+        int id = 0;
         try {
         String sentencia = "insert into publicaciones(id, autor_id, nombre,"
                     + "cuerpo, fecha_publicacion, visitas)"
-                + " values (" + Integer.toString(id) 
-                +","+ Integer.toString(autor_id) + ",'"+ nombre
+                + " values (NULL,"+ Integer.toString(autor_id) + ",'"+ nombre
                 + "',"+cuerpo+",'"+fecha+"'," + Integer.toString(visitas) + ");";
         Statement statement = con.createStatement();
         statement.executeUpdate(sentencia);
         
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+        ps = con.prepareStatement("SELECT id FROM publicaciones WHERE fecha_publicacion = "
+                + "(SELECT max( fecha_publicacion )FROM publicaciones );");
+        ResultSet rs = ps.executeQuery();
 
-    public static int idPublicacionDisponible() {
-        int result = 0;
-        PreparedStatement ps = null;
-        Connection con = getConnection();
-        try {
-            ps = con.prepareStatement("select max(id) from publicaciones;");
-            ResultSet rs = ps.executeQuery();
             rs.next();
-            result = 1 + (Integer.parseInt(rs.getString("max(id)")));
+            id = (Integer.parseInt(rs.getString("id")));
         } catch (Exception e) {
             System.out.println(e);
         }
-        return result;
+        return id;
     }
 
     public static void ActualizarVisita(int idP) {
