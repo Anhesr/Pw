@@ -77,7 +77,10 @@ public class lista_publicaciones extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        /*
+        Si detecta que el boton de publicar ha sido pulsado, es decir, es distinto
+        de null, pues publica la publicacion y accede a ella.
+        */
         if(!isNull(request.getParameter("botonPublicar"))){
             request.setAttribute("botonPublicar", null);
             String cuerpo = request.getParameter("Publicacion");

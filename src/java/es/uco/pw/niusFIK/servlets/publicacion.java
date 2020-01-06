@@ -40,25 +40,26 @@ public class publicacion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*PrintWriter out = response.getWriter();
-        out.print(request.getParameter("idP"));*/
+        
+        // Obtengo la id de la publicacion a acceder
         int idPu = Integer.parseInt((String)request.getParameter("idP"));
         
+        // Actualizo su visita
         publicacionesDAO.ActualizarVisita(idPu);
-        
-        ArrayList<Hashtable<String, String>> resultPb;
-        resultPb = publicacionesDAO.queryByUserID(Integer.parseInt((String) request.getSession().getAttribute("uID")));
-        
+       
+        //Cargo los parametros de la publicación deseada en un vector
         ArrayList<Hashtable<String, String>> resultOnePublication;
         resultOnePublication = publicacionesDAO.loadPublication(idPu);
         
+        //Cargo los parametros de los comentarios la publicación deseada en un vector
         ArrayList<Hashtable<String, String>> resultCom;
         resultCom = comentariosDAO.loadComments(idPu);
         
+        //Pasamos los anteriores vectores como atributos al request
         request.setAttribute("comentariosP", resultCom);
         request.setAttribute("publicacion", resultOnePublication);
-        request.setAttribute("publicaciones", resultPb);
         
+        // Accedo a la publicacion
         RequestDispatcher rd = request.getRequestDispatcher("/views/publicacion.jsp?idP="+request.getParameter("idP"));
         rd.include(request,response);
     }  
@@ -91,19 +92,34 @@ public class publicacion extends HttpServlet {
             throws ServletException, IOException {
                
         response.setContentType("text/html;charset=UTF-8");
+        /*
+        if(!isNull(request.getParameter("delCom")))
         
+        Si detecta que el boton de eliminar comentario ha sido pulsado, es decir, es distinto
+        de null, pues elimna el comentario, y accede a la publicacion actualizada sin el comentario
+        */
         if(!isNull(request.getParameter("delCom"))){
             request.setAttribute("delCom", null);
             comentariosDAO.EliminarComentarioByID(Integer.parseInt(request.getParameter("idComentario")));
             processRequest(request, response);
         }
+        /*
+        if(!isNull(request.getParameter("deletPublic")))
         
+        Si detecta que el boton de eliminar publicacion ha sido pulsado, es decir, es distinto
+        de null, pues elimna la publicacion, sus comentarios y redirige al perfil del usuario actual.
+        */
         if(!isNull(request.getParameter("deletPublic"))){
             publicacionesDAO.EliminarPublicacionByID(Integer.parseInt(request.getParameter("idP")));
             request.setAttribute("deletPublic", null);
             response.sendRedirect(request.getContextPath()+"/perfil?id="+(String)request.getSession().getAttribute("uID"));
         }
+        /*
+        if(!isNull(request.getParameter("botonComentar")))
         
+        Si detecta que el boton de publicar comentario ha sido pulsado, es decir, es distinto
+        de null, pues publica el comentario y accede a ella actualizada con el nuevo comentario.
+        */
         if(!isNull(request.getParameter("botonComentar"))){
             request.setAttribute("botonComentar", null);
             String cuerpo = (String)request.getParameter("Coment2");
