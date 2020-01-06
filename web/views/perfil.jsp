@@ -100,7 +100,7 @@
                 <!-- Comprobamos si el dueño del perfil y el usuario son amigos y según lo sean o no se muestran
                 los botones de añadir amigo o borrar amigo. -->
                 <% if (!friends) {%>
-                <form name="FormAnadir" id="FormAnadir" method="post">
+                <form name="FormAnadir" id="FormAnadir" method="post" action="perfil">
                     <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
                     <input
                         style="grid-column: 2; grid-row: 1; margin-top: 2em;"
@@ -111,7 +111,7 @@
                         />
                 </form>
                 <%      } else {%>
-                <form name="FormBorrar" id="FormBorrar" method="post">
+                <form name="FormBorrar" id="FormBorrar" method="post" action="perfil">
                     <input name="id" id="id" type="hidden" value="<%= request.getParameter("id")%>" />
                     <input
                         style="grid-column: 2; grid-row: 1; margin-top: 2em;"
@@ -133,7 +133,7 @@
 
                     
                     <script src="assets/quill/quill.min.js"></script>
-                    <form name="myForm" id="myForm" method="post">
+                    <form name="myForm" id="myForm" method="post" action="perfil">
                         <div class="row form-group">
                             <textarea id="Titulo" name="Titulo" style="resize: none; -webkit-border-radius: 5px;
                                       -moz-border-radius: 5px; border-radius: 5px;"rows="1" cols="125" placeholder="Titulo"></textarea>
