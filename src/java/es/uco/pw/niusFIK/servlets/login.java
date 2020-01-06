@@ -35,7 +35,6 @@ public class login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {  
         RequestDispatcher rd = request.getRequestDispatcher("/views/login.jsp");
@@ -58,11 +57,18 @@ public class login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
+        // Se obtienen el nombre de usuario y la contraseña introducidos durante
+        // el login
         String user = request.getParameter("user");
         String passwd = request.getParameter("password");
         
+        // Comprueba que los datos introducidos corresponden con los datos de un 
+        // usuario registrado en la base de datos mediante la funcion checkLogin()
         if(loginDAO.checkLogin(user, passwd))
         {
+            // Si el login es correcto, se obtienen los datos del usuario en 
+            // cuestion y se almacenan aquellos necesarios en la sesion del 
+            // usuario para un posterior uso.
             Hashtable<String, String> data = loginDAO.queryByUser(user);
             
             request.getSession().setAttribute("uID", data.get("id"));
@@ -70,11 +76,13 @@ public class login extends HttpServlet {
             request.getSession().setAttribute("uLogin", data.get("user"));
             request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
+            // Se redirige la respuesta a la pagina con las publicaciones
             response.sendRedirect("inicio");
         }
         
         else{
-            //out.print("E-mail o contrasena incorrectos.");
+            // Si el login es incorrecto, se envia el control a la pagina de error
+            // del login y el usuario tendra que reinsertar los datos
             request.getRequestDispatcher("/views/loginError.jsp").include(request,response);
         }
         
