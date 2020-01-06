@@ -58,10 +58,10 @@ public class perfil extends HttpServlet {
                     = curriculumDAO.queryByUserID(Integer.parseInt(request.getParameter("id")));
             if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))) {    
             } else {
-               /**friends=amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")),request.getParameter("id"));*/ 
+               friends=amigosDAO.checkIfFriends(Integer.parseInt((String) request.getSession().getAttribute("uID")),Integer.parseInt(request.getParameter("id"))); 
             }
         }
-
+        request.setAttribute("friends",friends);
         request.setAttribute("publicaciones", resultPb);
         request.setAttribute("curriculum", resultCV);
         request.getRequestDispatcher("/views/perfil.jsp").forward(request, response);
@@ -122,14 +122,14 @@ public class perfil extends HttpServlet {
             request.setAttribute("botonAnadir", null);
             String idAmigo = request.getParameter("id");
             amigosDAO.insertUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
-            response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
+            response.sendRedirect(request.getContextPath() + "/perfil?id=" + idAmigo);
         }
         
         if (!isNull(request.getParameter("botonEliminar"))) {
             request.setAttribute("botonEliminar", null);
             String idAmigo = request.getParameter("id");
             amigosDAO.deleteUserFriend((String) request.getSession().getAttribute("uID"),idAmigo);
-            response.sendRedirect(request.getContextPath() + "/perfil?uID=" + idAmigo);
+            response.sendRedirect(request.getContextPath() + "/perfil?id=" + idAmigo);
         }
         
         //RequestDispatcher rd = request.getRequestDispatcher("/views/perfil.jsp");

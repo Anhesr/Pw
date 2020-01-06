@@ -52,8 +52,7 @@ public class amigosDAO {
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
-                "INSERT INTO amigos (ID_USUARIO, ID_AMIGO,"
-              + "VALUES (?,?)");   
+                "insert into amigos(id_usuario, id_amigo) values(?,?)");   
             
                 ps.setString(1,UserID);
                 ps.setString(2,FriendID);
@@ -70,10 +69,10 @@ public class amigosDAO {
         Connection con = getConnection();
         try{
             ps = con.prepareStatement(  
-                "DELETE FROM amigos WHERE amigos.id_usuario = " 
-                + UserID + "AND amigos.id_amigo = " + FriendID);
-            ps.executeUpdate();
-                
+                "DELETE FROM amigos WHERE amigos.id_usuario = ? AND amigos.id_amigo = ? ");
+            ps.setString(1, UserID);
+            ps.setString(2, FriendID);
+            ps.executeUpdate();       
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -87,19 +86,14 @@ public class amigosDAO {
         try {
             result = new ArrayList<Hashtable<String, String>>();
             stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("select amigos.id_amigo "
-                     + "from amigos where amigos.id_usuario = " + ID);
+	    ResultSet rs = stmt.executeQuery("Select usuarios.nombre, usuarios.apellidos, amigos.id_amigo from usuarios, amigos " 
+                + "where usuarios.id = amigos.id_amigo AND amigos.id_usuario= "+ ID);
             while (rs.next()) {
+                String nombreAmigo = rs.getString("usuarios.nombre") + " " + rs.getString("usuarios.apellidos");
                 String idAmigo = rs.getString("amigos.id_amigo");
-                stmt = con.createStatement();
-                
-                ResultSet resu = stmt.executeQuery("select usuarios.nombre "
-                     + "from usuarios where usuarios.id = " + idAmigo);
-                
-                String nombreAmigo = resu.getString("usuarios.nombre");
-                
                 res = new Hashtable<String, String>();
-                res.put("NombreAmigo", nombreAmigo);
+                res.put("nombreAmigo", nombreAmigo);
+                res.put("idAmigo", idAmigo);
                 result.add(res);
             }
         } catch (Exception e) {
@@ -108,12 +102,11 @@ public class amigosDAO {
         
         return result;
     }
+    
     public static boolean checkIfFriends(int userID,int friendID) {
         boolean status = false;
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
         Connection con = getConnection();
-        Connection con2 = getConnection();
         try {
             ps = con.prepareStatement(
                     "select * from amigos where amigos.id_usuario=? AND amigos.id_amigo=? ");
@@ -121,16 +114,7 @@ public class amigosDAO {
             ps.setString(2, Integer.toString(friendID));
 
             ResultSet rs = ps.executeQuery();
-            status = rs.next();
-            
-            ps2 = con2.prepareStatement(
-                    "select * from amigos where amigos.id_usuario=? AND amigos.id_amigo=? ");
-            ps2.setString(1, Integer.toString(friendID));
-            ps2.setString(2, Integer.toString(userID));
-            
-            ResultSet rs2 = ps.executeQuery();
-            status = rs2.next();
-
+            status=rs.next();
         } catch (Exception e) {
             System.out.println(e);
         }
