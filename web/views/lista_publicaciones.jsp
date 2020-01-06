@@ -141,7 +141,7 @@
                                     for (Hashtable<String, String> amigoAux : amigosList) {
                                         if (!amigoAux.isEmpty()) {
                             %>
-                            <div class="titPublicacion" id="titPublicacion<%= publicacion.get("id") %>" onclick="location='publicacion?idP=<%=publicacion.get("id")%>'">
+                            <div class="titPublicacion"  onclick="location='perfil?id=<%=amigoAux.get("idAmigo")%>'">
                                 <p><%=amigoAux.get("nombreAmigo")%></p>
                             </div>
                             <%
