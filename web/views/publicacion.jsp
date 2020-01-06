@@ -24,7 +24,7 @@
 	<body class="fondo">
 		<header>
 			<div class="logo">
-				<a href="javascript:history.back()"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
+				<a href="inicio"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
 			</div>
 			<div class="barra-busqueda-principal">
 				<input type="search" id="miBusqueda" name="q"
@@ -32,9 +32,9 @@
 			    <button>Buscar</button>	
 			</div>
 			<div class="botones-principal">
-                            <INPUT type="button" onclick="location = 'inicio'" name="Inicio" value="Inicio" />
-			    <INPUT type="button" onclick="location='perfil'" name="Mi Perfil" value="Mi Perfil" />
-			</div>
+			    <input type="button" onclick="location = 'perfil?id=<%=request.getSession().getAttribute("uID")%>'" name="Mi Perfil" value="Mi Perfil" />
+                            <input type="button" onclick="location='logout'" name="cerrar_sesion" value="Cerrar Sesión" />
+                        </div>
 		</header>	
 		<div class="clear"></div>
 		<div>

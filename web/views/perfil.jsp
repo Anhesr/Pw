@@ -112,7 +112,7 @@
             <div class="newPublis">
                 <div class="borde" style=" height: 225px; position: relative; margin-bottom: 10px; ">
 
-                    <!-- <input type="button" value="Publicar" onclick="goToPubli(/*newPubli()*/)" class="publbut buttonsPerfil" /><!-- AQUÍ IMPLEMENTAR LA CREACION DE LA PUBLICACIÓN // FELIPE -->
+                    <% if (request.getParameter("id").equals(request.getSession().getAttribute("uID"))){%>
                     <%@ page import="es.uco.pw.niusFIK.servlets.perfil" %>
                     <script src="assets/quill/quill.min.js"></script>
                     <form name="myForm" id="myForm" method="post">
@@ -144,6 +144,7 @@
                             about.value = JSON.stringify(quill.root.innerHTML);
                         };
                     </script>
+                    <% } %>
                 </div>
             </div>
         </div>

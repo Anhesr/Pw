@@ -25,7 +25,7 @@
         <script src="js/publicacion.js"></script>
         <header>
             <div class="logo">
-                <a href="javascript:history.back()"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
+                <a href="inicio"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
             </div>
 
             <div class="barra-busqueda-principal">
