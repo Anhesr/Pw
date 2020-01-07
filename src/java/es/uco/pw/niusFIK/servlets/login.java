@@ -74,7 +74,6 @@ public class login extends HttpServlet {
             request.getSession().setAttribute("uID", data.get("id"));
             request.getSession().setAttribute("uName", data.get("nombre"));
             request.getSession().setAttribute("uLogin", data.get("user"));
-            request.getSession().setAttribute("cv_ID", data.get("cv_id"));
             
             // Se redirige la respuesta a la pagina con las publicaciones
             response.sendRedirect("inicio");

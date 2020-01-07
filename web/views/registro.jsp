@@ -12,7 +12,7 @@
         <div class="contenedor">
             <header class="header">
                 <div class="logo">
-                    <a href="javascript:history.back()"><h1><img src="../img/logo.png">NiusFIK</h1></a>
+                    <a href="javascript:history.back()"><h1><img src="assets/img/logo.png">NiusFIK</h1></a>
                     <!--<p1> Conecta tu proyecto </p1>-->
                 </div>
                 <div class="barra-busqueda" align="right">

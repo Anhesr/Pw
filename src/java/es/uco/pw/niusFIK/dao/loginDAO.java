@@ -117,7 +117,6 @@ public class loginDAO {
 
             rs.next();
             String id = rs.getString("usuarios.id");
-            String cv_id = rs.getString("usuarios.curriculum_id");
             String nombre = rs.getString("usuarios.nombre");
             String apellidos = rs.getString("usuarios.apellidos");
             String usuario = rs.getString("usuarios.usuario");
@@ -125,7 +124,6 @@ public class loginDAO {
             res = new Hashtable<String, String>();
 
             res.put("id", id);
-            res.put("cv_id", cv_id);
             res.put("nombre", nombre + apellidos);
             res.put("user", usuario);
 

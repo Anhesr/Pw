@@ -56,7 +56,7 @@
                 <div class="link_register">
                     <p>¿No tienes cuenta?</p>
 
-                    <a href="..registro/registro.jsp">Regi­strate</a>
+                    <a onclick="location='registro'">Regi­strate</a>
                 </div>
 
                 <div class="clear"></div>
