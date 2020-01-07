@@ -15,6 +15,12 @@ import java.util.Hashtable;
  */
 public class loginDAO {
 
+    /***************************************************************
+     * getConnection()
+     *
+     * Inicia la conexion con la base de datos.
+     *
+     ***************************************************************/
     public static Connection getConnection() {
         Connection con = null;
         try {
@@ -26,6 +32,16 @@ public class loginDAO {
         return con;
     }
 
+    
+    /**************************************************************
+    checkUser(String user)
+    
+    * Comprueba si existe o no el usuario pasado a la funcion en la base 
+    * de datos. 
+    * 
+    * Devuelve true en el caso de que exista y false si no.
+    
+    ***************************************************************/
     public static boolean checkUser(String user) {
         boolean status = false;
         PreparedStatement ps = null;
@@ -48,6 +64,16 @@ public class loginDAO {
         return status;
     }
 
+    
+    /**************************************************************
+    existsUserID(int userID)
+    
+    * Comprueba si existe o no el ID de usuario pasado a la funcion en la base 
+    * de datos. 
+    * 
+    * Devuelve true en el caso de que exista y false si no.
+    
+    ***************************************************************/
     public static boolean existsUserID(int userID) {
         boolean status = false;
         PreparedStatement ps = null;
@@ -63,6 +89,15 @@ public class loginDAO {
         return status;
     }
 
+    
+    /**************************************************************
+    checkLogin(String user, String passwd)
+    
+    * Comprueba si el login del usuario es correcto 
+    * 
+    * Devuelve true en el caso de que lo sea y false si no.
+    
+    ***************************************************************/
     public static boolean checkLogin(String user, String passwd) {
         boolean status = false;
         PreparedStatement ps = null;
@@ -86,6 +121,15 @@ public class loginDAO {
         return status;
     }
 
+    
+    /**************************************************************
+    checkPassword(int id, String passwd)
+    
+    * Comprueba si el password del usuario con la id indicada es correcto 
+    * 
+    * Devuelve true en el caso de que lo sea y false si no.
+    
+    ***************************************************************/
     public static boolean checkPassword(int id, String password) {
         boolean status = false;
         PreparedStatement ps;
@@ -104,6 +148,14 @@ public class loginDAO {
         return status;
     }
 
+    /**************************************************************
+    queryByUser(String user)
+    
+    * Obtiene los datos del usuario con el usuario indicado 
+    * 
+    * Devuelve un Hashtable con los datos del usuario en cuestion.
+    
+    ***************************************************************/
     public static Hashtable<String, String> queryByUser(String user) {
         Hashtable<String, String> res = null;
         PreparedStatement ps = null;

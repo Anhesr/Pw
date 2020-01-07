@@ -90,8 +90,7 @@ public class registro extends HttpServlet {
         if(passwd == "")   {allRight = false;}
         
         if(allRight == false){
-            //out.print("Faltan datos para el registro.\n");
-            
+            // Si es asi, se le redirige a una pagina de error
             RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorDatos.jsp");
             rd.include(request,response);
         }
@@ -99,8 +98,7 @@ public class registro extends HttpServlet {
         // Se comprueba si ya existe ese login en la base de datos
         else if(registroDAO.checkUserExist(user))
         {
-            //out.print("El usuario introducido ya existe.\n");
-            
+            // Si es asi, se le redirige a una pagina de error
             RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorLogin.jsp");
             rd.include(request,response);
         }
@@ -108,8 +106,7 @@ public class registro extends HttpServlet {
         // Se comprueba si el email ya esta siendo usado por alguien registrado
         else if(registroDAO.checkEmailExist(email))
         {
-            //out.print("El correo introducido ya existe.\n");
-            
+            // Si es asi, se le redirige a una pagina de error
             RequestDispatcher rd = request.getRequestDispatcher("/views/registroErrorEmail.jsp");
             rd.include(request,response);
         }
@@ -118,8 +115,10 @@ public class registro extends HttpServlet {
         else{
             registroDAO.insertUserData(name,lastname,birthdate,email,phone,user,passwd);
             
+            // Se busca el usuario para obtener el ID que se le ha asignado
             while(!loginDAO.checkUser(user)){};
             
+            // Se obtienen los datos del usuario y se guardan en su sesion
             Hashtable<String, String> data = loginDAO.queryByUser(user);
               
             request.getSession().setAttribute("uName", name + " " + lastname);
@@ -127,8 +126,7 @@ public class registro extends HttpServlet {
             request.getSession().setAttribute("uID", data.get("id"));
             request.getSession().setAttribute("justRegistered", "true");
             
-            // El ID del Curriculum no se le asigna dado que aun no lo ha rellenado
-           
+            // Se le redirige al perfil/mod para que cumplimente su Curriculum
             response.sendRedirect("perfil/mod");
         }
    

@@ -35,12 +35,14 @@ public class logout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        //Obtiene la sesion del usuario
         HttpSession sesion = request.getSession(true);
         
-        //Cerrar sesion
+        //Cierra la sesion
         sesion.invalidate();
         
-        //Redirecciono a index.jsp
+        //Redirecciona a index.jsp
         response.sendRedirect("index");
         }
     

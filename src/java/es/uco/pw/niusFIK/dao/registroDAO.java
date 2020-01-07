@@ -16,6 +16,12 @@ import java.util.Hashtable;
  */
 public class registroDAO {
     
+    /**************************************************************
+    getConnection()
+    
+    * Inicia la conexion con la base de datos.
+    
+    ***************************************************************/
     public static Connection getConnection() {
         Connection con = null;
         try {
@@ -27,6 +33,16 @@ public class registroDAO {
         return con;
     }
     
+    
+    /**************************************************************
+    checkUserExist(String user)
+    
+    * Comprueba si existe o no el usuario pasado a la funcion en la base 
+    * de datos. 
+    * 
+    * Devuelve true en el caso de que exista y false si no.
+    
+    ***************************************************************/
     public static boolean checkUserExist(String user) {
         boolean status = false;
         PreparedStatement ps;
@@ -45,6 +61,16 @@ public class registroDAO {
         return status;
     }
     
+    
+    /**************************************************************
+    checkUserExist(String user)
+    
+    * Comprueba si existe o no el email pasado a la funcion en la base 
+    * de datos. 
+    * 
+    * Devuelve true en el caso de que exista y false si no.
+    
+    ***************************************************************/
     public static boolean checkEmailExist(String email) {
         boolean status = false;
         PreparedStatement ps;
@@ -64,6 +90,13 @@ public class registroDAO {
     }
     
     
+    /**************************************************************
+    insertUserData(String user)
+    
+    * Inserta el usuario y todos los datos pasados a la funcion en la 
+    * base de datos.
+    
+    ***************************************************************/
     public static void insertUserData(String name, String lastname, String birthdate, 
                                       String email, String phone, String user, String passwd)
     {
